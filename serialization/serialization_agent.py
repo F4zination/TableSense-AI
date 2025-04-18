@@ -1,6 +1,6 @@
 import pathlib
 from agent import Agent
-from serialization.converter import Converter, FileFormat
+from serialization.converter import Converter, TableFormat
 
 
 class SerializationAgent(Agent):
@@ -24,7 +24,7 @@ class SerializationAgent(Agent):
         :return:
         """
         # Perform the serialization task using the Converter class
-        converted_content = self.converter.convert(dataset, FileFormat.HTML, False)
+        converted_content = self.converter.convert(dataset, TableFormat.HTML, False)
 
         # Use the LLM to generate a response based on the question and converted content
         response = self.llm_model.invoke(question + converted_content)

@@ -2,7 +2,7 @@ from converter import Converter
 from langchain_openai import OpenAI
 import pathlib
 from langchain_core.prompts import ChatPromptTemplate
-from serialization.converter import FileFormat
+from serialization.converter import TableFormat
 
 if __name__ == "__main__":
 
@@ -19,7 +19,7 @@ if __name__ == "__main__":
         api_key="THU-I17468S973-Student-24-25-94682Y1315",
     )
 
-    converted_content = converter.convert(pathlib.Path("../input/minimal.csv"), FileFormat.HTML, False)
+    converted_content = converter.convert(pathlib.Path("../input/minimal.csv"), TableFormat.NATURAL, False)
 
     prompt = ChatPromptTemplate.from_template("""
     You are a data scientist. You have been given a CSV file containing the following data:

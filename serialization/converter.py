@@ -1,9 +1,10 @@
 import enum
 import pathlib
 import pandas as pd
+from jinja2 import Environment, FileSystemLoader
 
 
-class FileFormat(enum.Enum):
+class TableFormat(enum.Enum):
     """
     Enum class for file formats.
     """
@@ -13,6 +14,7 @@ class FileFormat(enum.Enum):
     MARKDOWN = ".md"
     JSON = ".json"
     XML = ".xml"
+    NATURAL = ".natural"
 
     def equal(self, value: str) -> bool:
         if self.value == value:
@@ -28,7 +30,7 @@ class Converter:
     def __init__(self):
         pass
 
-    def convert(self, path_to_file: pathlib.Path, output_format: FileFormat, save_to_file: bool)-> str:
+    def convert(self, path_to_file: pathlib.Path, output_format: TableFormat, save_to_file: bool)-> str:
         """
         Convert the given data to a different format.
         Returns the converted data as a string.
@@ -44,23 +46,23 @@ class Converter:
             raise FileNotFoundError(f"Input file does not exist: {path_to_file}")
 
         # Check if the input file format is supported
-        if path_to_file.suffix not in FileFormat:
+        if path_to_file.suffix not in TableFormat or path_to_file.suffix == TableFormat.NATURAL.value:
             raise ValueError(f"Unsupported input file format: {path_to_file.suffix}")
 
 
 
         # Perform the conversion
-        if path_to_file.suffix == FileFormat.CSV.value:
+        if path_to_file.suffix == TableFormat.CSV.value:
             self.data.append(pd.read_csv(path_to_file))
-        elif path_to_file.suffix == FileFormat.JSON.value:
+        elif path_to_file.suffix == TableFormat.JSON.value:
             self.data.append(pd.read_json(path_to_file))
-        elif path_to_file.suffix == FileFormat.HTML.value:
+        elif path_to_file.suffix == TableFormat.HTML.value:
             self.data = pd.read_html(path_to_file)
-        elif path_to_file.suffix == FileFormat.MARKDOWN.value:
+        elif path_to_file.suffix == TableFormat.MARKDOWN.value:
             self._read_markdown(path_to_file)
-        elif path_to_file.suffix == FileFormat.XML.value:
+        elif path_to_file.suffix == TableFormat.XML.value:
             self.data.append(pd.read_xml(path_to_file))
-        elif path_to_file.suffix == FileFormat.EXCEL.value:
+        elif path_to_file.suffix == TableFormat.EXCEL.value:
             self.data.append(pd.read_excel(path_to_file))
         else:
             raise ValueError(f"Unsupported input file format: {path_to_file.suffix}")
@@ -68,24 +70,27 @@ class Converter:
         # return the converted data as a string
 
         output = ""
-        if output_format.value == FileFormat.CSV.value:
+        if output_format.value == TableFormat.CSV.value:
             for df in self.data:
                 output += df.to_csv()
-        elif output_format.value == FileFormat.JSON.value:
+        elif output_format.value == TableFormat.JSON.value:
             for df in self.data:
                 output += df.to_json()
-        elif output_format.value == FileFormat.HTML.value:
+        elif output_format.value == TableFormat.HTML.value:
             for df in self.data:
                 output += df.to_html()
-        elif output_format.value == FileFormat.MARKDOWN.value:
+        elif output_format.value == TableFormat.MARKDOWN.value:
             for df in self.data:
                 output += df.to_markdown()
-        elif output_format.value == FileFormat.XML.value:
+        elif output_format.value == TableFormat.XML.value:
             for df in self.data:
                 output += df.to_xml()
-        elif output_format.value == FileFormat.EXCEL.value:
+        elif output_format.value == TableFormat.EXCEL.value:
             for df in self.data:
                 output += df.to_excel()
+        elif output_format.value == TableFormat.NATURAL.value:
+            for df in self.data:
+                output += self.df_to_natural(df)
         else:
             raise ValueError(f"Unsupported output file format: {output_format}")
 
@@ -99,6 +104,20 @@ class Converter:
         return output
 
 
+
+    def df_to_natural(self, df: pd.DataFrame) -> str:
+        """
+        Convert a DataFrame to a natural language string.
+        """
+        # Convert the DataFrame to a string
+        env = Environment(loader=FileSystemLoader('.'))
+        template = env.get_template('only_header.natural.jinja2')
+
+        # 3. Render, passing the DataFrame directly
+        output = template.render(dataframe=df)
+
+        # 4. Return the rendered string
+        return output
 
 
 
