@@ -1,0 +1,20 @@
+[project]
+name = "tablesense-ai"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "smolagents[litellm] (>=1.14.0,<2.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "langchain-openai (>=0.3.14,<0.4.0)",
+    "litellm (>=1.67.1,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
