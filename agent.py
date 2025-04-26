@@ -7,7 +7,7 @@ from langchain_openai import OpenAI
 class Agent(ABCMeta):
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int, base_url: str,
-                 api_key: str):
+                 api_key: str, system_prompt: str = None):
         super().__init__(self)
         self.llm_model = OpenAI(
                 model=llm_model,
@@ -17,6 +17,7 @@ class Agent(ABCMeta):
                 base_url=base_url,
                 api_key=api_key,
         )
+        self.system_prompt = system_prompt if system_prompt else "You are a data scientist. You have been given the following data: {data}. Your task is to analyze the data and provide insights. Please summarize the key findings and any interesting patterns you observe."
 
 
 
