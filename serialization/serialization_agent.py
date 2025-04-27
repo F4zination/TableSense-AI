@@ -1,4 +1,6 @@
 import pathlib
+from typing import Union
+
 from agent import Agent
 from serialization.converter import Converter, TableFormat
 
@@ -16,7 +18,20 @@ class SerializationAgent(Agent):
         self.format_to_convert_to = format_to_convert_to
 
 
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: list[dict]) -> str:
+
+    def invoke(self, input_prompt: str) -> str:
+        """
+        Invoke the LLM with the given input.
+        :param input_prompt:
+        :return:
+        """
+        # Here you would implement the logic to invoke the LLM with the input
+        # For example, using OpenAI's API or any other LLM service
+        response = self.llm_model.invoke(input_prompt)
+        return response
+
+
+    def eval(self, question: str, dataset: pathlib.Path, additional_info: Union[dict, None]) -> str:
         """
         Evaluate the given data using the LLM.
         :param question:
@@ -27,8 +42,11 @@ class SerializationAgent(Agent):
         # Perform the serialization task using the Converter class
         converted_content = self.converter.convert(dataset, self.format_to_convert_to, False)
 
+        prompt = self.system_prompt.format(data=converted_content) + "\n" + question
+
+
+
         # Use the LLM to generate a response based on the question and converted content
-        response = self.llm_model.invoke(self.system_prompt + question + converted_content)
+        response = self.llm_model.invoke(prompt)
 
         return response
-
