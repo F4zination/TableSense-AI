@@ -36,6 +36,8 @@ class Evaluator:
         for dataset in config.datasets:
             self.datasets.append(load_dataset(dataset.value, trust_remote_code=True, download_mode=download_mode))
 
+        self.metrics = config.metrics
+
     def evaluate(self):
         """
         Runs evaluation on all loaded datasets.
@@ -48,13 +50,24 @@ class Evaluator:
             - Final evaluation results showing prediction vs target
         """
         results = []
+        metric_results = {metric.name: [] for metric in self.metrics}
+
+
         for dataset in self.datasets:
             for example in tqdm(dataset["test"], desc=f"Evaluating examples from {dataset} dataset"):
                 path_obj = Path(example["context"]["csv"])
                 pred = self.predictor.eval(question=example["utterance"], dataset=path_obj, additional_info=[])
+                for metric in self.metrics:
+                    score = metric.compute(predictions=[pred], references=[example["target_value"]])
+                    metric_results[metric.name].append(score)
+
                 results.append((pred, example["target_value"]))
                 print(pred)
 
+        # Print aggregated metric results
         print("Evaluation results:")
-        for pred, example in results:
-            print(f"{pred}: {example['target_value']}")
+
+        for metric_name, scores in metric_results.items():
+            average_result = sum([score["exact_match"] for score in scores]) / len(scores)
+            print(f"{metric_name}: {average_result}")
+
