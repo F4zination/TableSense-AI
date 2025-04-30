@@ -1,0 +1,23 @@
+{# natural_sentences_df.j2 #}
+{# Macro to smart‑join a list with commas and "and" #}
+{% macro natural_join(items) -%}
+  {%- if items|length == 0 -%}
+    {# nothing to join #}
+  {%- elif items|length == 1 -%}
+    {{ items[0] }}
+  {%- else -%}
+    {{ items[:-1] | join(', ') }} and {{ items[-1] }}
+  {%- endif -%}
+{%- endmacro %}
+
+{# Iterate over DataFrame rows, converting each to a record dict #}
+{% for row in dataframe.to_dict(orient='records') %}
+  {% set descriptions = [] %}
+  {% for key, value in row.items() %}
+    {% if value is not none and value|string|trim %}
+      {% set _ = descriptions.append(key ~ " is " ~ value) %}
+    {% endif %}
+  {% endfor %}
+
+  {{ natural_join(descriptions) }}.
+{% endfor %}
