@@ -1,60 +1,64 @@
-import os
 import pandas as pd
-import smolagents
+import streamlit as st
 from smolagents import LiteLLMModel, CodeAgent
-import litellm
+from dotenv import load_dotenv
+import os
 
-litellm._turn_on_debug()
+load_dotenv()
+api_base = os.getenv("API_BASE")
+api_key = os.getenv("API_KEY")
 
-## setting up LLM Model
+# Define LLM model
 llm_model = LiteLLMModel(
-    #model="models/mistral-nemo-12b",
-    model_id="openai/models/mistral-nemo-12b",
+    model_id="openai//models/mistral-nemo-12b",
     temperature=0,
     max_retries=2,
-    max_tokens=2048,
-    api_base="http://80.151.131.52:9180/v1",
-    api_key="THU-I17468S973-Student-24-25-94682Y1315"
+    api_base=api_base,
+    api_key=api_key,
 )
 
 
-system_prompt = """
+# Option to provide here data description as df.dtypes. At the moment dataframe 
+prompt_template= """
 ## Instructions
 You are acting as an expert data analyst.
-Your job is to answer questions asked by the user about the given dataset.
-
-## Data information
-{df_head}
+Your job is to answer question asked by the user about the dataset, provided as a pandas DataFrame. 
+Therefore generate Code to execute on a pandas DataFrame.
 
 ## User Question:
 {query}
 """
 
+# Initialize CodeAgent
 agent = CodeAgent(
-    tools=[],  # only use built-in tools
+    tools=[],
     model=llm_model,
-    add_base_tools=True,
     additional_authorized_imports=[
         "pandas", "numpy", "datetime",
-        "matplotlib", "plotly", "seaborn", "sklearn"
+        "matplotlib", "matplotlib.pyplot", "plotly",
+        "seaborn", "sklearn", "scikit-learn", "scipy"
     ]
 )
 
 
-def load_csv(file_path):
-    df = pd.read_csv(file_path)
-    return df
+# Streamlit UI
+st.title("AI Data Analyst")
+st.markdown("Upload a CSV file and ask questions about it using natural language.")
 
+uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
 
-def main():
-    df = load_csv("titanic.csv")
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.write("### Preview of Data", df.head())
 
-    user_question = "How many male and female survived?"
-    context = system_prompt.format(df_head=df.head(3).to_string(), query=user_question)
+    user_question = st.text_area("Ask a question about your data:", height=100)
 
-    result = agent.run(context)
-    print(result)
+    if st.button("Analyze") and user_question:
+        with st.spinner("Thinking..."):
+            prompt = prompt_template.format(query=user_question, df_dtypes=df.dtypes)
 
+            # Instead of df, you can directly prompt the csv file. The LLM will convert it into a df
+            result = agent.run(prompt, additional_args={"dataframe": df})
 
-if __name__ == "__main__":
-    main()
+        st.write("### Result")
+        st.write(result)
