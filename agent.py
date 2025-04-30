@@ -29,7 +29,6 @@ class Agent(ABC):
         """
         self.system_prompt = system_prompt
 
-
     @abstractmethod
     def eval(self, question: str, dataset: pathlib.Path, additional_info: list[dict]) -> str:
         """
