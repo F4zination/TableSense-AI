@@ -12,6 +12,7 @@ class Dataset(Enum):
         SimpleTest (str): Path to the simple test dataset script.
     """
     SimpleTest = "tab_llm_datasets/simple_test/dataset.py"
+    WikiTableQuestions = "TableSenseAI/WikiTableQuestions"
 
 
 class EvalConfig:

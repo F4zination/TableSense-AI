@@ -3,12 +3,11 @@ from abc import ABC, abstractmethod
 from langchain_openai import OpenAI
 
 
+
 class Agent(ABC):
-    def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int,
-                 base_url: str, api_key: str, system_prompt: str = None):
-        """
-        Initialize the Agent with the provided parameters for the LLM.
-        """
+
+    def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int, base_url: str,
+                 api_key: str, system_prompt: str = None):
         self.llm_model = OpenAI(
             model=llm_model,
             temperature=temperature,
@@ -17,15 +16,16 @@ class Agent(ABC):
             base_url=base_url,
             api_key=api_key,
         )
-        self.system_prompt = system_prompt or (
-            "You are a data scientist. You have been given the following data: \n{data}."
-        )
+        self.system_prompt = system_prompt if system_prompt else ("You are a data scientist. You have been given the "
+                                                                  "following data: \n{data}.")
+
+
 
     def set_system_prompt(self, system_prompt: str):
         """
         Set the system prompt for the LLM.
 
-        :param system_prompt: The system prompt to set.
+            :param system_prompt: The system prompt to set
         """
         self.system_prompt = system_prompt
 
