@@ -14,12 +14,12 @@ class TestLLMExactMatch(unittest.TestCase):
         # Configure the agent with the real LLM
         self.agent = SimpleAgent(
             llm_model="/models/mistral-nemo-12b",
-            temperature=0.5,
+            temperature=0,
             max_retries=2,
             max_tokens=2048,
             base_url="http://80.151.131.52:9180/v1",
             api_key="THU-I17468S973-Student-24-25-94682Y1315",
-            system_prompt="Answer the question with just ONE WORD"
+            system_prompt="Answer the question as short as possible!!!"
         )
 
         # Load the exact match metric
@@ -36,6 +36,60 @@ class TestLLMExactMatch(unittest.TestCase):
                 "id": "1",
                 "utterance": "What is the capital of France?",
                 "target_value": "Paris",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "2",
+                "utterance": "What is the largest planet in our solar system?",
+                "target_value": "Jupiter",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "3",
+                "utterance": "Who wrote 'To Kill a Mockingbird'?",
+                "target_value": "Harper Lee",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "4",
+                "utterance": "What is 5 + 7?",
+                "target_value": "12",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "5",
+                "utterance": "What is the chemical symbol for water?",
+                "target_value": "H2O",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "6",
+                "utterance": "Who painted the Mona Lisa?",
+                "target_value": "Leonardo da Vinci",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "7",
+                "utterance": "What is the square root of 81?",
+                "target_value": "9",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "8",
+                "utterance": "What is the speed of light in vacuum (in m/s)?",
+                "target_value": "299792458",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "9",
+                "utterance": "What year did World War II end?",
+                "target_value": "1945",
+                "context": {"csv": "", "html": "", "tsv": ""}
+            },
+            {
+                "id": "10",
+                "utterance": "How many continents are there on Earth?",
+                "target_value": "7",
                 "context": {"csv": "", "html": "", "tsv": ""}
             },
         ]
@@ -106,7 +160,7 @@ class TestLLMExactMatch(unittest.TestCase):
         for example in test_data:
             question = example["utterance"]
 
-            prediction = self.agent.eval(question=question).strip()
+            prediction = self.agent.eval(question=question).content.strip()
             predictions.append(prediction)
             references.append(example["target_value"])
             print(f"Question: {question}\nPrediction: {prediction}\nReference: {example['target_value']}\n")
