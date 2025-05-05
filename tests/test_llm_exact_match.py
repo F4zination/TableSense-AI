@@ -94,64 +94,6 @@ class TestLLMExactMatch(unittest.TestCase):
             },
         ]
 
-        """
-        {
-            "id": "2",
-            "utterance": "What is the largest planet in our solar system?",
-            "target_value": "Jupiter",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "3",
-            "utterance": "Who wrote 'To Kill a Mockingbird'?",
-            "target_value": "Harper Lee",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "4",
-            "utterance": "What is 5 + 7?",
-            "target_value": "12",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "5",
-            "utterance": "What is the chemical symbol for water?",
-            "target_value": "H2O",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "6",
-            "utterance": "Who painted the Mona Lisa?",
-            "target_value": "Leonardo da Vinci",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "7",
-            "utterance": "What is the square root of 81?",
-            "target_value": "9",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "8",
-            "utterance": "What is the speed of light in vacuum (in m/s)?",
-            "target_value": "299792458",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "9",
-            "utterance": "What year did World War II end?",
-            "target_value": "1945",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-        {
-            "id": "10",
-            "utterance": "How many continents are there on Earth?",
-            "target_value": "7",
-            "context": {"csv": "", "html": "", "tsv": ""}
-        },
-
-        """
-
         # Store predictions and references for evaluation
         predictions = []
         references = []
@@ -159,19 +101,17 @@ class TestLLMExactMatch(unittest.TestCase):
         # Send each question to the LLM
         for example in test_data:
             question = example["utterance"]
-
             prediction = self.agent.eval(question=question).content.strip()
             predictions.append(prediction)
             references.append(example["target_value"])
-            print(f"Question: {question}\nPrediction: {prediction}\nReference: {example['target_value']}\n")
 
         # Evaluate with the exact match metric
-        print(predictions)
-        print(references)
+        print(f"\nPredictions: {predictions}")
+        print(f"References: {references}")
         exact_match_result = self.exact_match_metric.compute(predictions=predictions, references=references)
 
         # Log and assert results
-        print(f"Exact Match Score: {exact_match_result['exact_match']}%")
+        print(f"Exact Match Score: {exact_match_result['exact_match']}")
         self.assertEqual(exact_match_result["exact_match"], 1)
 
 

@@ -12,9 +12,6 @@ class SimpleAgent(Agent):
             {"role": "system", "content": f"{self.system_prompt}"},
             {"role": "user", "content": f"{question}"},
         ]
-        print(f"Generated Prompt: {messages}")  # Debugging: Prompt anzeigen
         response = self.llm_model.invoke(input=messages)
-        print(f"Response: {response}")
-        print(f"Response Content: {response.content}")
         return response
 
