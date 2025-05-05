@@ -1,6 +1,6 @@
 import pathlib
 from abc import ABC, abstractmethod
-from langchain_openai import OpenAI, ChatOpenAI
+from langchain_openai import ChatOpenAI
 
 
 class Agent(ABC):
