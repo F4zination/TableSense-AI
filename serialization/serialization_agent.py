@@ -49,4 +49,4 @@ class SerializationAgent(Agent):
         # Use the LLM to generate a response based on the question and converted content
         response = self.llm_model.invoke(prompt)
 
-        return response
+        return response.content

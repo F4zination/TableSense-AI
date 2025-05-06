@@ -1,14 +1,13 @@
 import pathlib
 from abc import ABC, abstractmethod
-from langchain_openai import OpenAI
-
+from langchain_openai import ChatOpenAI
 
 
 class Agent(ABC):
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int, base_url: str,
                  api_key: str, system_prompt: str = None):
-        self.llm_model = OpenAI(
+        self.llm_model = ChatOpenAI(
             model=llm_model,
             temperature=temperature,
             max_retries=max_retries,
@@ -17,7 +16,7 @@ class Agent(ABC):
             api_key=api_key,
         )
         self.system_prompt = system_prompt if system_prompt else ("You are a data scientist. You have been given the "
-                                                                  "following data: \n{data}.")
+                                                                  "following data: \n{data}.\nOnly return the answer to the question!")
 
 
 
