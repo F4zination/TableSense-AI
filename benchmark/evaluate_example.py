@@ -12,7 +12,7 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
                            api_key="THU-I17468S973-Student-24-25-94682Y1315")
 
 # Configure your evaluation instance
-config = EvalConfig([Dataset.SimpleTest])
+config = EvalConfig([Dataset.WikiTableQuestions], force_redownload=True)
 evaluator = Evaluator(config, agent)
 
 # Start the evaluation process

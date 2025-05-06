@@ -70,16 +70,14 @@ class WikiTableQuestions(GeneratorBasedBuilder):
         with open(filepath, encoding="utf-8") as f:
             data = json.load(f)
 
-        base_dir = os.path.dirname(filepath)
-
         for i, item in enumerate(data):
             yield i, {
                 "id": item["id"],
                 "utterance": item["utterance"],
                 "target_value": item["target_value"],
                 "context": {
-                    "csv": os.path.join(base_dir, item["context"]["csv"]),
-                    "html": os.path.join(base_dir, item["context"]["html"]),
-                    "tsv": os.path.join(base_dir, item["context"]["tsv"]),
+                    "csv": item["context"]["csv"],
+                    "html": item["context"]["html"],
+                    "tsv": item["context"]["tsv"],
                 },
             }

@@ -4,9 +4,9 @@
     "utterance": "which country had the most cyclists finish within the top 10?",
     "target_value": "Italy",
     "context": {
-      "csv": "tables_0/733.csv",
-      "html": "tables_0/733.html",
-      "tsv": "tables_0/733.tsv"
+      "csv": "examples/tables_0/733.csv",
+      "html": "examples/tables_0/733.html",
+      "tsv": "examples/tables_0/733.tsv"
     }
   },
   {
@@ -14,9 +14,9 @@
     "utterance": "how many people were murdered in 1940/41?",
     "target_value": "100,000",
     "context": {
-      "csv": "tables_1/149.csv",
-      "html": "tables_1/149.html",
-      "tsv": "tables_1/149.tsv"
+      "csv": "examples/tables_1/149.csv",
+      "html": "examples/tables_1/149.html",
+      "tsv": "examples/tables_1/149.tsv"
     }
   },
   {
@@ -24,9 +24,9 @@
     "utterance": "how long did it take for the new york americans to win the national cup after 1936?",
     "target_value": "17 years",
     "context": {
-      "csv": "tables_2/435.csv",
-      "html": "tables_2/435.html",
-      "tsv": "tables_2/435.tsv"
+      "csv": "examples/tables_2/435.csv",
+      "html": "examples/tables_2/435.html",
+      "tsv": "examples/tables_2/435.tsv"
     }
   },
   {
@@ -34,9 +34,9 @@
     "utterance": "alfie's birthday party aired on january 19. what was the airdate of the next episode?",
     "target_value": "January 26, 1995",
     "context": {
-      "csv": "tables_3/803.csv",
-      "html": "tables_3/803.html",
-      "tsv": "tables_3/803.tsv"
+      "csv": "examples/tables_3/803.csv",
+      "html": "examples/tables_3/803.html",
+      "tsv": "examples/tables_3/803.tsv"
     }
   },
   {
@@ -44,9 +44,9 @@
     "utterance": "what is the number of 1st place finishes across all events?",
     "target_value": "17",
     "context": {
-      "csv": "tables_4/272.csv",
-      "html": "tables_4/272.html",
-      "tsv": "tables_4/272.tsv"
+      "csv": "examples/tables_4/272.csv",
+      "html": "examples/tables_4/272.html",
+      "tsv": "examples/tables_4/272.tsv"
     }
   },
   {
@@ -54,9 +54,9 @@
     "utterance": "in which competition did hopley finish fist?",
     "target_value": "World Junior Championships",
     "context": {
-      "csv": "tables_5/483.csv",
-      "html": "tables_5/483.html",
-      "tsv": "tables_5/483.tsv"
+      "csv": "examples/tables_5/483.csv",
+      "html": "examples/tables_5/483.html",
+      "tsv": "examples/tables_5/483.tsv"
     }
   },
   {
@@ -64,9 +64,9 @@
     "utterance": "what is the total number of films with the language of kannada listed?",
     "target_value": "15",
     "context": {
-      "csv": "tables_6/463.csv",
-      "html": "tables_6/463.html",
-      "tsv": "tables_6/463.tsv"
+      "csv": "examples/tables_6/463.csv",
+      "html": "examples/tables_6/463.html",
+      "tsv": "examples/tables_6/463.tsv"
     }
   },
   {
@@ -74,9 +74,9 @@
     "utterance": "what was the number of people attending the toros mexico vs. monterrey flash game?",
     "target_value": "363",
     "context": {
-      "csv": "tables_7/875.csv",
-      "html": "tables_7/875.html",
-      "tsv": "tables_7/875.tsv"
+      "csv": "examples/tables_7/875.csv",
+      "html": "examples/tables_7/875.html",
+      "tsv": "examples/tables_7/875.tsv"
     }
   },
   {
@@ -84,9 +84,9 @@
     "utterance": "what time period had no shirt sponsor?",
     "target_value": "1982-1985",
     "context": {
-      "csv": "tables_8/329.csv",
-      "html": "tables_8/329.html",
-      "tsv": "tables_8/329.tsv"
+      "csv": "examples/tables_8/329.csv",
+      "html": "examples/tables_8/329.html",
+      "tsv": "examples/tables_8/329.tsv"
     }
   },
   {
@@ -94,9 +94,9 @@
     "utterance": "when was his first 1st place record?",
     "target_value": "2000",
     "context": {
-      "csv": "tables_9/395.csv",
-      "html": "tables_9/395.html",
-      "tsv": "tables_9/395.tsv"
+      "csv": "examples/tables_9/395.csv",
+      "html": "examples/tables_9/395.html",
+      "tsv": "examples/tables_9/395.tsv"
     }
   }
 ]

@@ -34,7 +34,15 @@ class Evaluator:
             download_mode = "reuse_dataset_if_exists"
 
         for dataset in config.datasets:
-            self.datasets.append(load_dataset(dataset.value, trust_remote_code=True, download_mode=download_mode))
+            if dataset.value.endswith(".py"):
+                is_local = True
+            else:
+                is_local = False
+
+            self.datasets.append(
+                {"dataset": load_dataset(dataset.value, trust_remote_code=True, download_mode=download_mode),
+                 "dataset_name": dataset.value,
+                 "is_local": is_local})
 
     def evaluate(self):
         """
@@ -49,9 +57,20 @@ class Evaluator:
         """
         results = []
         for dataset in self.datasets:
-            for example in tqdm(dataset["test"], desc=f"Evaluating examples from {dataset} dataset"):
+            for example in tqdm(dataset["dataset"]["test"],
+                                desc=f"Evaluating examples from {dataset['dataset_name']} dataset"):
                 path_obj = Path(example["context"]["csv"])
-                pred = self.predictor.eval(question=example["utterance"], dataset=path_obj, additional_info=[])
+
+                if dataset["is_local"]:
+                    current_file_path = Path(__file__).resolve().parent
+                    base_path = current_file_path / ".." / Path(dataset["dataset_name"]).parent
+                    full_path = base_path / path_obj
+                else:
+                    from huggingface_hub import hf_hub_download
+                    full_path = Path(hf_hub_download(repo_id=dataset["dataset_name"], repo_type="dataset", filename=str(path_obj)))
+
+                print(full_path)
+                pred = self.predictor.eval(question=example["utterance"], dataset=full_path, additional_info=[])
                 results.append((pred, example["target_value"]))
                 print(pred)
 
