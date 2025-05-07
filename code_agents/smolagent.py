@@ -33,7 +33,8 @@ class SmolCodeAgent(Agent):
             ),
             additional_authorized_imports=[
                 "pandas", "numpy", "datetime", "matplotlib", "matplotlib.pyplot",
-                "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels"
+                "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels",
+                "plotly.graph_objects"
             ]
         )
 
