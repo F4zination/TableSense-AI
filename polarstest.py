@@ -36,7 +36,6 @@ df_pl_italy = (
 end_time = time.time()
 print(f"Polars filtering and selection took {end_time - start_time:.6f} seconds")
 
-pl.
 # PANDAS
 start_time = time.time()
 df_pd["date"] = pd.to_datetime(df_pd["date"])  # Ensure 'date' is in datetime format
