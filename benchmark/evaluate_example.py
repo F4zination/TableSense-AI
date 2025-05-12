@@ -1,8 +1,8 @@
 from evaluate import load
 
+from benchmark.evaluator.dataset_definition import SimpleTest
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
-from benchmark.evaluator.utils import Dataset
 from serialization.serialization_agent import SerializationAgent
 
 # Create your agent instance to test
@@ -17,7 +17,7 @@ exact_match = load("exact_match")
 
 
 # Configure your evaluation instance
-config = EvalConfig([Dataset.SimpleTest], False, [exact_match]
+config = EvalConfig([SimpleTest()], False, [exact_match]
 )
 evaluator = Evaluator(config, agent)
 
