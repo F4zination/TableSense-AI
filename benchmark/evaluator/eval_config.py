@@ -1,18 +1,8 @@
-from enum import Enum
-from typing import List, Callable
+from typing import List
 
 from evaluate import load, EvaluationModule
 
-
-class Dataset(Enum):
-    """
-    Enum for available datasets.
-
-    Attributes:
-        SimpleTest (str): Path to the simple test dataset script.
-    """
-    SimpleTest = "tab_llm_datasets/simple_test/dataset.py"
-    WikiTableQuestions = "TableSenseAI/WikiTableQuestions"
+from benchmark.evaluator.dataset_definition import Dataset
 
 
 class EvalConfig:
