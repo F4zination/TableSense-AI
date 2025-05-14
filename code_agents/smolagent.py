@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from agent import Agent
+from agent import Agent, measure_performance
 from smolagents import LiteLLMModel, CodeAgent
 from langchain_openai import OpenAI
 
@@ -39,10 +39,11 @@ class SmolCodeAgent(Agent):
         )
 
     # Possible to store the dataframe as csv to provide a path for eval
+    @measure_performance
     def eval(self, question: str, dataset: pathlib.Path, additional_info: list[dict]) -> str:
         df = pd.read_csv(dataset)
         return self.invoke(question, df)
-
+    @measure_performance
     def invoke(self, question: str, df: pd.DataFrame) -> str:
         prompt = f"""
 ## Instructions
