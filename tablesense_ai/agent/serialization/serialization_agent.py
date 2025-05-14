@@ -1,11 +1,11 @@
 import pathlib
 from typing import Union
 
-from agent import Agent
-from serialization.converter import Converter, TableFormat
+from tablesense_ai.agent.base import BaseAgent
+from tablesense_ai.agent.serialization.converter import Converter, TableFormat
 
 
-class SerializationAgent(Agent):
+class SerializationAgent(BaseAgent):
     """
     SerializationAgent is a specialized agent that handles the serialization of data.
     It extends the base Agent class and implements the eval method to perform serialization tasks.

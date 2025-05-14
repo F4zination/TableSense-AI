@@ -1,5 +1,5 @@
-from serialization.converter import TableFormat
-from serialization.serialization_agent import SerializationAgent
+from agent.serialization.converter import TableFormat
+from agent.serialization.serialization_agent import SerializationAgent
 import pathlib
 
 

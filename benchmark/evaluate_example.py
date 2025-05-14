@@ -3,7 +3,7 @@ from evaluate import load
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from benchmark.evaluator.utils import Dataset
-from serialization.serialization_agent import SerializationAgent
+from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
 
 # Create your agent instance to test
 agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",

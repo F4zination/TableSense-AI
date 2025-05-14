@@ -4,13 +4,8 @@ import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 
-# TODO: Change project structre for best practice
-import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from agent import Agent
 from smolagents import LiteLLMModel, CodeAgent
-from langchain_openai import OpenAI
+from tablesense_ai.agent.base import BaseAgent
 
 
 load_dotenv()
@@ -18,8 +13,7 @@ api_base = os.getenv("API_BASE")
 api_key = os.getenv("API_KEY")
 
 
-
-class SmolCodeAgent(Agent):
+class SmolCodeAgent(BaseAgent):
     def __init__(self, model_id, temperature, max_retries, max_tokens, base_url, api_key):
         super().__init__(model_id, temperature, max_retries, max_tokens, base_url, api_key)
         self.code_agent = CodeAgent(
