@@ -30,7 +30,6 @@ class SerializationAgent(Agent):
         response = self.llm_model.invoke(input_prompt)
         return response
 
-    @measure_performance
     def eval(self, question: str, dataset: pathlib.Path, additional_info: Union[dict, None]) -> str:
         """
         Evaluate the given data using the LLM.
@@ -47,6 +46,6 @@ class SerializationAgent(Agent):
 
 
         # Use the LLM to generate a response based on the question and converted content
-        response = self.llm_model.invoke(prompt)
+        response = self.invoke(prompt)
 
         return response.content

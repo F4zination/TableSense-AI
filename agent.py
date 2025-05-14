@@ -66,13 +66,11 @@ def measure_performance(func):
 
         # Try to extract from usage_metadata if result has it
         usage_metadata = getattr(result, "response_metadata", None)
+
         if usage_metadata:
-            input_tokens = usage_metadata.get("input_tokens")
-            output_tokens = usage_metadata.get("output_tokens")
-        else:
-            # Fallback: check if self has these attributes
-            input_tokens = getattr(self, "total_tokens", None)
-            output_tokens = getattr(self, "completion_tokens", None)
+            input_tokens = usage_metadata["token_usage"]["prompt_tokens"]
+            output_tokens = usage_metadata["token_usage"]["completion_tokens"]
+
 
         print(f"--- {func.__name__} Metrics ---")
         print(f"Time elapsed: {end_time - start_time:.4f} seconds")
