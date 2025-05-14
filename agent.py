@@ -1,6 +1,9 @@
 import pathlib
 from abc import ABC, abstractmethod
 from langchain_openai import ChatOpenAI
+import time
+import tracemalloc
+from functools import wraps
 
 
 class Agent(ABC):
@@ -39,3 +42,45 @@ class Agent(ABC):
             :return: The response from the LLM
         """
         pass
+
+
+#TODO: Fix the decorator to accurately get input and output tokens
+def measure_performance(func):
+    """
+    Decorator to print the required time and memory metrics for the eval function.
+        :param func: The function to decorate
+        :return: The wrapped function with metrics
+    """
+    @wraps(func)
+    def wrapper(self, *args, **kwargs):
+        tracemalloc.start()
+        start_time = time.perf_counter()
+        result = func(self, *args, **kwargs)
+        end_time = time.perf_counter()
+        current, peak = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
+
+        # Default to None
+        input_tokens = None
+        output_tokens = None
+
+        # Try to extract from usage_metadata if result has it
+        usage_metadata = getattr(result, "response_metadata", None)
+        if usage_metadata:
+            input_tokens = usage_metadata.get("input_tokens")
+            output_tokens = usage_metadata.get("output_tokens")
+        else:
+            # Fallback: check if self has these attributes
+            input_tokens = getattr(self, "total_tokens", None)
+            output_tokens = getattr(self, "completion_tokens", None)
+
+        print(f"--- {func.__name__} Metrics ---")
+        print(f"Time elapsed: {end_time - start_time:.4f} seconds")
+        print(f"Peak memory usage: {peak / 1024:.2f} KB")
+        if input_tokens is not None:
+            print(f"Input tokens: {input_tokens}")
+        if output_tokens is not None:
+            print(f"Output tokens: {output_tokens}")
+        print(f"--------------------")
+        return result
+    return wrapper

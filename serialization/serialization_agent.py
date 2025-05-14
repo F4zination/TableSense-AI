@@ -1,7 +1,7 @@
 import pathlib
 from typing import Union
 
-from agent import Agent
+from agent import Agent, measure_performance
 from serialization.converter import Converter, TableFormat
 
 
@@ -18,7 +18,7 @@ class SerializationAgent(Agent):
         self.format_to_convert_to = format_to_convert_to
 
 
-
+    @measure_performance
     def invoke(self, input_prompt: str) -> str:
         """
         Invoke the LLM with the given input.
@@ -30,7 +30,7 @@ class SerializationAgent(Agent):
         response = self.llm_model.invoke(input_prompt)
         return response
 
-
+    @measure_performance
     def eval(self, question: str, dataset: pathlib.Path, additional_info: Union[dict, None]) -> str:
         """
         Evaluate the given data using the LLM.
