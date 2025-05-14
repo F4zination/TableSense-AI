@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from langchain_openai import ChatOpenAI
 
 
-class Agent(ABC):
+class BaseAgent(ABC):
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int, base_url: str,
                  api_key: str, system_prompt: str = None):

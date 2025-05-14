@@ -3,8 +3,13 @@ from evaluate import load
 from benchmark.evaluator.dataset_definition import SimpleTest, WikiTableQuestions
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
+<<<<<<< HEAD
 from benchmark.evaluator.metrics.exact_match_metric import ExactMatchMetric
 from serialization.serialization_agent import SerializationAgent
+=======
+from benchmark.evaluator.utils import Dataset
+from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
+>>>>>>> 09ff525 (refactor: reorganize project into a Python package)
 
 # Create your agent instance to test
 agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",

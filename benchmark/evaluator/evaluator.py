@@ -4,7 +4,7 @@ from typing import List
 from datasets import load_dataset
 from tqdm import tqdm
 
-from agent import Agent
+from tablesense_ai.agent.base import BaseAgent
 from benchmark.evaluator.eval_config import EvalConfig
 
 
@@ -24,7 +24,7 @@ class Evaluator:
         datasets (List[DatasetDict]): Loaded datasets ready for evaluation.
     """
 
-    def __init__(self, config: EvalConfig, agent: Agent):
+    def __init__(self, config: EvalConfig, agent: BaseAgent):
         self.verbose = config.verbose
         self.predictor = agent
         self.datasets = []
