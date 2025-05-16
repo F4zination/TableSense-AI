@@ -25,6 +25,7 @@ class Evaluator:
     """
 
     def __init__(self, config: EvalConfig, agent: Agent):
+        self.verbose = config.verbose
         self.predictor = agent
         self.datasets = []
 
@@ -53,8 +54,7 @@ class Evaluator:
             - A tqdm loading bar while evaluating
             - Final evaluation results showing prediction vs target
         """
-        results = []
-        metric_results = {metric.name: [] for metric in self.metrics}
+        results = {"pred": [], "ground_truth": []}
 
         for dataset in self.datasets:
             for example in tqdm(dataset["dataset"]["test"],
@@ -64,7 +64,7 @@ class Evaluator:
                 if dataset["is_remote"]:
                     from huggingface_hub import hf_hub_download
                     full_path = Path(
-                        hf_hub_download(repo_id=dataset["dataset_name"], repo_type="dataset", filename=str(path_obj)))
+                        hf_hub_download(repo_id=dataset["dataset_path"], repo_type="dataset", filename=str(path_obj)))
                 else:
                     current_file_path = Path(__file__).resolve().parent
                     base_path = current_file_path / ".." / Path(dataset["dataset_path"]).parent
@@ -75,18 +75,17 @@ class Evaluator:
                 pred = self.predictor.eval(question=additional_prompt + example["utterance"], dataset=full_path,
                                            additional_info=[])
 
-                for metric in self.metrics:
-                    score = metric.compute(predictions=[pred], references=[example["target_value"]])
-                    metric_results[metric.name].append(score)
+                results["pred"].append(pred)
+                results["ground_truth"].append(example["target_value"])
 
-                print(metric_results)
+                if self.verbose:
+                    print("Question:", example["utterance"])
+                    print(f"Result: {pred} -- {example['target_value']}")
 
-                results.append((pred, example["target_value"]))
-                print(pred)
+            self.calculate_metrics(results)
 
-        # Print aggregated metric results
+    def calculate_metrics(self, results: dict):
         print("Evaluation results:")
-
-        for metric_name, scores in metric_results.items():
-            average_result = sum([score["exact_match"] for score in scores]) / len(scores)
-            print(f"{metric_name}: {average_result}")
+        for metric in self.metrics:
+            score = metric.compute(predictions=results["pred"], references=results["ground_truth"])
+            print(f"{metric.metric_name}: {score}")
