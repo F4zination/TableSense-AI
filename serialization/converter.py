@@ -112,7 +112,7 @@ class Converter:
         Convert a DataFrame to a natural language string.
         """
         # Convert the DataFrame to a string
-        env = Environment(loader=FileSystemLoader('/Users/danielbogdan/PycharmProjects/TableSense-AI/serialization/jinja_templates/'))
+        env = Environment(loader=FileSystemLoader('./../serialization/jinja_templates'))
         template = env.get_template('only_header.natural.jinja2')
 
         # 3. Render, passing the DataFrame directly
