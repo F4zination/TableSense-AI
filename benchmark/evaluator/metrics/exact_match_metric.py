@@ -4,6 +4,10 @@ from benchmark.evaluator.metrics.metric import Metric
 
 
 class ExactMatchMetric(Metric):
-    def compute(self, prediction: list, ground_truth: list) -> float:
+
+    def __init__(self):
+        super().__init__("Exact match")
+
+    def compute(self, predictions: list, references: list) -> float:
         exact_match = load("exact_match")
-        return exact_match.compute(predictions=[prediction], references=[ground_truth])
+        return exact_match.compute(predictions=predictions, references=references)

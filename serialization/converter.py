@@ -41,13 +41,15 @@ class Converter:
         :param save_to_file: Whether to save the converted file to disk
         :return The converted data as a string
         """
+        self.data = []
+
         # Check if the input file exists
         if not path_to_file.exists():
             raise FileNotFoundError(f"Input file does not exist: {path_to_file}")
 
         # Check if the input file format is supported
-        if path_to_file.suffix not in TableFormat or path_to_file.suffix == TableFormat.NATURAL.value:
-            raise ValueError(f"Unsupported input file format: {path_to_file.suffix}")
+        #if path_to_file.suffix not in TableFormat or path_to_file.suffix == TableFormat.NATURAL.value:
+        #    raise ValueError(f"Unsupported input file format: {path_to_file.suffix}")
 
 
 
@@ -110,7 +112,7 @@ class Converter:
         Convert a DataFrame to a natural language string.
         """
         # Convert the DataFrame to a string
-        env = Environment(loader=FileSystemLoader('.'))
+        env = Environment(loader=FileSystemLoader('./../serialization/jinja_templates'))
         template = env.get_template('only_header.natural.jinja2')
 
         # 3. Render, passing the DataFrame directly
