@@ -1,5 +1,5 @@
 import enum
-import pathlib
+from pathlib import Path
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader
 
@@ -30,7 +30,7 @@ class Converter:
     def __init__(self):
         pass
 
-    def convert(self, path_to_file: pathlib.Path, output_format: TableFormat, save_to_file: bool)-> str:
+    def convert(self, path_to_file: Path, output_format: TableFormat, save_to_file: bool)-> str:
         """
         Convert the given data to a different format.
         Returns the converted data as a string.
@@ -107,23 +107,26 @@ class Converter:
 
 
 
+
     def df_to_natural(self, df: pd.DataFrame) -> str:
         """
         Convert a DataFrame to a natural language string.
         """
-        # Convert the DataFrame to a string
-        env = Environment(loader=FileSystemLoader('./../serialization/jinja_templates'))
+        # Resolve absolute path to the template directory
+        current_file_path = Path(__file__).resolve().parent
+        template_dir = current_file_path / "jinja_templates"
+
+        # Setup Jinja2 environment with the absolute path
+        env = Environment(loader=FileSystemLoader(str(template_dir)))
         template = env.get_template('only_header.natural.jinja2')
 
-        # 3. Render, passing the DataFrame directly
+        # Render the template
         output = template.render(dataframe=df)
-
-        # 4. Return the rendered string
         return output
 
 
 
-    def _read_markdown(self, path_to_file: pathlib.Path) -> None:
+    def _read_markdown(self, path_to_file: Path) -> None:
         """
         Read a markdown file and convert it to a DataFrame.
         """
