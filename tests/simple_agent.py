@@ -1,8 +1,8 @@
 # File: simple_agent.py
-from agent import Agent
+#from agent import Agent
+from tablesense_ai.agent.base import BaseAgent
 
-
-class SimpleAgent(Agent):
+class SimpleAgent(BaseAgent):
     def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int,
                  base_url: str, api_key: str, system_prompt: str = None):
         super().__init__(llm_model, temperature, max_retries, max_tokens, base_url, api_key, system_prompt)

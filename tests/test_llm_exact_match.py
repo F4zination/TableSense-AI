@@ -3,8 +3,6 @@ import unittest
 from tests.simple_agent import SimpleAgent
 from evaluate import load
 
-from agent import Agent
-
 
 class TestLLMExactMatch(unittest.TestCase):
     def setUp(self):

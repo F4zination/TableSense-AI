@@ -4,7 +4,7 @@ from typing import List
 from datasets import load_dataset
 from tqdm import tqdm
 
-from agent import Agent
+from tablesense_ai.agent.base import BaseAgent
 from benchmark.evaluator.eval_config import EvalConfig
 
 
@@ -24,7 +24,7 @@ class Evaluator:
         datasets (List[DatasetDict]): Loaded datasets ready for evaluation.
     """
 
-    def __init__(self, config: EvalConfig, agent: Agent):
+    def __init__(self, config: EvalConfig, agent: BaseAgent):
         self.verbose = config.verbose
         self.predictor = agent
         self.datasets = []
@@ -34,12 +34,20 @@ class Evaluator:
         else:
             download_mode = "reuse_dataset_if_exists"
 
+        current_file_path = Path(__file__).resolve().parent  # path to evaluator.py
+        base_dir = current_file_path.parent  # benchmark/
+
         for dataset in config.datasets:
+            # Make dataset_path absolute if it is a local path, otherwise keep it as is
+            dataset_path = Path(dataset.dataset_path)
+            if not dataset.is_remote and not dataset_path.is_absolute():
+                dataset_path = base_dir / dataset_path
+
             self.datasets.append(
-                {"dataset": load_dataset(dataset.dataset_path, trust_remote_code=True, download_mode=download_mode),
-                 "dataset_path": dataset.dataset_path,
-                 "dataset_name": dataset.__class__.__name__,
-                 "is_remote": dataset.is_remote})
+                {"dataset": load_dataset(str(dataset_path), trust_remote_code=True, download_mode=download_mode),
+                "dataset_path": str(dataset_path),
+                "dataset_name": dataset.__class__.__name__,
+                "is_remote": dataset.is_remote})
 
         self.metrics = config.metrics
 
