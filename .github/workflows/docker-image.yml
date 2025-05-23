@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag f4zination/table-sense-ai:$(date +%s)
+      run: docker build . --file Dockerfile --tag f4zination/table-sense-ai:$(date +%s) && docker push f4zination/table-sense-ai:$(date +%s)
