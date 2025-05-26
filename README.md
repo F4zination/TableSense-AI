@@ -1,6 +1,5 @@
-# Tablesense-AI
 
-![Tablesense-AI Logo](https://raw.githubusercontent.com/tablesense-ai/tablesense-ai/main/logo.png)
+<img src="./logo.png" alt="Tablesense-AI Logo" style="width:400px;height:auto;">
 
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
