@@ -16,7 +16,7 @@ class BaseAgent(ABC):
             api_key=api_key,
         )
         self.system_prompt = system_prompt if system_prompt else ("You are a data scientist. You have been given the "
-                                                                  "following data: \n{data}.\nOnly return the answer to the question! Keep your answer AS SHORT AS POSSIBLE. Only provide necessary information")
+                                                                  "following data: \n{data}\nOnly return the answer to the question! Keep your answer AS SHORT AS POSSIBLE. Only provide necessary information")
 
 
 
