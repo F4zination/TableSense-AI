@@ -5,7 +5,8 @@ import streamlit as st
 from dotenv import load_dotenv
 
 from smolagents import LiteLLMModel, CodeAgent
-from tablesense_ai.agent.base import BaseAgent, measure_performance
+from tablesense_ai.agent.base import BaseAgent #measure_performance
+from tablesense_ai.utils.performance import measure_performance
 
 
 load_dotenv()

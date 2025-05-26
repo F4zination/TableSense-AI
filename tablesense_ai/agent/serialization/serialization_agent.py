@@ -1,8 +1,9 @@
 import pathlib
 from typing import Union
 
-from tablesense_ai.agent.base import BaseAgent, measure_performance
+from tablesense_ai.agent.base import BaseAgent
 from tablesense_ai.agent.serialization.converter import Converter, TableFormat
+from tablesense_ai.utils.performance import measure_performance 
 
 
 class SerializationAgent(BaseAgent):
