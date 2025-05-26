@@ -74,7 +74,7 @@ def measure_performance(func):
             output_tokens = usage_metadata["token_usage"]["completion_tokens"]
 
 
-        print(f"--- {func.name} Metrics ---")
+        print(f"--- {func.__name__} Metrics ---")
         print(f"Time elapsed: {end_time - start_time:.4f} seconds")
         print(f"Peak memory usage: {peak / 1024:.2f} KB")
         if input_tokens is not None:
