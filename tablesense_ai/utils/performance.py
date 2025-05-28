@@ -18,6 +18,11 @@ def measure_performance(func):
         if usage_metadata:
             input_tokens = usage_metadata["token_usage"]["prompt_tokens"]
             output_tokens = usage_metadata["token_usage"]["completion_tokens"]
+        
+        else:
+            token_usage = self.code_agent.monitor.get_total_token_counts()
+            input_tokens = token_usage["input"]
+            output_tokens = token_usage["output"]
 
         print(f"--- {func.__name__} Metrics ---")
         print(f"Time elapsed: {end_time - start_time:.4f} seconds")
