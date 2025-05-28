@@ -4,6 +4,9 @@ from benchmark.evaluator.dataset_definition import SimpleTest, WikiTableQuestion
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from benchmark.evaluator.metrics.exact_match_metric import ExactMatchMetric
+from benchmark.evaluator.metrics.bertscore_metric import BERTScoreMetric
+from benchmark.evaluator.metrics.meteor_metric import MeteorMetric
+from benchmark.evaluator.metrics.rogue_metric import RogueMetric
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
 
 
@@ -16,7 +19,7 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
                            api_key="THU-I17468S973-Student-24-25-94682Y1315")
 
 # Configure your evaluation instance
-config = EvalConfig([SimpleTest()], [ExactMatchMetric()], False)
+config = EvalConfig([SimpleTest()], [ExactMatchMetric(),MeteorMetric(), RogueMetric(),BERTScoreMetric()], False)
 evaluator = Evaluator(config, agent)
 
 # Start the evaluation process
