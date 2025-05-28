@@ -4,6 +4,7 @@ from typing import List
 from datasets import load_dataset
 from tqdm import tqdm
 
+from benchmark.evaluator.metrics.metric import Metric
 from tablesense_ai.agent.base import BaseAgent
 from benchmark.evaluator.eval_config import EvalConfig
 
@@ -47,9 +48,8 @@ class Evaluator:
                 {"dataset": load_dataset(str(dataset_path), trust_remote_code=True, download_mode=download_mode),
                 "dataset_path": str(dataset_path),
                 "dataset_name": dataset.__class__.__name__,
+                 "dataset_metrics": dataset.metrics,
                 "is_remote": dataset.is_remote})
-
-        self.metrics = config.metrics
 
     def evaluate(self):
         """
@@ -90,10 +90,10 @@ class Evaluator:
                     print("Question:", example["utterance"])
                     print(f"Result: {pred} -- {example['target_value']}")
 
-            self.calculate_metrics(results)
+            self.calculate_metrics(results, dataset["dataset_name"], dataset["dataset_metrics"])
 
-    def calculate_metrics(self, results: dict):
-        print("Evaluation results:")
-        for metric in self.metrics:
+    def calculate_metrics(self, results: dict, dataset_name: str, dataset_metrics: List[Metric]):
+        print(f"Evaluation results for dataset {dataset_name}:")
+        for metric in dataset_metrics:
             score = metric.compute(predictions=results["pred"], references=results["ground_truth"])
             print(f"{metric.metric_name}: {score}")

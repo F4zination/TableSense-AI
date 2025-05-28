@@ -5,13 +5,6 @@ from benchmark.evaluator.metrics.metric import Metric
 
 
 class Dataset(ABC):
-    """
-    Enum for available datasets.
-
-    Attributes:
-        SimpleTest (str): Path to the simple test dataset script.
-    """
-
     def __init__(self, dataset_path: str, is_remote: bool, metric: list[Metric]):
         self.dataset_path = dataset_path
         self.is_remote = is_remote
