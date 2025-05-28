@@ -3,6 +3,7 @@ from typing import Union
 
 from tablesense_ai.agent.base import BaseAgent
 from tablesense_ai.agent.serialization.converter import Converter, TableFormat
+from tablesense_ai.utils.performance import measure_performance 
 
 
 class SerializationAgent(BaseAgent):
@@ -18,7 +19,7 @@ class SerializationAgent(BaseAgent):
         self.format_to_convert_to = format_to_convert_to
 
 
-
+    @measure_performance
     def invoke(self, input_prompt: str) -> str:
         """
         Invoke the LLM with the given input.
@@ -47,6 +48,6 @@ class SerializationAgent(BaseAgent):
 
 
         # Use the LLM to generate a response based on the question and converted content
-        response = self.llm_model.invoke(prompt)
+        response = self.invoke(prompt)
 
         return response.content
