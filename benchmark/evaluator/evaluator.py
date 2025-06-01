@@ -38,16 +38,21 @@ class Evaluator:
         base_dir = current_file_path.parent  # benchmark/
 
         for dataset in config.datasets:
-            # Make dataset_path absolute if it is a local path, otherwise keep it as is
-            dataset_path = Path(dataset.dataset_path)
-            if not dataset.is_remote and not dataset_path.is_absolute():
-                dataset_path = base_dir / dataset_path
+            if dataset.is_remote:
+                dataset_path = Path(dataset.dataset_path.replace("\\", "/")).as_posix()
+            else:
+                dataset_path = Path(dataset.dataset_path)
+                if not dataset_path.is_absolute():
+                    dataset_path = base_dir / dataset_path
 
             self.datasets.append(
-                {"dataset": load_dataset(str(dataset_path), trust_remote_code=True, download_mode=download_mode),
-                "dataset_path": str(dataset_path),
-                "dataset_name": dataset.__class__.__name__,
-                "is_remote": dataset.is_remote})
+                {
+                    "dataset": load_dataset(str(dataset_path), trust_remote_code=True, download_mode=download_mode),
+                    "dataset_path": str(dataset_path),
+                    "dataset_name": dataset.__class__.__name__,
+                    "is_remote": dataset.is_remote
+                }
+            )
 
         self.metrics = config.metrics
 
@@ -72,14 +77,19 @@ class Evaluator:
                 if dataset["is_remote"]:
                     from huggingface_hub import hf_hub_download
                     full_path = Path(
-                        hf_hub_download(repo_id=dataset["dataset_path"], repo_type="dataset", filename=str(path_obj)))
+                        hf_hub_download(
+                            repo_id=dataset["dataset_path"],
+                            repo_type="dataset",
+                            filename=str(path_obj).replace("\\", "/")
+                        )
+                    )
                 else:
                     current_file_path = Path(__file__).resolve().parent
                     base_path = current_file_path / ".." / Path(dataset["dataset_path"]).parent
                     full_path = base_path / path_obj
 
                 additional_prompt = "There is a Question provided with a related table. Answer the question with a target value. "
-
+                print(f"full path: {full_path}")
                 pred = self.predictor.eval(question=additional_prompt + example["utterance"], dataset=full_path,
                                            additional_info=[])
 
@@ -87,7 +97,7 @@ class Evaluator:
                 results["ground_truth"].append(example["target_value"])
 
                 if self.verbose:
-                    print("Question:", example["utterance"])
+                    print("\nQuestion:", example["utterance"])
                     print(f"Result: {pred} -- {example['target_value']}")
 
             self.calculate_metrics(results)
