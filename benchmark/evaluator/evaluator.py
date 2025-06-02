@@ -4,6 +4,7 @@ from typing import List
 from datasets import load_dataset
 from tqdm import tqdm
 
+from benchmark.evaluator.evaluation_cache import EvaluationCache
 from benchmark.evaluator.metrics.metric import Metric
 from tablesense_ai.agent.base import BaseAgent
 from benchmark.evaluator.eval_config import EvalConfig
@@ -29,6 +30,7 @@ class Evaluator:
         self.verbose = config.verbose
         self.predictor = agent
         self.datasets = []
+        self.cache = EvaluationCache(config)
 
         if config.force_redownload is True:
             download_mode = "force_redownload"
@@ -62,11 +64,17 @@ class Evaluator:
             - A tqdm loading bar while evaluating
             - Final evaluation results showing prediction vs target
         """
-        results = {"pred": [], "ground_truth": []}
 
         for dataset in self.datasets:
-            for example in tqdm(dataset["dataset"]["test"],
-                                desc=f"Evaluating examples from {dataset['dataset_name']} dataset"):
+            results, evaluated_indices = self.cache.get_cached_results(dataset["dataset_name"])
+            print(results)
+            for index, example in enumerate(tqdm(dataset["dataset"]["test"],
+                                desc=f"Evaluating examples from {dataset['dataset_name']} dataset")):
+
+                # Skip all examples in index list
+                if index in evaluated_indices:
+                    continue
+
                 path_obj = Path(example["context"]["csv"])
 
                 if dataset["is_remote"]:
@@ -85,12 +93,14 @@ class Evaluator:
 
                 results["pred"].append(pred)
                 results["ground_truth"].append(example["target_value"])
+                self.cache.safe_example(index, pred, example["target_value"], dataset["dataset_name"])
 
                 if self.verbose:
                     print("Question:", example["utterance"])
                     print(f"Result: {pred} -- {example['target_value']}")
 
             self.calculate_metrics(results, dataset["dataset_name"], dataset["dataset_metrics"])
+            self.cache.finish_run()
 
     def calculate_metrics(self, results: dict, dataset_name: str, dataset_metrics: List[Metric]):
         print(f"Evaluation results for dataset {dataset_name}:")
