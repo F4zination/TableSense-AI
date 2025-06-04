@@ -75,17 +75,19 @@ Return nothing except this answer string.
 """
         return self.code_agent.run(prompt, additional_args={"df": df})
 
-# === Streamlit UI ===
-st.title("AI Data Analyst for Tabular Data")
-st.markdown("Upload a CSV file and ask questions about it using natural language.")
 
-uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
+if __name__ == "__main__":
+    # === Streamlit UI ===
+    st.title("AI Data Analyst for Tabular Data")
+    st.markdown("Upload a CSV file and ask questions about it using natural language.")
 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.write("### Preview of Data", df.head())
+    uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
 
-    user_question = st.text_area("Ask a question about your data:", height=100)
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        st.write("### Preview of Data", df.head())
+
+        user_question = st.text_area("Ask a question about your data:", height=100)
 
     if st.button("Analyze") and user_question:
         with st.spinner("Thinking..."):
