@@ -1,17 +1,19 @@
-FROM python:3.13
+FROM python:3.11.9
 
 # Set the working directory
 WORKDIR /app
 
+RUN touch README.md
 RUN pip install setuptools
 
 RUN pip install poetry
 
 # Copy the requirements file into the container
-COPY requirements.txt /app/
+COPY pyproject.toml poetry.lock* /app/
 
-# Install the dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies (no virtualenv, install to system)
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-root --no-interaction --no-ansi
 
 # Copy the rest of the application code into the container
 COPY . /app/

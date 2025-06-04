@@ -51,30 +51,32 @@ Therefore generate Code to execute on a pandas DataFrame.
 """
         return self.code_agent.run(prompt, additional_args={"df": df})
 
-# === Streamlit UI ===
-st.title("AI Data Analyst for Tabular Data")
-st.markdown("Upload a CSV file and ask questions about it using natural language.")
 
-uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
+if __name__ == "__main__":
+    # === Streamlit UI ===
+    st.title("AI Data Analyst for Tabular Data")
+    st.markdown("Upload a CSV file and ask questions about it using natural language.")
 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.write("### Preview of Data", df.head())
+    uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
 
-    user_question = st.text_area("Ask a question about your data:", height=100)
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        st.write("### Preview of Data", df.head())
 
-    if st.button("Analyze") and user_question:
-        with st.spinner("Thinking..."):
-            data_analysis_agent= SmolCodeAgent(
-                model_id="openai//models/mistral-nemo-12b",
-                temperature=0,
-                max_retries=2,
-                max_tokens=2048,
-                base_url=api_base,
-                api_key=api_key,
-            )
-      
-            result = data_analysis_agent.invoke(user_question, df)
+        user_question = st.text_area("Ask a question about your data:", height=100)
 
-        st.write("### Result")
-        st.write(result)
+        if st.button("Analyze") and user_question:
+            with st.spinner("Thinking..."):
+                data_analysis_agent= SmolCodeAgent(
+                    model_id="openai//models/mistral-nemo-12b",
+                    temperature=0,
+                    max_retries=2,
+                    max_tokens=2048,
+                    base_url=api_base,
+                    api_key=api_key,
+                )
+        
+                result = data_analysis_agent.invoke(user_question, df)
+
+            st.write("### Result")
+            st.write(result)
