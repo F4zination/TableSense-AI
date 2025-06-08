@@ -6,7 +6,7 @@ from langchain_openai import ChatOpenAI
 class BaseAgent(ABC):
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int, base_url: str,
-                 api_key: str, system_prompt: str = None):
+                 api_key: str, system_prompt: str = None, verbose: bool = False):
         self.llm_model = ChatOpenAI(
             model=llm_model,
             temperature=temperature,

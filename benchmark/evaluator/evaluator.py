@@ -56,6 +56,9 @@ class Evaluator:
 
         self.metrics = config.metrics
 
+    from pathlib import Path
+    from tqdm import tqdm
+
     def evaluate(self):
         """
         Runs evaluation on all loaded datasets.
@@ -70,8 +73,10 @@ class Evaluator:
         results = {"pred": [], "ground_truth": []}
 
         for dataset in self.datasets:
-            for example in tqdm(dataset["dataset"]["test"],
-                                desc=f"Evaluating examples from {dataset['dataset_name']} dataset"):
+            for example in tqdm(
+                    dataset["dataset"]["test"],
+                    desc=f"Evaluating examples from {dataset['dataset_name']} dataset"
+            ):
                 path_obj = Path(example["context"]["csv"])
 
                 if dataset["is_remote"]:
@@ -89,16 +94,23 @@ class Evaluator:
                     full_path = base_path / path_obj
 
                 additional_prompt = "There is a Question provided with a related table. Answer the question with a target value. "
-                print(f"full path: {full_path}")
-                pred = self.predictor.eval(question=additional_prompt + example["utterance"], dataset=full_path,
-                                           additional_info=[])
+                pred = self.predictor.eval(
+                    question=additional_prompt + example["utterance"],
+                    dataset=full_path,
+                    additional_info=[]
+                )
 
-                results["pred"].append(pred)
-                results["ground_truth"].append(example["target_value"])
+                # Check if Prompt was too long
+                if pred:
+                    results["pred"].append(pred)
+                    results["ground_truth"].append(example["target_value"])
 
-                if self.verbose:
-                    print("\nQuestion:", example["utterance"])
-                    print(f"Result: {pred} -- {example['target_value']}")
+                    if self.verbose:
+                        print("\nQuestion:", example["utterance"])
+                        print(f"Result: {pred} -- {example['target_value']}")
+                else:
+                    if self.verbose:
+                        print(f"Skipped example – empty result for question: {example['utterance']}")
 
             self.calculate_metrics(results)
 
