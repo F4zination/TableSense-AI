@@ -5,6 +5,7 @@ import tiktoken
 
 from tablesense_ai.agent.base import BaseAgent
 from tablesense_ai.agent.serialization.converter import Converter, TableFormat
+from tablesense_ai.utils.performance import measure_performance
 
 
 class SerializationAgent(BaseAgent):
@@ -14,7 +15,7 @@ class SerializationAgent(BaseAgent):
     Because of API-Limitations, a token-limit was implemented
     """
 
-    TOKEN_LIMIT = 18800
+    TOKEN_LIMIT = 5000
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int,
                  max_tokens: int, base_url: str, api_key: str,
@@ -26,6 +27,7 @@ class SerializationAgent(BaseAgent):
         self.encoding = tiktoken.get_encoding("o200k_base")
         self.verbose = verbose
 
+    @measure_performance
     def invoke(self, input_prompt: str) -> str:
         """
         Invoke the LLM with the given input.
@@ -47,6 +49,7 @@ class SerializationAgent(BaseAgent):
         """
         # Perform the serialization task using the Converter class
         converted_content = self.converter.convert(dataset, self.format_to_convert_to, False)
+
         prompt = self.system_prompt.format(data=converted_content) + "\n" + question
 
         # Token-Limit
@@ -58,6 +61,6 @@ class SerializationAgent(BaseAgent):
             return ""
 
         # Use the LLM to generate a response based on the question and converted content
-        response = self.llm_model.invoke(prompt)
+        response = self.invoke(prompt)
 
         return response.content

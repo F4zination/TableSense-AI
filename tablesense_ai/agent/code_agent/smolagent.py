@@ -5,7 +5,8 @@ import streamlit as st
 from dotenv import load_dotenv
 
 from smolagents import LiteLLMModel, CodeAgent
-from tablesense_ai.agent.base import BaseAgent
+from tablesense_ai.agent.base import BaseAgent #measure_performance
+from tablesense_ai.utils.performance import measure_performance
 
 
 load_dotenv()
@@ -37,6 +38,7 @@ class SmolCodeAgent(BaseAgent):
         df = pd.read_csv(dataset)
         return self.invoke(question, df)
 
+    @measure_performance
     def invoke(self, question: str, df: pd.DataFrame) -> str:
         prompt = f"""
 ## Instructions
