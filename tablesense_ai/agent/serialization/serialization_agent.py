@@ -1,5 +1,4 @@
 import pathlib
-from tabnanny import verbose
 from typing import Union
 import tiktoken
 
@@ -25,7 +24,6 @@ class SerializationAgent(BaseAgent):
         self.converter = Converter()
         self.format_to_convert_to = format_to_convert_to
         self.encoding = tiktoken.get_encoding("o200k_base")
-        self.verbose = verbose
 
     @measure_performance
     def invoke(self, input_prompt: str) -> str:
@@ -56,7 +54,7 @@ class SerializationAgent(BaseAgent):
         token_count = len(self.encoding.encode(prompt))
 
         if token_count > self.TOKEN_LIMIT:
-            if verbose:
+            if self.verbose:
                 print(f"Prompt too long ({token_count} > {self.TOKEN_LIMIT} tokens).")
             return ""
 
