@@ -1,3 +1,5 @@
 .idea
 .env
 **/__pycache__/
+benchmark/tab_llm_datasets/tabmwp/csv
+benchmark/tab_llm_datasets/tabmwp/examples
