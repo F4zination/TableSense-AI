@@ -20,6 +20,6 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image
       run: |
-        TAG=$(date +%s)
+        TAG=${GITHUB_REF#refs/tags/}
         docker build . --file Dockerfile --tag f4zination/table-sense-ai:$TAG
         docker push f4zination/table-sense-ai:$TAG
