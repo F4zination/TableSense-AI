@@ -3,10 +3,6 @@ FROM python:3.13
 # Set the working directory
 WORKDIR /app
 
-RUN pip install setuptools
-
-RUN pip install poetry
-
 # Copy the requirements file into the container
 COPY requirements.txt /app/
 
