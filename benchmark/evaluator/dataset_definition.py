@@ -23,3 +23,7 @@ class SimpleTest(Dataset):
 class WikiTableQuestions(Dataset):
     def __init__(self):
         super().__init__(dataset_path="TableSenseAI/WikiTableQuestions", is_remote=True, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
+
+class TabMWP(Dataset):
+    def __init__(self):
+        super().__init__(dataset_path="TableSenseAI/TabMWP", is_remote=True, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
