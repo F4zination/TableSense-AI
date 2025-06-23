@@ -29,4 +29,11 @@ class SimpleTest(Dataset):
 
 class WikiTableQuestions(Dataset):
     def __init__(self):
-        super().__init__(dataset_path="TableSenseAI/WikiTableQuestions", is_remote=True, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
+        super().__init__(dataset_path="TableSenseAI/WikiTableQuestions", is_remote=True,
+                         metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()])
+
+
+class FreeformTableQA(Dataset):
+    def __init__(self):
+        super().__init__(dataset_path="tab_llm_datasets/freeform-table-qa/dataset.py", is_remote=False,
+                         metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()])

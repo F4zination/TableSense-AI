@@ -1,4 +1,4 @@
-from benchmark.evaluator.dataset_definition import SimpleTest, WikiTableQuestions
+from benchmark.evaluator.dataset_definition import SimpleTest, WikiTableQuestions, FreeformTableQA
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
@@ -13,7 +13,7 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
                            api_key="THU-I17468S973-Student-24-25-94682Y1315", verbose=True)
 
 # Configure your evaluation instance
-config = EvalConfig([WikiTableQuestions()], False, True, True)
+config = EvalConfig([FreeformTableQA()], False, True, True)
 evaluator = Evaluator(config, agent)
 
 # Start the evaluation process
