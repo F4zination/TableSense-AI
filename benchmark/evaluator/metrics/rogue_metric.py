@@ -9,5 +9,5 @@ class RogueMetric(Metric):
         super().__init__("Rogue Score")
 
     def compute(self, predictions: list, references: list) -> float:
-        exact_match = load("rouge")
-        return exact_match.compute(predictions=predictions, references=references)
+        rogue_score = load("rouge")
+        return rogue_score.compute(predictions=predictions, references=references)
