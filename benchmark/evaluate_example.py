@@ -1,6 +1,6 @@
 import sys
 sys.path.append("C:/Users/Marco/workspace/TableSenseAI")  # Adjust the path to your project structure
-print(sys.path)
+
 from benchmark.evaluator.dataset_definition import SimpleTest, WikiTableQuestions, TabMWP
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
@@ -15,6 +15,7 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
                            base_url="http://80.151.131.52:9180/v1",
                            api_key="THU-I17468S973-Student-24-25-94682Y1315")
 
+print("STARTING EVALUATION")
 # Configure your evaluation instance
 config = EvalConfig([SimpleTest(), WikiTableQuestions(), TabMWP()], False, True)
 evaluator = Evaluator(config, agent)

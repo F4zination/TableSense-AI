@@ -46,6 +46,7 @@ You are acting as an expert data analyst.
 Your job is to answer question asked by the user about the dataset, provided as a pandas DataFrame.
 Therefore generate Code to execute on a pandas DataFrame.
 
+
 ## User Question:
 {question}
 """

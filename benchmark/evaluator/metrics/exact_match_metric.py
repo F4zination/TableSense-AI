@@ -1,6 +1,6 @@
 from evaluate import load
 
-from benchmark.evaluator.metrics.metric import Metric
+from evaluator.metrics.metric import Metric
 
 
 class ExactMatchMetric(Metric):
