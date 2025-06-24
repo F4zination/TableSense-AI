@@ -71,6 +71,7 @@ class Evaluator:
             print(results)
         
             scores = []
+
             for index, example in enumerate(
                 tqdm(dataset["dataset"]["test"],
                      desc=f"Evaluating examples from {dataset['dataset_name']} dataset")
@@ -129,7 +130,7 @@ class Evaluator:
             ))
             self.cache.finish_run()
         return scores
-            
+
 
     def calculate_metrics(
         self,
