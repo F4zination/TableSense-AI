@@ -69,6 +69,8 @@ class Evaluator:
         for dataset in self.datasets:
             results, evaluated_indices = self.cache.get_cached_results(dataset["dataset_name"])
             print(results)
+        
+            scores = []
 
             for index, example in enumerate(
                 tqdm(dataset["dataset"]["test"],
@@ -121,12 +123,14 @@ class Evaluator:
                             f"Skipped example – empty result for question: {example['utterance']}"
                         )
 
-            self.calculate_metrics(
+            scores.append(self.calculate_metrics(
                 results,
                 dataset["dataset_name"],
                 dataset["dataset_metrics"]
-            )
+            ))
             self.cache.finish_run()
+        return scores
+
 
     def calculate_metrics(
         self,
@@ -135,9 +139,13 @@ class Evaluator:
         dataset_metrics: List[Metric]
     ):
         print(f"Evaluation results for dataset {dataset_name}:")
+        final_scores = {}
+        final_scores["dataset_name"] = dataset_name
         for metric in dataset_metrics:
             score = metric.compute(
                 predictions=results["pred"],
                 references=results["ground_truth"]
             )
             print(f"{metric.metric_name}: {score}")
+            final_scores[metric.metric_name] = score
+            

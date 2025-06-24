@@ -9,5 +9,5 @@ class BERTScoreMetric(Metric):
         super().__init__("BERTScore")
 
     def compute(self, predictions: list, references: list) -> float:
-        exact_match = load("bertscore")
-        return exact_match.compute(predictions=predictions, references=references, lang = "en")
+        bertScore = load("bertscore")
+        return bertScore.compute(predictions=predictions, references=references, lang = "en")

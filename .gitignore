@@ -1,3 +1,16 @@
 .idea
 .env
 **/__pycache__/
+benchmark/tab_llm_datasets/tabmwp/csv-0/
+benchmark/tab_llm_datasets/tabmwp/csv-1/
+benchmark/tab_llm_datasets/tabmwp/csv-2/
+benchmark/tab_llm_datasets/tabmwp/csv-3/
+benchmark/tab_llm_datasets/tabmwp/csv-4/
+benchmark/tab_llm_datasets/tabmwp/csv-5/
+benchmark/tab_llm_datasets/tabmwp/csv-6/
+benchmark/tab_llm_datasets/tabmwp/csv-7/
+benchmark/tab_llm_datasets/tabmwp/csv-8/
+benchmark/tab_llm_datasets/tabmwp/csv-9/
+benchmark/tab_llm_datasets/tabmwp/csv-10/
+benchmark/tab_llm_datasets/tabmwp/csv-11/
+benchmark/tab_llm_datasets/tabmwp/examples
