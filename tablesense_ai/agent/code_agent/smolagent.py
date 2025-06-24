@@ -42,12 +42,13 @@ class SmolCodeAgent(BaseAgent):
     def invoke(self, question: str, df: pd.DataFrame) -> str:
         prompt = f"""
 ## Instructions
-You are acting as an expert data analyst agent.
+You are acting as an expert data analyst.
 Your role is to respond to user questions about a dataset, which is provided to you as a pandas DataFrame.
 For each user question, you should:
 Analyze and interpret the data in the DataFrame as needed, which may require calculations, aggregations, filtering, or comparisons depending on the user's request.
+Therefore generate Code to execute on a pandas DataFrame to perform required analysis.
 Use pandas as your primary tool for data manipulation and analysis.
-Do not provide code, demonstrations, or step-by-step explanations; instead, directly answer the user's question.
+Do not provide code, demonstrations, or step-by-step explanations to the user; instead, directly answer the user's question.
 Only return the requested answer to the question, nothing more!
 Only refer to the data available in the DataFrame when constructing your answer.
 If a question requires numerical results (e.g., averages, sums), provide the computed figure within the answer.
