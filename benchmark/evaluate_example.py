@@ -18,7 +18,7 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
 
 
 # Configure your evaluation instance
-config = EvalConfig([TabMWP()], False, True)
+config = EvalConfig([SimpleTest()], False, True)
 evaluator = Evaluator(config, agent)
 
 
