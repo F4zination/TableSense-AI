@@ -24,16 +24,13 @@ class Dataset(ABC):
 class SimpleTest(Dataset):
     def __init__(self):
         super().__init__(dataset_path="tab_llm_datasets/simple_test/dataset.py", is_remote=False,
-                         metric=[ExactMatchMetric(), BERTScoreMetric(), MeteorMetric(), RogueMetric()])
+                         metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()])
 
 
 class WikiTableQuestions(Dataset):
     def __init__(self):
-        super().__init__(dataset_path="TableSenseAI/WikiTableQuestions", is_remote=True,
-                         metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()])
+        super().__init__(dataset_path="TableSenseAI/WikiTableQuestions", is_remote=True, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
 
-
-class FreeformTableQA(Dataset):
+class TabMWP(Dataset):
     def __init__(self):
-        super().__init__(dataset_path="TableSenseAI/FreeformTableQA", is_remote=True,
-                         metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()])
+        super().__init__(dataset_path="tab_llm_datasets/tabmwp/dataset.py", is_remote=False, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
