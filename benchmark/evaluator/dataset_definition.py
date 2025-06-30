@@ -35,5 +35,5 @@ class WikiTableQuestions(Dataset):
 
 class FreeformTableQA(Dataset):
     def __init__(self):
-        super().__init__(dataset_path="tab_llm_datasets/freeform-table-qa/dataset.py", is_remote=False,
+        super().__init__(dataset_path="TableSenseAI/FreeformTableQA", is_remote=True,
                          metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()])

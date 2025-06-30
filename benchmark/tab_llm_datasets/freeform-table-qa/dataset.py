@@ -24,11 +24,11 @@ class FreeformTableQA(GeneratorBasedBuilder):
                 "id": Value("string"),
                 "utterance": Value("string"),
                 "target_value": Value("string"),
-                "context": Features({
+                "context": {
                     "csv": Value("string"),
                     "html": Value("string"),
                     "tsv": Value("string"),
-                }),
+                },
             }),
             supervised_keys=None,
         )
