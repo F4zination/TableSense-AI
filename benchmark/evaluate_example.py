@@ -1,10 +1,6 @@
-import sys
-sys.path.append("C:/Users/Marco/workspace/TableSenseAI")  # Adjust the path to your project structure
-
 import pickle
-from benchmark.evaluator.dataset_definition import SimpleTest, WikiTableQuestions, TabMWP
 
-from benchmark.evaluator.dataset_definition import SimpleTest, WikiTableQuestions, FreeformTableQA
+from benchmark.evaluator.dataset_definition import FreeformTableQA
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
@@ -20,7 +16,7 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
 
 
 # Configure your evaluation instance
-config = EvalConfig([FreeformTableQA()], False, True, True)
+config = EvalConfig([FreeformTableQA()], True, True)
 evaluator = Evaluator(config, agent)
 
 
