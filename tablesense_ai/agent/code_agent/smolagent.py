@@ -15,12 +15,12 @@ api_key = os.getenv("API_KEY")
 
 
 class SmolCodeAgent(BaseAgent):
-    def __init__(self, model_id, temperature, max_retries, max_tokens, base_url, api_key):
-        super().__init__(model_id, temperature, max_retries, max_tokens, base_url, api_key)
+    def __init__(self, llm_model, temperature, max_retries, max_tokens, base_url, api_key):
+        super().__init__(llm_model, temperature, max_retries, max_tokens, base_url, api_key)
         self.code_agent = CodeAgent(
             tools=[],
             model=LiteLLMModel(
-                model_id=model_id,
+                model_id=llm_model,
                 temperature=temperature,
                 max_retries=max_retries,
                 api_base=base_url,

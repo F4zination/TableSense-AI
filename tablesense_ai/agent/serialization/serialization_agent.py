@@ -14,12 +14,12 @@ class SerializationAgent(BaseAgent):
     Because of API-Limitations, a token-limit was implemented
     """
 
-    TOKEN_LIMIT = 5000
+    TOKEN_LIMIT = 32700
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int,
                  max_tokens: int, base_url: str, api_key: str,
                  system_prompt: str = None,
-                 format_to_convert_to: TableFormat = TableFormat.NATURAL, verbose: bool = False):
+                 format_to_convert_to: TableFormat = TableFormat.HTML, verbose: bool = False):
         super().__init__(llm_model, temperature, max_retries, max_tokens, base_url, api_key, system_prompt, verbose)
         self.converter = Converter()
         self.format_to_convert_to = format_to_convert_to
@@ -49,7 +49,7 @@ class SerializationAgent(BaseAgent):
         converted_content = self.converter.convert(dataset, self.format_to_convert_to, False)
 
         prompt = self.system_prompt.format(data=converted_content) + "\n" + question
-
+        print(f"\n{prompt}\n")
         # Token-Limit
         token_count = len(self.encoding.encode(prompt))
 
