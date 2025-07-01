@@ -30,7 +30,8 @@ class SmolCodeAgent(BaseAgent):
                 "pandas", "numpy", "datetime", "matplotlib", "matplotlib.pyplot",
                 "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels",
                 "plotly.graph_objects"
-            ]
+            ],
+            max_steps=5
         )
 
     # Possible to store the dataframe as csv to provide a path for eval

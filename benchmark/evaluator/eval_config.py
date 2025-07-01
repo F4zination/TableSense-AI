@@ -24,8 +24,7 @@ class EvalConfig:
         verbose (bool): Flag to force dataset download.
     """
 
-    def __init__(self, datasets: List[Dataset], metrics: List[Metric], force_redownload: bool = False, verbose: bool = False):
+    def __init__(self, datasets: List[Dataset], force_redownload: bool = False, verbose: bool = False):
         self.datasets = datasets
         self.force_redownload = force_redownload
-        self.metrics = metrics or []
         self.verbose = verbose

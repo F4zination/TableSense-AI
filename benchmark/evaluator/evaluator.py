@@ -108,11 +108,11 @@ class Evaluator:
                 )
 
                 # Check if Prompt was too long
-                if pred:
+                if str(pred) != "skipped-too-long":
                     results["pred"].append(pred)
                     results["ground_truth"].append(example["target_value"])
                     self.cache.safe_example(
-                        index, pred, example["target_value"], dataset["dataset_name"]
+                        index, str(pred), example["target_value"], dataset["dataset_name"]
                     )
                     if self.verbose:
                         print("\nQuestion:", example["utterance"])
