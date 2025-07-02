@@ -38,4 +38,4 @@ class FreeformTableQA(Dataset):
 
 class TabMWP(Dataset):
     def __init__(self):
-        super().__init__(dataset_path="tab_llm_datasets/tabmwp/dataset.py", is_remote=False, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
+        super().__init__(dataset_path="TableSenseAI/TabMWP", is_remote=True, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
