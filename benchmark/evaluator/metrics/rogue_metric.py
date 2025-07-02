@@ -10,4 +10,8 @@ class RogueMetric(Metric):
 
     def compute(self, predictions: list, references: list) -> dict:
         rogue_score = load("rouge")
-        return rogue_score.compute(predictions=predictions, references=references)
+        result = rogue_score.compute(predictions=predictions, references=references)
+        result["rouge1"] = float(result["rouge1"])
+        result["rouge2"] = float(result["rouge2"])
+        result["rougeLsum"] = float(result["rougeLsum"])
+        return result
