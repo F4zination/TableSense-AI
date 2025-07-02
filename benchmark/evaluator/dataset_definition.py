@@ -1,8 +1,9 @@
 from abc import ABC
-from evaluator.metrics.exact_match_metric import ExactMatchMetric
-from evaluator.metrics.bertscore_metric import BERTScoreMetric
-from evaluator.metrics.rogue_metric import RogueMetric
-from evaluator.metrics.metric import Metric
+
+from benchmark.evaluator.metrics.exact_match_metric import ExactMatchMetric
+from benchmark.evaluator.metrics.bertscore_metric import BERTScoreMetric
+from benchmark.evaluator.metrics.rogue_metric import RogueMetric
+from benchmark.evaluator.metrics.metric import Metric
 
 
 class Dataset(ABC):
@@ -28,6 +29,12 @@ class SimpleTest(Dataset):
 class WikiTableQuestions(Dataset):
     def __init__(self):
         super().__init__(dataset_path="TableSenseAI/WikiTableQuestions", is_remote=True, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
+
+
+class FreeformTableQA(Dataset):
+    def __init__(self):
+        super().__init__(dataset_path="TableSenseAI/FreeformTableQA", is_remote=True, metric=[ExactMatchMetric(), BERTScoreMetric(),RogueMetric()])
+
 
 class TabMWP(Dataset):
     def __init__(self):
