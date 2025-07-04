@@ -9,6 +9,7 @@ from benchmark.evaluator.evaluation_cache import EvaluationCache
 from benchmark.evaluator.metrics.metric import Metric
 from tablesense_ai.agent.base import BaseAgent
 from benchmark.evaluator.eval_config import EvalConfig
+from tablesense_ai.utils import canonicaliser
 
 
 class Evaluator:
@@ -121,7 +122,9 @@ class Evaluator:
                         print(
                             f"Skipped example – empty result for question: {example['utterance']}"
                         )
-
+            # if dataset["dataset_name"] == "TabMWP":
+            #     results["pred"] = [str(canonicaliser.canonicalise(pred)[1]) for pred in results["pred"]]
+            #     results["ground_truth"] = [str(canonicaliser.canonicalise(gt)[1]) for gt in results["ground_truth"]]
             scores.append(self.calculate_metrics(
                 results,
                 dataset["dataset_name"],
