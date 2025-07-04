@@ -1,9 +1,10 @@
 import pickle
 
-from benchmark.evaluator.dataset_definition import FreeformTableQA
+from benchmark.evaluator.dataset_definition import WikiTableQuestions
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
+
 
 
 # Create your agent instance to test
@@ -16,11 +17,17 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
 
 
 # Configure your evaluation instance
-config = EvalConfig([FreeformTableQA()], True, True)
+config = EvalConfig([WikiTableQuestions()], True, True)
 evaluator = Evaluator(config, agent)
 
 
+
 # Start the evaluation process
-results = evaluator.evaluate()
-with open("evaluation_results.pkl", "wb") as f:
+scores, results = evaluator.evaluate()
+
+
+with open("scores_lastrun_wikitabelqa.pkl", "wb") as f:
+    pickle.dump(scores, f)
+
+with open("answers_lastrun_wikitabelqa.pkl", "wb") as f:
     pickle.dump(results, f)
