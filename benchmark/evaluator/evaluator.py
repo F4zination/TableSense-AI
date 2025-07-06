@@ -60,21 +60,20 @@ class Evaluator:
                 "dataset_path": str(dataset_path),
                 "dataset_name": dataset.__class__.__name__,
                 "dataset_metrics": dataset.metrics,
-                "is_remote": dataset.is_remote
+                "is_remote": dataset.is_remote,
+                "system_prompt": dataset.system_prompt,
             })
 
     def evaluate(self):
-        results = {"pred": [], "ground_truth": []}
+        scores = []
 
         for dataset in self.datasets:
             results, evaluated_indices = self.cache.get_cached_results(dataset["dataset_name"])
             print(results)
-        
-            scores = []
 
             for index, example in enumerate(
-                tqdm(dataset["dataset"]["test"],
-                     desc=f"Evaluating examples from {dataset['dataset_name']} dataset")
+                    tqdm(dataset["dataset"]["test"],
+                         desc=f"Evaluating examples from {dataset['dataset_name']} dataset")
             ):
                 if index in evaluated_indices:
                     continue
@@ -104,7 +103,7 @@ class Evaluator:
                 pred = self.predictor.eval(
                     question=additional_prompt + example["utterance"],
                     dataset=full_path,
-                    additional_info=[]
+                    additional_info=dataset["system_prompt"]
                 )
 
                 # Check if Prompt was too long
@@ -128,19 +127,17 @@ class Evaluator:
                 dataset["dataset_name"],
                 dataset["dataset_metrics"]
             ))
-            self.cache.finish_run()
+        self.cache.finish_run()
         return scores
 
-
     def calculate_metrics(
-        self,
-        results: dict,
-        dataset_name: str,
-        dataset_metrics: List[Metric]
+            self,
+            results: dict,
+            dataset_name: str,
+            dataset_metrics: List[Metric]
     ):
         print(f"Evaluation results for dataset {dataset_name}:")
-        final_scores = {}
-        final_scores["dataset_name"] = dataset_name
+        final_scores = {"dataset_name": dataset_name}
         for metric in dataset_metrics:
             score = metric.compute(
                 predictions=results["pred"],
@@ -148,4 +145,5 @@ class Evaluator:
             )
             print(f"{metric.metric_name}: {score}")
             final_scores[metric.metric_name] = score
-            
+
+        return final_scores

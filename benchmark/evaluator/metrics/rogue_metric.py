@@ -8,6 +8,6 @@ class RogueMetric(Metric):
     def __init__(self):
         super().__init__("Rogue Score")
 
-    def compute(self, predictions: list, references: list) -> float:
+    def compute(self, predictions: list, references: list) -> dict:
         rogue_score = load("rouge")
         return rogue_score.compute(predictions=predictions, references=references)

@@ -5,9 +5,8 @@ import streamlit as st
 from dotenv import load_dotenv
 
 from smolagents import LiteLLMModel, CodeAgent
-from tablesense_ai.agent.base import BaseAgent #measure_performance
+from tablesense_ai.agent.base import BaseAgent  # measure_performance
 from tablesense_ai.utils.performance import measure_performance
-
 
 load_dotenv()
 api_base = os.getenv("API_BASE")
@@ -28,16 +27,17 @@ class SmolCodeAgent(BaseAgent):
             ),
             additional_authorized_imports=[
                 "pandas", "numpy", "datetime", "matplotlib", "matplotlib.pyplot",
-                "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels",
+                "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express", "statsmodels",
                 "plotly.graph_objects"
             ],
             max_steps=5
         )
 
     # Possible to store the dataframe as csv to provide a path for eval
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: list[dict]) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, additional_info: str) -> str:
         df = pd.read_csv(dataset)
-        return self.invoke(question, df)
+        prompt = additional_info + "\n" + question
+        return self.invoke(prompt, df)
 
     @measure_performance
     def invoke(self, question: str, df: pd.DataFrame) -> str:
@@ -65,6 +65,7 @@ Keep your answer AS SHORT AS POSSIBLE.
 """
         return self.code_agent.run(prompt, additional_args={"df": df})
 
+
 # === Streamlit UI ===
 st.title("AI Data Analyst for Tabular Data")
 st.markdown("Upload a CSV file and ask questions about it using natural language.")
@@ -79,7 +80,7 @@ if uploaded_file is not None:
 
     if st.button("Analyze") and user_question:
         with st.spinner("Thinking..."):
-            data_analysis_agent= SmolCodeAgent(
+            data_analysis_agent = SmolCodeAgent(
                 model_id="openai//models/mistral-nemo-12b",
                 temperature=0,
                 max_retries=2,
@@ -87,7 +88,7 @@ if uploaded_file is not None:
                 base_url=api_base,
                 api_key=api_key,
             )
-      
+
             result = data_analysis_agent.invoke(user_question, df)
 
         st.write("### Result")

@@ -46,7 +46,7 @@ class EvaluationCache:
 
         if self.is_new_run:
             for dataset in self.config.datasets:
-                self.run_path.mkdir(parents=True, exist_ok=False)
+                self.run_path.mkdir(parents=True, exist_ok=True)
                 example_file = self.run_path / f"examples_{dataset.__class__.__name__}.json"
                 example_file.write_text(json.dumps([]))
 
