@@ -10,22 +10,23 @@ from tablesense_ai.utils.performance import measure_performance
 
 
 load_dotenv()
-api_base = os.getenv("API_BASE")
+base_url = os.getenv("API_BASE")
 api_key = os.getenv("API_KEY")
-
+model_id = os.getenv("MODEL_ID")
+AWS_REGION = os.getenv("AWS_REGION")
 
 class SmolCodeAgent(BaseAgent):
-    def __init__(self, llm_model, temperature, max_retries, max_tokens, base_url, api_key):
-        super().__init__(llm_model, temperature, max_retries, max_tokens, base_url, api_key)
+    def __init__(self, llm_model, temperature, max_retries, max_tokens):
+        super().__init__(llm_model, temperature, max_retries, max_tokens, base_url, api_key )
+        self.llm_model = LiteLLMModel(
+            model_id=model_id,
+            temperature=temperature,
+            max_retries=max_retries,
+            max_tokens=max_tokens
+        )
         self.code_agent = CodeAgent(
+            model=self.llm_model,
             tools=[],
-            model=LiteLLMModel(
-                model_id=llm_model,
-                temperature=temperature,
-                max_retries=max_retries,
-                api_base=base_url,
-                api_key=api_key,
-            ),
             additional_authorized_imports=[
                 "pandas", "numpy", "datetime", "matplotlib", "matplotlib.pyplot",
                 "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels",
@@ -36,7 +37,7 @@ class SmolCodeAgent(BaseAgent):
 
     # Possible to store the dataframe as csv to provide a path for eval
     def eval(self, question: str, dataset: pathlib.Path, additional_info: list[dict]) -> str:
-        df = pd.read_csv(dataset)
+        df = pd.read_csv(dataset, on_bad_lines='skip')
         return self.invoke(question, df)
 
     @measure_performance
@@ -80,12 +81,10 @@ if uploaded_file is not None:
     if st.button("Analyze") and user_question:
         with st.spinner("Thinking..."):
             data_analysis_agent= SmolCodeAgent(
-                model_id="openai//models/mistral-nemo-12b",
+                model_id="mistral.mistral-small-2402-v1:0",
                 temperature=0,
                 max_retries=2,
-                max_tokens=2048,
-                base_url=api_base,
-                api_key=api_key,
+                max_tokens=200
             )
       
             result = data_analysis_agent.invoke(user_question, df)
