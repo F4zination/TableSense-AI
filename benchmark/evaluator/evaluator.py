@@ -122,9 +122,11 @@ class Evaluator:
                         print(
                             f"Skipped example – empty result for question: {example['utterance']}"
                         )
-            # if dataset["dataset_name"] == "TabMWP":
-            #     results["pred"] = [str(canonicaliser.canonicalise(pred)[1]) for pred in results["pred"]]
-            #     results["ground_truth"] = [str(canonicaliser.canonicalise(gt)[1]) for gt in results["ground_truth"]]
+
+            canon_res = {}
+            if dataset["dataset_name"] == "TabMWP":
+                results["pred"] = [str(canonicaliser.canonicalise(pred)[1]) for pred in results["pred"]]
+                results["ground_truth"] = [str(canonicaliser.canonicalise(gt)[1]) for gt in results["ground_truth"]]
             scores.append(self.calculate_metrics(
                 results,
                 dataset["dataset_name"],

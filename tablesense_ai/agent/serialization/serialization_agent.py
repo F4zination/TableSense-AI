@@ -54,8 +54,8 @@ class SerializationAgent(BaseAgent):
         token_count = len(self.encoding.encode(prompt))
 
         if token_count > self.TOKEN_LIMIT:
-            if self.verbose:
-                print(f"Prompt too long ({token_count} > {self.TOKEN_LIMIT} tokens).")
+            # if self.verbose:
+            print(f"Prompt too long ({token_count} > {self.TOKEN_LIMIT} tokens).")
             return "skipped-too-long"
 
         # Use the LLM to generate a response based on the question and converted content
