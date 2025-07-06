@@ -37,7 +37,7 @@ class SerializationAgent(BaseAgent):
         response = self.llm_model.invoke(input_prompt)
         return response
 
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: Union[dict, None]) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, additional_info: str) -> str:
         """
         Evaluate the given data using the LLM.
         :param question:
@@ -48,7 +48,7 @@ class SerializationAgent(BaseAgent):
         # Perform the serialization task using the Converter class
         converted_content = self.converter.convert(dataset, self.format_to_convert_to, False)
 
-        prompt = self.system_prompt.format(data=converted_content) + "\n" + question
+        prompt = self.system_prompt.format(data=converted_content) + "\n" + additional_info + "\n" + question
 
         # Token-Limit
         token_count = len(self.encoding.encode(prompt))

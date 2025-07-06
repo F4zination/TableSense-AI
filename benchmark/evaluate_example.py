@@ -6,7 +6,6 @@ from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
 
-
 iterations = 2
 
 # Create your agent instance to test
@@ -30,10 +29,8 @@ for i in range(iterations):
     print(results)
     complete_results.append(results)
 
-
 averaged = helper.average_results(complete_results)
 print(averaged)
-
 
 with open("evaluation_results.pkl", "wb") as f:
     pickle.dump(complete_results, f)

@@ -20,6 +20,7 @@ default_prompt = (
     "Keep your answer AS SHORT AS POSSIBLE."
 )
 
+
 class BaseAgent(ABC):
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int, base_url: str,
@@ -35,9 +36,6 @@ class BaseAgent(ABC):
         self.system_prompt = system_prompt if system_prompt else default_prompt
         self.verbose = verbose
 
-
-
-
     def set_system_prompt(self, system_prompt: str):
         """
         Set the system prompt for the LLM.
@@ -47,7 +45,7 @@ class BaseAgent(ABC):
         self.system_prompt = system_prompt
 
     @abstractmethod
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: list[dict]) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, additional_info: str) -> str:
         """
         Evaluate the given data using the LLM.
 
