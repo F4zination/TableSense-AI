@@ -33,6 +33,7 @@ class BaseAgent(ABC):
             base_url=base_url,
             api_key=api_key,
         )
+        self.verbose = verbose
         self.system_prompt = system_prompt if system_prompt else default_prompt
         self.verbose = verbose
 

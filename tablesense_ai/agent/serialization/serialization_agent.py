@@ -14,7 +14,7 @@ class SerializationAgent(BaseAgent):
     Because of API-Limitations, a token-limit was implemented
     """
 
-    TOKEN_LIMIT = 5000
+    TOKEN_LIMIT = 32700
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int,
                  max_tokens: int, base_url: str, api_key: str,
@@ -37,7 +37,7 @@ class SerializationAgent(BaseAgent):
         response = self.llm_model.invoke(input_prompt)
         return response
 
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: str) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, additional_info: Union[dict, None]) -> str:
         """
         Evaluate the given data using the LLM.
         :param question:

@@ -1,9 +1,9 @@
 import pickle
 
-from benchmark.evaluator import helper
-from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions, SimpleTest
+from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
+from tablesense_ai.agent.code_agent.smolagent import SmolCodeAgent
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent
 
 # Create your agent instance to test
@@ -14,9 +14,11 @@ agent = SerializationAgent(llm_model="/models/mistral-nemo-12b",
                            base_url="http://80.151.131.52:9180/v1",
                            api_key="THU-I17468S973-Student-24-25-94682Y1315", verbose=True)
 
+
 # Configure your evaluation instance
-config = EvalConfig([SimpleTest(), WikiTableQuestions()], True, True)
+config = EvalConfig([FreeformTableQA()], True, True)
 evaluator = Evaluator(config, agent)
+
 
 # Start the evaluation process
 results = evaluator.evaluate()
