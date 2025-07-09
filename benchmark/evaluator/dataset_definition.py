@@ -30,7 +30,7 @@ class SimpleTest(Dataset):
 
 class WikiTableQuestions(Dataset):
     def __init__(self):
-        system_prompt = ""
+        system_prompt = "Keep the answer as short as possible!!!\n"
         super().__init__(dataset_path="TableSenseAI/WikiTableQuestions", is_remote=True,
                          metric=[ExactMatchMetric(),RogueMetric()], system_prompt=system_prompt)
 
@@ -44,6 +44,7 @@ class FreeformTableQA(Dataset):
 
 class TabMWP(Dataset):
     def __init__(self):
-        system_prompt = ""
-        super().__init__(dataset_path="tab_llm_datasets/tabmwp/dataset.py", is_remote=False,
+        system_prompt = "Keep the answer as short as possible!!!\n"
+
+        super().__init__(dataset_path="TableSenseAI/TabMWP", is_remote=True,
                          metric=[ExactMatchMetric(),RogueMetric()], system_prompt=system_prompt)
