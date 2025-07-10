@@ -34,7 +34,6 @@ class SerializationAgent(BaseAgent):
         """
         # Here you would implement the logic to invoke the LLM with the input
         # For example, using OpenAI's API or any other LLM service
-        print(f"Invoking LLM with prompt: {input_prompt}")
         response = self.llm_model.invoke(input_prompt)
         return response
 
