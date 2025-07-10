@@ -9,6 +9,7 @@ from benchmark.evaluator.evaluation_cache import EvaluationCache
 from benchmark.evaluator.metrics.metric import Metric
 from tablesense_ai.agent.base import BaseAgent
 from benchmark.evaluator.eval_config import EvalConfig
+from tablesense_ai.utils import canonicaliser
 
 
 class Evaluator:
@@ -95,33 +96,32 @@ class Evaluator:
                     base_path = current_file_path.parent / Path(dataset["dataset_path"]).parent
                     full_path = base_path / path_obj
 
-                additional_prompt = (
-                    "There is a Question provided with a related table. "
-                    "Answer the question with a target value. "
-                )
 
                 pred = self.predictor.eval(
-                    question=additional_prompt + example["utterance"],
+                    question= example["utterance"],
                     dataset=full_path,
                     additional_info=dataset["system_prompt"]
                 )
 
                 # Check if Prompt was too long
                 if str(pred) != "skipped-too-long":
+                    if dataset["dataset_name"] == "TabMWP" or dataset["dataset_name"] == "WikiTableQuestions":
+                        # TabMWP and WikiTableQuestions datasets require canonicalisation
+                        pred = canonicaliser.clean(pred)
+                        target_value =example["target_value"].lower().strip()
                     results["pred"].append(pred)
-                    results["ground_truth"].append(example["target_value"])
+                    results["ground_truth"].append(target_value)
                     self.cache.safe_example(
-                        index, str(pred), example["target_value"], dataset["dataset_name"]
+                        index, str(pred), target_value, dataset["dataset_name"]
                     )
                     if self.verbose:
                         print("\nQuestion:", example["utterance"])
-                        print(f"Result: {pred} -- {example['target_value']}")
+                        print(f"Result: {pred} -- {target_value}")
                 else:
                     if self.verbose:
                         print(
                             f"Skipped example – empty result for question: {example['utterance']}"
                         )
-
             scores.append(self.calculate_metrics(
                 results,
                 dataset["dataset_name"],

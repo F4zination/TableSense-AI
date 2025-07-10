@@ -1,4 +1,5 @@
 from evaluate import load
+import numpy as np
 
 from benchmark.evaluator.metrics.metric import Metric
 
