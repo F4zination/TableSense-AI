@@ -10,7 +10,6 @@ from benchmark.evaluator.metrics.metric import Metric
 from tablesense_ai.agent.base import BaseAgent
 from benchmark.evaluator.eval_config import EvalConfig
 from tablesense_ai.utils import canonicaliser
-from tablesense_ai.utils import canonicaliser
 
 
 class Evaluator:
