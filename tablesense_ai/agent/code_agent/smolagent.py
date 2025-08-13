@@ -31,7 +31,7 @@ class SmolCodeAgent(BaseAgent):
                 "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels",
                 "plotly.graph_objects"
             ],
-            max_steps=5
+            max_steps=10
         )
 
     # Possible to store the dataframe as csv to provide a path for eval
@@ -57,9 +57,18 @@ If a question requires numerical results (e.g., averages, sums), provide the com
 Assume each question stands on its own; do not reference previous questions or context beyond the current input.
 Your output should always be a single string with no code, comments, or formatting syntax.
 Focus on precision and informativeness in your response. Always communicate clearly and avoid unnecessary detail.
-Keep your answer AS SHORT AS POSSIBLE.
-
-
+Keep your answer AS SHORT AS POSSIBLE and strictly follow the formatting rules.
+###Formatting rules###
+Fractions – give in lowest terms, e.g. 64/389.
+Copy values EXACTLY as stored (case, accents, punctuation).
+If the answer spans multiple distinct cells, join them with "|" (pipe), no spaces.
+If a cell already includes alternatives (e.g., "X or Y"), reproduce it unchanged.
+Provide numeric values exactly as stored; do NOT add or remove separators or decimals.
+Preserve original date/time formats verbatim.
+If the answer is missing or cannot be inferred, output the single token "N/A".
+Treat every question independently; do not reference earlier questions or context.
+Keep the answer as short as possible and NEVER exceed 60 characters.
+Return nothing except this answer string.
 
 ## User Question:
 {question}
