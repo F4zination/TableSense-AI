@@ -107,7 +107,7 @@ class Evaluator:
                 if str(pred) != "skipped-too-long":
                     if dataset["dataset_name"] == "TabMWP" or dataset["dataset_name"] == "WikiTableQuestions":
                         # TabMWP and WikiTableQuestions datasets require canonicalisation
-                        pred = canonicaliser.clean(pred)
+                        pred = canonicaliser.clean(str(pred))
                         target_value =example["target_value"].lower().strip()
                     results["pred"].append(pred)
                     results["ground_truth"].append(target_value)
