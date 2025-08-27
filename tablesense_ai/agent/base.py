@@ -36,6 +36,13 @@ class BaseAgent(ABC):
         self.verbose = verbose
         self.system_prompt = system_prompt if system_prompt else default_prompt
         self.verbose = verbose
+        # Store config for agents that call OpenAI Chat Completions directly
+        self.model_name = llm_model
+        self.temperature = temperature
+        self.max_retries = max_retries
+        self.max_tokens = max_tokens
+        self.base_url = base_url
+        self.api_key = api_key
 
     def set_system_prompt(self, system_prompt: str):
         """
