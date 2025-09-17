@@ -35,9 +35,9 @@ class SmolCodeAgent(BaseAgent):
         )
 
     # Possible to store the dataframe as csv to provide a path for eval
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: str) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, dataset_prompt: str) -> str:
         df = pd.read_csv(dataset, on_bad_lines='skip')
-        prompt = additional_info + "\n" + question
+        prompt = dataset_prompt + "\n" + question
         return self.invoke(prompt, df)
 
     @measure_performance

@@ -100,7 +100,7 @@ class Evaluator:
                 pred = self.predictor.eval(
                     question= example["utterance"],
                     dataset=full_path,
-                    additional_info=dataset["system_prompt"]
+                    dataset_prompt=dataset["system_prompt"]
                 )
 
                 # Check if Prompt was too long

@@ -53,13 +53,13 @@ class BaseAgent(ABC):
         self.system_prompt = system_prompt
 
     @abstractmethod
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: str) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, dataset_prompt: str) -> str:
         """
         Evaluate the given data using the LLM.
 
             :param question: The question to ask the LLM
             :param dataset: Path to the dataset for evaluation
-            :param additional_info: Additional information to provide to the LLM (e.g., context, metadata)
+            :param dataset_prompt: Additional information to provide to the LLM (e.g., context, metadata)
             :return: The response from the LLM
         """
         pass
