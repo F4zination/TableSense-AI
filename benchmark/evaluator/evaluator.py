@@ -100,15 +100,17 @@ class Evaluator:
                 pred = self.predictor.eval(
                     question= example["utterance"],
                     dataset=full_path,
-                    additional_info=dataset["system_prompt"]
+                    dataset_prompt=dataset["system_prompt"]
                 )
 
                 # Check if Prompt was too long
                 if str(pred) != "skipped-too-long":
+                    # Default target value for all datasets
+                    target_value = example["target_value"]
                     if dataset["dataset_name"] == "TabMWP" or dataset["dataset_name"] == "WikiTableQuestions":
                         # TabMWP and WikiTableQuestions datasets require canonicalisation
                         pred = canonicaliser.clean(str(pred))
-                        target_value =example["target_value"].lower().strip()
+                        target_value = example["target_value"].lower().strip()
                     results["pred"].append(pred)
                     results["ground_truth"].append(target_value)
                     self.cache.safe_example(

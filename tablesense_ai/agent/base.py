@@ -36,6 +36,13 @@ class BaseAgent(ABC):
         self.verbose = verbose
         self.system_prompt = system_prompt if system_prompt else default_prompt
         self.verbose = verbose
+        # Store config for agents that call OpenAI Chat Completions directly
+        self.model_name = llm_model
+        self.temperature = temperature
+        self.max_retries = max_retries
+        self.max_tokens = max_tokens
+        self.base_url = base_url
+        self.api_key = api_key
 
     def set_system_prompt(self, system_prompt: str):
         """
@@ -46,13 +53,13 @@ class BaseAgent(ABC):
         self.system_prompt = system_prompt
 
     @abstractmethod
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: str) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, dataset_prompt: str) -> str:
         """
         Evaluate the given data using the LLM.
 
             :param question: The question to ask the LLM
             :param dataset: Path to the dataset for evaluation
-            :param additional_info: Additional information to provide to the LLM (e.g., context, metadata)
+            :param dataset_prompt: Additional information to provide to the LLM (e.g., context, metadata)
             :return: The response from the LLM
         """
         pass

@@ -5,8 +5,7 @@ from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.code_agent.smolagent import SmolCodeAgent
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent, TableFormat
-
-system_prompt_serialization = (
+"""system_prompt_serialization = (
     "You are an expert data analyst.\n\n"
     "You receive one table.\n"
     "For each user question:\n\n"
@@ -19,14 +18,15 @@ system_prompt_serialization = (
     "If the answer is missing or cannot be inferred, output the single token \"N/A\".\n"
     "Return nothing except this answer value.\n"
     "The table is:\n{data}\n"
-)
+)"""
+
 
 formats = {
     # "json": TableFormat.JSON,
-    # # "natural": TableFormat.NATURAL,
+    "natural": TableFormat.NATURAL,
     # "html": TableFormat.HTML,
-    "csv": TableFormat.CSV,
-    "md": TableFormat.MARKDOWN
+    # "csv": TableFormat.CSV,
+    # "md": TableFormat.MARKDOWN
 }
 
 for fmt_key, fmt_value in formats.items():
@@ -36,7 +36,6 @@ for fmt_key, fmt_value in formats.items():
         temperature=0,
         max_retries=2,
         max_tokens=100,
-        system_prompt=system_prompt_serialization,
         base_url="http://Bedroc-Proxy-zVlhZeY8DKqo-1848712918.us-east-1.elb.amazonaws.com/api/v1",
         api_key="THU-I17468S973-Student-24-25-94682Y1315",
         format_to_convert_to=fmt_value,
@@ -44,7 +43,7 @@ for fmt_key, fmt_value in formats.items():
     )
 
     # Configure your evaluation instance
-    config = EvalConfig([TabMWP(), WikiTableQuestions()], True, True)
+    config = EvalConfig([WikiTableQuestions()], True, True)
     evaluator = Evaluator(config, agent)
 
     # Start the evaluation process
