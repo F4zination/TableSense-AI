@@ -12,8 +12,8 @@ from tablesense_ai.utils.performance import measure_performance
 SYSTEM_PROMPT = (
     "You are an expert data analyst.\n"
     "Use only the table(s) provided in the user message.\n"
-    "Answer by calculating or copying values from the provided table\n"
-    "Keep the keep the format provided in the table (case, accents, punctuation, separators, date/time formats)."
+    "Answer by calculating or copying values from the provided table.\n"
+    "Keep the format provided in the table (case, accents, punctuation, separators, date/time formats).\n"
     "If the answer is missing or cannot be inferred, output exactly 'N/A'.\n"
     "Return only the final answer string — no labels, no quotes, no code, no explanations.\n"
 )
@@ -65,9 +65,16 @@ class SerializationAgent(BaseAgent):
             messages=messages,  # [{"role": "system"|"user", "content": str}, ...]
             temperature=self.temperature,
             max_tokens=self.max_tokens,
+            stop=["\\n"],
         )
         print(messages)
-        content = (resp.choices[0].message.content or "").strip()
+        # Fallback safety: if any newline sneaks through, cut at first line
+        raw_content = resp.choices[0].message.content or ""
+        first_line = raw_content.split("\n", 1)[0]
+        # If the model literally outputs "\\n" in text (escaped), also cut there
+        if "\n" not in raw_content and "\\n" in raw_content:
+            first_line = raw_content.split("\\n", 1)[0]
+        content = first_line.strip()
         usage = getattr(resp, "usage", None)
         prompt_tokens = getattr(usage, "prompt_tokens", None) if usage else None
         completion_tokens = getattr(usage, "completion_tokens", None) if usage else None
@@ -135,5 +142,6 @@ class SerializationAgent(BaseAgent):
         parts.append(f"[BEGIN TABLE #1 — format: {table_format.name}]")
         parts.append(table_content)
         parts.append("[END TABLE #1]")
+        parts.append("Return only the final answer string - no explanations!")
 
         return "\n".join(parts)
