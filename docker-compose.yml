@@ -60,6 +60,26 @@ services:
     depends_on:
       - "etcd"
       - "minio"
+      #- "postgres_db"
+
+  postgres_db:
+    container_name: tablesense-postgres
+    image: postgres:16-alpine # Lightweight and reliable PostgreSQL image
+    restart: always
+    environment:
+      # !! UPDATE THESE CREDENTIALS FOR PRODUCTION USE !!
+      POSTGRES_USER: tablesense_user
+      POSTGRES_PASSWORD: tablesense_password
+      POSTGRES_DB: tablesense_db
+    ports:
+      - "5433:5432" # Maps the container port 5432 to your host machine port 5432
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/postgres_data:/var/lib/postgresql/data # Persistent storage for your SQL data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tablesense_user -d tablesense_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   default:
