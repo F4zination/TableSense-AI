@@ -47,15 +47,9 @@ class Converter:
         if not path_to_file.exists():
             raise FileNotFoundError(f"Input file does not exist: {path_to_file}")
 
-        # Check if the input file format is supported
-        #if path_to_file.suffix not in TableFormat or path_to_file.suffix == TableFormat.NATURAL.value:
-        #    raise ValueError(f"Unsupported input file format: {path_to_file.suffix}")
-
-
-
         # Perform the conversion
         if path_to_file.suffix == TableFormat.CSV.value:
-            self.data.append(pd.read_csv(path_to_file))
+            self.data.append(pd.read_csv(path_to_file, engine="python", escapechar="\\"))
         elif path_to_file.suffix == TableFormat.JSON.value:
             self.data.append(pd.read_json(path_to_file))
         elif path_to_file.suffix == TableFormat.HTML.value:
@@ -94,7 +88,7 @@ class Converter:
             for df in self.data:
                 output += self.df_to_natural(df)
         else:
-            raise ValueError(f"Unsupported output file format: {output_format}")
+                raise ValueError(f"Unsupported output file format: {output_format}")
 
         # Save the converted data to a file if requested
         if save_to_file:
@@ -139,5 +133,3 @@ class Converter:
 
         # Create a DataFrame
         self.data = [pd.DataFrame(data, columns=header)]
-
-

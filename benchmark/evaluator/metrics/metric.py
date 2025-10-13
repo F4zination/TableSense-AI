@@ -7,5 +7,5 @@ class Metric(ABC):
         self.metric_name = metric_name
 
     @abstractmethod
-    def compute(self, predictions: list, references: list) -> float:
+    def compute(self, predictions: list, references: list) -> dict:
         ...

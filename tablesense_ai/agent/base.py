@@ -5,12 +5,26 @@ import time
 import tracemalloc
 from functools import wraps
 
+default_prompt = (
+    "You are acting as an expert data analyst.\n\n"
+    "You are provided with a table as a pandas DataFrame, shown as {data}.\n\n"
+    "Your role is to respond to user questions about this dataset.\n\n"
+    "For each user question, analyze and interpret the data in the DataFrame as needed.\n\n"
+    "Do not provide code, demonstrations, or step-by-step explanations; instead, directly answer the user's question.\n\n"
+    "Only return the requested answer to the question, nothing more!\n\n"
+    "Only refer to the data available in the DataFrame ({data}) when constructing your answer.\n\n"
+    "If a question requires numerical results (e.g., averages, sums), provide the computed figure.\n\n"
+    "Assume each question stands on its own; do not reference previous questions or context beyond the current input.\n\n"
+    "Your output should always be a single string with no code, comments, or formatting syntax.\n\n"
+    "Focus on precision and informativeness in your response. Always communicate clearly and avoid unnecessary detail.\n\n"
+    "Keep your answer AS SHORT AS POSSIBLE."
+)
 
 
 class BaseAgent(ABC):
 
     def __init__(self, llm_model: str, temperature: float, max_retries: int, max_tokens: int, base_url: str,
-                 api_key: str, system_prompt: str = None):
+                 api_key: str, system_prompt: str = None, verbose: bool = False):
         self.llm_model = ChatOpenAI(
             model=llm_model,
             temperature=temperature,
@@ -19,10 +33,16 @@ class BaseAgent(ABC):
             base_url=base_url,
             api_key=api_key,
         )
-        self.system_prompt = system_prompt if system_prompt else ("You are a data scientist. You have been given the "
-                                                                  "following data: \n{data}\nOnly return the answer to the question! Keep your answer AS SHORT AS POSSIBLE. Only provide necessary information")
-
-
+        self.verbose = verbose
+        self.system_prompt = system_prompt if system_prompt else default_prompt
+        self.verbose = verbose
+        # Store config for agents that call OpenAI Chat Completions directly
+        self.model_name = llm_model
+        self.temperature = temperature
+        self.max_retries = max_retries
+        self.max_tokens = max_tokens
+        self.base_url = base_url
+        self.api_key = api_key
 
     def set_system_prompt(self, system_prompt: str):
         """
@@ -33,13 +53,13 @@ class BaseAgent(ABC):
         self.system_prompt = system_prompt
 
     @abstractmethod
-    def eval(self, question: str, dataset: pathlib.Path, additional_info: list[dict]) -> str:
+    def eval(self, question: str, dataset: pathlib.Path, dataset_prompt: str) -> str:
         """
         Evaluate the given data using the LLM.
 
             :param question: The question to ask the LLM
             :param dataset: Path to the dataset for evaluation
-            :param additional_info: Additional information to provide to the LLM (e.g., context, metadata)
+            :param dataset_prompt: Additional information to provide to the LLM (e.g., context, metadata)
             :return: The response from the LLM
         """
         pass
