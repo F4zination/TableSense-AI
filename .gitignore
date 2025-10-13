@@ -4,3 +4,5 @@
 cache/
 pandasai.log
 exports/
+tables.db
+volumes/**
