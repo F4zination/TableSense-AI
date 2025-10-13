@@ -9,14 +9,25 @@ from tablesense_ai.agent.serialization.converter import Converter, TableFormat
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 import sqlite3
+from sqlalchemy import create_engine
 
+POSTGRES_URL = "postgresql+psycopg2://tablesense_user:tablesense_password@localhost:5433/tablesense_db"
 
-def store_table_in_sql(df: pd.DataFrame, table_id: str, db_path: Path = Path("tables.db")):
+def store_table_in_sql(df: pd.DataFrame, table_id: str, db_url: str = POSTGRES_URL):
     """
-    Store a DataFrame as a SQL table with inferred dtypes for exact querying.
+    Store a DataFrame as a SQL table with inferred dtypes for exact querying
+    using SQLAlchemy and PostgreSQL.
     Table name = table_<table_id>.
     """
-    conn = sqlite3.connect(db_path)
+    # 1. Create the SQLAlchemy Engine
+    # Note: If running this function from *inside* a Docker container, 
+    # replace 'localhost:5433' with 'postgres_db:5432'
+    try:
+        engine = create_engine(db_url)
+    except Exception as e:
+        print(f"Failed to create SQLAlchemy engine with URL: {db_url}. Error: {e}")
+        return # Stop execution if connection setup fails
+
     table_name = f"table_{table_id}"
 
     # Clean column names: remove leading/trailing whitespace
@@ -35,28 +46,27 @@ def store_table_in_sql(df: pd.DataFrame, table_id: str, db_path: Path = Path("ta
         # Convert to numeric if possible
         df_clean[col] = pd.to_numeric(df_clean[col], errors="ignore")
 
+    # 2. Use the Engine to write the DataFrame to PostgreSQL
     try:
-        df_clean.to_sql(table_name, conn, if_exists="replace", index=False)
-        print(f"Stored table in SQL as '{table_name}' ({len(df_clean)} rows)")
+        # The 'with engine.connect()' handles opening and closing the connection
+        with engine.connect() as conn:
+            # pandas.to_sql handles the data type mapping and table creation/replacement
+            df_clean.to_sql(table_name, conn, if_exists="replace", index=False)
+        
+        print(f"Stored table in PostgreSQL as '{table_name}' ({len(df_clean)} rows)")
     except Exception as e:
-        print(f"Failed to store table {table_id} in SQL: {e}")
-    finally:
-        conn.close()
+        # This catches errors during the connection or the actual table writing process
+        print(f"Failed to store table {table_id} in PostgreSQL: {e}")
+    # No 'finally' block needed, as 'with engine.connect()' closes the connection automatically.
+
 
 
 def extract_markdown_tables(markdown_text: str):
-    """
-    Extracts tables from markdown text using regex.
-    Returns list of (table_markdown, start_idx, end_idx).
-    """
     pattern = re.compile(r"(?:\|.+\|\n)+", re.MULTILINE)
     return [(match.group(), match.start(), match.end()) for match in pattern.finditer(markdown_text)]
 
 
 def markdown_table_to_df(table_markdown: str) -> pd.DataFrame:
-    """
-    Convert markdown table string into a pandas DataFrame.
-    """
     try:
         return (
             pd.read_csv(
@@ -74,7 +84,6 @@ def markdown_table_to_df(table_markdown: str) -> pd.DataFrame:
 def df_to_natural(df: pd.DataFrame) -> str:
     """
     Convert a DataFrame into natural language sentences using Jinja2.
-    Falls back to a simple row description if template not found.
     """
     try:
         template_dir = Path(__file__).resolve().parent / "jinja_templates"
@@ -134,9 +143,6 @@ def process_markdown_doc(doc: Document, rows_per_chunk: int = 5, natural: bool =
 
 
 def index_documents(docs: list[Document]):
-    """
-    Index the documents into Milvus using dense + sparse embeddings.
-    """
     embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
 
     Milvus.from_documents(
