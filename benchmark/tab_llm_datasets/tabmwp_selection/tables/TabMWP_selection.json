@@ -1,0 +1,1002 @@
+[
+	{
+		"id": "nu-26948",
+		"utterance": "Look at this table. Is this relation a function?",
+		"target_value": "yes",
+		"context": {
+			"csv": "tables/csv-1/2047.csv",
+			"html": "tables/csv-1/2047.html",
+			"tsv": "tables/csv-1/2047.tsv"
+		}
+	},
+	{
+		"id": "nu-26960",
+		"utterance": "How much money does Noah need to buy 9 pecan pies?",
+		"target_value": "99",
+		"context": {
+			"csv": "tables/csv-1/2048.csv",
+			"html": "tables/csv-1/2048.html",
+			"tsv": "tables/csv-1/2048.tsv"
+		}
+	},
+	{
+		"id": "nu-26971",
+		"utterance": "The table shows a function. Is the function linear or nonlinear?",
+		"target_value": "linear",
+		"context": {
+			"csv": "tables/csv-1/2049.csv",
+			"html": "tables/csv-1/2049.html",
+			"tsv": "tables/csv-1/2049.tsv"
+		}
+	},
+	{
+		"id": "nu-26978",
+		"utterance": "The students in Mr. Rivera's class recorded the number of siblings that each has. How many students have more than 2 siblings?",
+		"target_value": "38",
+		"context": {
+			"csv": "tables/csv-1/2050.csv",
+			"html": "tables/csv-1/2050.html",
+			"tsv": "tables/csv-1/2050.tsv"
+		}
+	},
+	{
+		"id": "nu-26987",
+		"utterance": "How much money does Danielle need to buy 8 river rafts and 2 sets of golf clubs?",
+		"target_value": "7,706",
+		"context": {
+			"csv": "tables/csv-1/2051.csv",
+			"html": "tables/csv-1/2051.html",
+			"tsv": "tables/csv-1/2051.tsv"
+		}
+	},
+	{
+		"id": "nu-26990",
+		"utterance": "Ed graphed the amount of snow that fell in the last 6 days. What is the range of the numbers?",
+		"target_value": "8",
+		"context": {
+			"csv": "tables/csv-1/2052.csv",
+			"html": "tables/csv-1/2052.html",
+			"tsv": "tables/csv-1/2052.tsv"
+		}
+	},
+	{
+		"id": "nu-26995",
+		"utterance": "An editor of the school yearbook asked some fourth and fifth graders what their favorite subjects were. How many students voted for science?",
+		"target_value": "18",
+		"context": {
+			"csv": "tables/csv-1/2053.csv",
+			"html": "tables/csv-1/2053.html",
+			"tsv": "tables/csv-1/2053.tsv"
+		}
+	},
+	{
+		"id": "nu-26998",
+		"utterance": "How much money does Heather need to buy 2 soccer tickets and 7 hockey tickets?",
+		"target_value": "209",
+		"context": {
+			"csv": "tables/csv-1/2054.csv",
+			"html": "tables/csv-1/2054.html",
+			"tsv": "tables/csv-1/2054.tsv"
+		}
+	},
+	{
+		"id": "nu-27005",
+		"utterance": "Melissa kept a tally of the number of emails she received each day for a week. According to the table, what was the rate of change between Thursday and Friday?",
+		"target_value": "-7",
+		"context": {
+			"csv": "tables/csv-1/2055.csv",
+			"html": "tables/csv-1/2055.html",
+			"tsv": "tables/csv-1/2055.tsv"
+		}
+	},
+	{
+		"id": "nu-27010",
+		"utterance": "How much money does Gordon need to buy 3 glass bowls?",
+		"target_value": "36",
+		"context": {
+			"csv": "tables/csv-1/2057.csv",
+			"html": "tables/csv-1/2057.html",
+			"tsv": "tables/csv-1/2057.tsv"
+		}
+	},
+	{
+		"id": "nu-27013",
+		"utterance": "Michelle counted the number of ducks at each pond in the city. What is the largest number of ducks?",
+		"target_value": "90",
+		"context": {
+			"csv": "tables/csv-1/2058.csv",
+			"html": "tables/csv-1/2058.html",
+			"tsv": "tables/csv-1/2058.tsv"
+		}
+	},
+	{
+		"id": "nu-27014",
+		"utterance": "How much money does Ashley need to buy a popcorn cart and a hot dog stand?",
+		"target_value": "17,503",
+		"context": {
+			"csv": "tables/csv-1/2059.csv",
+			"html": "tables/csv-1/2059.html",
+			"tsv": "tables/csv-1/2059.tsv"
+		}
+	},
+	{
+		"id": "nu-27024",
+		"utterance": "How much money does Sasha need to buy a sheet of bright yellow paper and a piece of elegant stationery?",
+		"target_value": "1.07",
+		"context": {
+			"csv": "tables/csv-1/2060.csv",
+			"html": "tables/csv-1/2060.html",
+			"tsv": "tables/csv-1/2060.tsv"
+		}
+	},
+	{
+		"id": "nu-27028",
+		"utterance": "Isabella went to the store. She bought 1 pound of split washers. How much did she spend?",
+		"target_value": "2",
+		"context": {
+			"csv": "tables/csv-1/2061.csv",
+			"html": "tables/csv-1/2061.html",
+			"tsv": "tables/csv-1/2061.tsv"
+		}
+	},
+	{
+		"id": "nu-27040",
+		"utterance": "The city recorded how many fire hydrants there are on each street. What is the range of the numbers?",
+		"target_value": "4",
+		"context": {
+			"csv": "tables/csv-1/2062.csv",
+			"html": "tables/csv-1/2062.html",
+			"tsv": "tables/csv-1/2062.tsv"
+		}
+	},
+	{
+		"id": "nu-27046",
+		"utterance": "How much money does Jen need to buy a soccer ticket and a football ticket?",
+		"target_value": "131.22",
+		"context": {
+			"csv": "tables/csv-1/2063.csv",
+			"html": "tables/csv-1/2063.html",
+			"tsv": "tables/csv-1/2063.tsv"
+		}
+	},
+	{
+		"id": "nu-27047",
+		"utterance": "Ron found out the sizes of all the clubs at his school. What is the size of the smallest club?",
+		"target_value": "22",
+		"context": {
+			"csv": "tables/csv-1/2064.csv",
+			"html": "tables/csv-1/2064.html",
+			"tsv": "tables/csv-1/2064.tsv"
+		}
+	},
+	{
+		"id": "nu-27059",
+		"utterance": "Helen went to the store. She bought 2 kilograms of sawdust, 1 kilogram of dirt, and 3 kilograms of bark. How much did she spend?",
+		"target_value": "9.06",
+		"context": {
+			"csv": "tables/csv-1/2065.csv",
+			"html": "tables/csv-1/2065.html",
+			"tsv": "tables/csv-1/2065.tsv"
+		}
+	},
+	{
+		"id": "nu-27062",
+		"utterance": "While looking through an almanac at the library, Tucker noticed some data showing the population density of various states. How many people per square mile lived in South Dakota in 2000?",
+		"target_value": "10",
+		"context": {
+			"csv": "tables/csv-1/2066.csv",
+			"html": "tables/csv-1/2066.html",
+			"tsv": "tables/csv-1/2066.tsv"
+		}
+	},
+	{
+		"id": "nu-27066",
+		"utterance": "The owner of an orchard kept records about how many apples were picked in the past 3 days. How many apples in total were picked on Friday and Saturday?",
+		"target_value": "4,999",
+		"context": {
+			"csv": "tables/csv-1/2067.csv",
+			"html": "tables/csv-1/2067.html",
+			"tsv": "tables/csv-1/2067.tsv"
+		}
+	},
+	{
+		"id": "nu-27067",
+		"utterance": "Look at the following schedule. Which activity ends at 7.15 A.M.?",
+		"target_value": "horseback riding class",
+		"context": {
+			"csv": "tables/csv-1/2068.csv",
+			"html": "tables/csv-1/2068.html",
+			"tsv": "tables/csv-1/2068.tsv"
+		}
+	},
+	{
+		"id": "nu-27068",
+		"utterance": "Anna buys 0.6 pounds of puffed rice. How much does she spend?",
+		"target_value": "1.20",
+		"context": {
+			"csv": "tables/csv-1/2069.csv",
+			"html": "tables/csv-1/2069.html",
+			"tsv": "tables/csv-1/2069.tsv"
+		}
+	},
+	{
+		"id": "nu-27071",
+		"utterance": "Harper just got back from a trip to the aquarium. While she was there, she used a frequency chart to keep track of the animals she saw. Harper saw 3 times as many stingrays as sharks. How many stingrays did Harper see?",
+		"target_value": "15",
+		"context": {
+			"csv": "tables/csv-1/2070.csv",
+			"html": "tables/csv-1/2070.html",
+			"tsv": "tables/csv-1/2070.tsv"
+		}
+	},
+	{
+		"id": "nu-27073",
+		"utterance": "Zack's class recorded how many states each student has visited. What is the mode of the numbers?",
+		"target_value": "9",
+		"context": {
+			"csv": "tables/csv-1/2071.csv",
+			"html": "tables/csv-1/2071.html",
+			"tsv": "tables/csv-1/2071.tsv"
+		}
+	},
+	{
+		"id": "nu-27078",
+		"utterance": "Kensington Flooring tracked the number of broken tiles in each shipment it received last year. How many shipments had exactly 41 broken tiles?",
+		"target_value": "1",
+		"context": {
+			"csv": "tables/csv-1/2072.csv",
+			"html": "tables/csv-1/2072.html",
+			"tsv": "tables/csv-1/2072.tsv"
+		}
+	},
+	{
+		"id": "nu-27079",
+		"utterance": "A crayon factory monitored the number of broken crayons per box during the past day. How many boxes had at least 30 broken crayons?",
+		"target_value": "17",
+		"context": {
+			"csv": "tables/csv-1/2073.csv",
+			"html": "tables/csv-1/2073.html",
+			"tsv": "tables/csv-1/2073.tsv"
+		}
+	},
+	{
+		"id": "nu-27080",
+		"utterance": "How much money does Trent need to buy a blue plastic block and a shapes stencil?",
+		"target_value": "0.09",
+		"context": {
+			"csv": "tables/csv-1/2074.csv",
+			"html": "tables/csv-1/2074.html",
+			"tsv": "tables/csv-1/2074.tsv"
+		}
+	},
+	{
+		"id": "nu-27087",
+		"utterance": "Lexi, a candy store employee, placed peppermint candies into jars of various sizes. How many jars had exactly 58 peppermint candies?",
+		"target_value": "3",
+		"context": {
+			"csv": "tables/csv-1/2077.csv",
+			"html": "tables/csv-1/2077.html",
+			"tsv": "tables/csv-1/2077.tsv"
+		}
+	},
+	{
+		"id": "nu-27096",
+		"utterance": "For an economics project, Mitch determined the cost of ferry rides for bicycles and cars. How much does it cost to take a bicycle on the Southport-Fort Fisher ferry?",
+		"target_value": "2",
+		"context": {
+			"csv": "tables/csv-1/2078.csv",
+			"html": "tables/csv-1/2078.html",
+			"tsv": "tables/csv-1/2078.tsv"
+		}
+	},
+	{
+		"id": "nu-27112",
+		"utterance": "Look at the following schedule. When does the banquet end?",
+		"target_value": "12:35 P.M.",
+		"context": {
+			"csv": "tables/csv-1/2080.csv",
+			"html": "tables/csv-1/2080.html",
+			"tsv": "tables/csv-1/2080.tsv"
+		}
+	},
+	{
+		"id": "nu-27117",
+		"utterance": "Polly has $23. Does she have enough to buy a cat calendar and a cookbook?",
+		"target_value": "yes",
+		"context": {
+			"csv": "tables/csv-1/2081.csv",
+			"html": "tables/csv-1/2081.html",
+			"tsv": "tables/csv-1/2081.tsv"
+		}
+	},
+	{
+		"id": "nu-27124",
+		"utterance": "How much more does a sheet of mountain stamps cost than a large cardboard box?",
+		"target_value": "0.12",
+		"context": {
+			"csv": "tables/csv-1/2082.csv",
+			"html": "tables/csv-1/2082.html",
+			"tsv": "tables/csv-1/2082.tsv"
+		}
+	},
+	{
+		"id": "nu-27141",
+		"utterance": "How much money does Ariana need to buy 3 emerald rings and 7 sapphire pendants?",
+		"target_value": "65,845",
+		"context": {
+			"csv": "tables/csv-1/2083.csv",
+			"html": "tables/csv-1/2083.html",
+			"tsv": "tables/csv-1/2083.tsv"
+		}
+	},
+	{
+		"id": "nu-27149",
+		"utterance": "Ms. Lester reported her students' scores on the most recent quiz. What is the lowest score?",
+		"target_value": "13",
+		"context": {
+			"csv": "tables/csv-1/2084.csv",
+			"html": "tables/csv-1/2084.html",
+			"tsv": "tables/csv-1/2084.tsv"
+		}
+	},
+	{
+		"id": "nu-27169",
+		"utterance": "A farmer recalled how many watermelons were harvested in the past 5 days. What is the median of the numbers?",
+		"target_value": "76",
+		"context": {
+			"csv": "tables/csv-1/2085.csv",
+			"html": "tables/csv-1/2085.html",
+			"tsv": "tables/csv-1/2085.tsv"
+		}
+	},
+	{
+		"id": "nu-27178",
+		"utterance": "The local high school found out how many members each club had. Which club has the most members?",
+		"target_value": "French club",
+		"context": {
+			"csv": "tables/csv-1/2086.csv",
+			"html": "tables/csv-1/2086.html",
+			"tsv": "tables/csv-1/2086.tsv"
+		}
+	},
+	{
+		"id": "nu-27183",
+		"utterance": "A juice shop tracked how many smoothies it sold in the past 4 days. On which day did the shop sell the most smoothies?",
+		"target_value": "Monday",
+		"context": {
+			"csv": "tables/csv-1/2087.csv",
+			"html": "tables/csv-1/2087.html",
+			"tsv": "tables/csv-1/2087.tsv"
+		}
+	},
+	{
+		"id": "nu-27191",
+		"utterance": "Denise's class recorded how many states each student has visited. What is the mode of the numbers?",
+		"target_value": "1",
+		"context": {
+			"csv": "tables/csv-1/2088.csv",
+			"html": "tables/csv-1/2088.html",
+			"tsv": "tables/csv-1/2088.tsv"
+		}
+	},
+	{
+		"id": "nu-27201",
+		"utterance": "Fans of the Washington baseball team compared the number of games won by their team each year. According to the table, what was the rate of change between 2015 and 2016?",
+		"target_value": "-2",
+		"context": {
+			"csv": "tables/csv-1/2089.csv",
+			"html": "tables/csv-1/2089.html",
+			"tsv": "tables/csv-1/2089.tsv"
+		}
+	},
+	{
+		"id": "nu-27223",
+		"utterance": "How much more does a surfing adventure package cost than a mountain-biking adventure package?",
+		"target_value": "246",
+		"context": {
+			"csv": "tables/csv-1/2090.csv",
+			"html": "tables/csv-1/2090.html",
+			"tsv": "tables/csv-1/2090.tsv"
+		}
+	},
+	{
+		"id": "nu-27234",
+		"utterance": "Look at the following schedule. Which activity ends at 7.10 P.M.?",
+		"target_value": "line dancing",
+		"context": {
+			"csv": "tables/csv-1/2091.csv",
+			"html": "tables/csv-1/2091.html",
+			"tsv": "tables/csv-1/2091.tsv"
+		}
+	},
+	{
+		"id": "nu-27235",
+		"utterance": "Look at the table. Then answer the question. At a price of $1,025, is there a shortage or a surplus?",
+		"target_value": "surplus",
+		"context": {
+			"csv": "tables/csv-1/2092.csv",
+			"html": "tables/csv-1/2092.html",
+			"tsv": "tables/csv-1/2092.tsv"
+		}
+	},
+	{
+		"id": "nu-27236",
+		"utterance": "Look at this table. Is this relation a function?",
+		"target_value": "yes",
+		"context": {
+			"csv": "tables/csv-1/2093.csv",
+			"html": "tables/csv-1/2093.html",
+			"tsv": "tables/csv-1/2093.tsv"
+		}
+	},
+	{
+		"id": "nu-27237",
+		"utterance": "Ms. Landry wants to know more about her students. She asked each student about his or her favorite school activity and recorded their answers in a frequency chart. How many students said art or music is their favorite school activity?",
+		"target_value": "15",
+		"context": {
+			"csv": "tables/csv-1/2094.csv",
+			"html": "tables/csv-1/2094.html",
+			"tsv": "tables/csv-1/2094.tsv"
+		}
+	},
+	{
+		"id": "nu-27238",
+		"utterance": "Emmett, who rents properties for a living, measures all the offices in a building he is renting. How many offices are exactly 57 square meters?",
+		"target_value": "2",
+		"context": {
+			"csv": "tables/csv-1/2095.csv",
+			"html": "tables/csv-1/2095.html",
+			"tsv": "tables/csv-1/2095.tsv"
+		}
+	},
+	{
+		"id": "nu-27241",
+		"utterance": "Alana has $105.70. How much money will Alana have left if she buys a denim skirt and a yellow dress?",
+		"target_value": "58.16",
+		"context": {
+			"csv": "tables/csv-1/2096.csv",
+			"html": "tables/csv-1/2096.html",
+			"tsv": "tables/csv-1/2096.tsv"
+		}
+	},
+	{
+		"id": "nu-27243",
+		"utterance": "Juan has $174.00. Does he have enough to buy a bearded dragon and a cockatoo?",
+		"target_value": "yes",
+		"context": {
+			"csv": "tables/csv-1/2097.csv",
+			"html": "tables/csv-1/2097.html",
+			"tsv": "tables/csv-1/2097.tsv"
+		}
+	},
+	{
+		"id": "nu-27255",
+		"utterance": "An actor was informed how many fan letters he received each day. On which day were the fewest fan letters received?",
+		"target_value": "Thursday",
+		"context": {
+			"csv": "tables/csv-1/2098.csv",
+			"html": "tables/csv-1/2098.html",
+			"tsv": "tables/csv-1/2098.tsv"
+		}
+	},
+	{
+		"id": "nu-27261",
+		"utterance": "The table shows a function. Is the function linear or nonlinear?",
+		"target_value": "linear",
+		"context": {
+			"csv": "tables/csv-1/2099.csv",
+			"html": "tables/csv-1/2099.html",
+			"tsv": "tables/csv-1/2099.tsv"
+		}
+	},
+	{
+		"id": "nu-27268",
+		"utterance": "How much money does Myra need to buy a DVD player and a DVD?",
+		"target_value": "88",
+		"context": {
+			"csv": "tables/csv-1/2100.csv",
+			"html": "tables/csv-1/2100.html",
+			"tsv": "tables/csv-1/2100.tsv"
+		}
+	},
+	{
+		"id": "nu-27269",
+		"utterance": "A food manufacturer surveyed consumers about their macaroni and cheese consumption. How many people ate macaroni and cheese at least 3 times?",
+		"target_value": "22",
+		"context": {
+			"csv": "tables/csv-1/2101.csv",
+			"html": "tables/csv-1/2101.html",
+			"tsv": "tables/csv-1/2101.tsv"
+		}
+	},
+	{
+		"id": "nu-27273",
+		"utterance": "After a field trip to the park, students in Mrs. Carter's art class counted the number of leaf rubbings they had made. How many students made at least 2 leaf rubbings?",
+		"target_value": "50",
+		"context": {
+			"csv": "tables/csv-1/2102.csv",
+			"html": "tables/csv-1/2102.html",
+			"tsv": "tables/csv-1/2102.tsv"
+		}
+	},
+	{
+		"id": "nu-27277",
+		"utterance": "How much more does a leaf blower cost than a fountain?",
+		"target_value": "4",
+		"context": {
+			"csv": "tables/csv-1/2103.csv",
+			"html": "tables/csv-1/2103.html",
+			"tsv": "tables/csv-1/2103.tsv"
+		}
+	},
+	{
+		"id": "nu-27279",
+		"utterance": "Look at the following schedule. When does the women's uneven bars event begin?",
+		"target_value": "11:10 A.M.",
+		"context": {
+			"csv": "tables/csv-1/2104.csv",
+			"html": "tables/csv-1/2104.html",
+			"tsv": "tables/csv-1/2104.tsv"
+		}
+	},
+	{
+		"id": "nu-27287",
+		"utterance": "A county agency recorded the money donated to several charitable causes over time. In May, how much more money was raised for animals than for medical research?",
+		"target_value": "10",
+		"context": {
+			"csv": "tables/csv-1/2105.csv",
+			"html": "tables/csv-1/2105.html",
+			"tsv": "tables/csv-1/2105.tsv"
+		}
+	},
+	{
+		"id": "nu-27295",
+		"utterance": "While working as a summer camp counselor, Keith monitored how many candy necklaces each child made. How many children made fewer than 5 candy necklaces?",
+		"target_value": "37",
+		"context": {
+			"csv": "tables/csv-1/2106.csv",
+			"html": "tables/csv-1/2106.html",
+			"tsv": "tables/csv-1/2106.tsv"
+		}
+	},
+	{
+		"id": "nu-27308",
+		"utterance": "How much money does Bridget need to buy a ceramic vase and an oil painting?",
+		"target_value": "144",
+		"context": {
+			"csv": "tables/csv-1/2107.csv",
+			"html": "tables/csv-1/2107.html",
+			"tsv": "tables/csv-1/2107.tsv"
+		}
+	},
+	{
+		"id": "nu-27309",
+		"utterance": "How much money does Simon need to buy an antique cast-iron bench and an antique pine chest of drawers?",
+		"target_value": "6,024",
+		"context": {
+			"csv": "tables/csv-1/2108.csv",
+			"html": "tables/csv-1/2108.html",
+			"tsv": "tables/csv-1/2108.tsv"
+		}
+	},
+	{
+		"id": "nu-27310",
+		"utterance": "Several people compared how many Web pages they had visited. What is the range of the numbers?",
+		"target_value": "8",
+		"context": {
+			"csv": "tables/csv-1/2109.csv",
+			"html": "tables/csv-1/2109.html",
+			"tsv": "tables/csv-1/2109.tsv"
+		}
+	},
+	{
+		"id": "nu-27332",
+		"utterance": "This morning, Mr. Kline released the scores from last week's spelling test. How many students scored at least 55 points?",
+		"target_value": "12",
+		"context": {
+			"csv": "tables/csv-1/2110.csv",
+			"html": "tables/csv-1/2110.html",
+			"tsv": "tables/csv-1/2110.tsv"
+		}
+	},
+	{
+		"id": "nu-27341",
+		"utterance": "Principal Hampton reported the state test scores from some students at her school. How many students scored exactly 47 points?",
+		"target_value": "1",
+		"context": {
+			"csv": "tables/csv-1/2111.csv",
+			"html": "tables/csv-1/2111.html",
+			"tsv": "tables/csv-1/2111.tsv"
+		}
+	},
+	{
+		"id": "nu-27348",
+		"utterance": "Several families compared how many vegetables they ate in a year. Which family ate the fewest vegetables?",
+		"target_value": "Yamazaki family",
+		"context": {
+			"csv": "tables/csv-1/2112.csv",
+			"html": "tables/csv-1/2112.html",
+			"tsv": "tables/csv-1/2112.tsv"
+		}
+	},
+	{
+		"id": "nu-27352",
+		"utterance": "The table shows a function. Is the function linear or nonlinear?",
+		"target_value": "nonlinear",
+		"context": {
+			"csv": "tables/csv-1/2113.csv",
+			"html": "tables/csv-1/2113.html",
+			"tsv": "tables/csv-1/2113.tsv"
+		}
+	},
+	{
+		"id": "nu-27365",
+		"utterance": "This table shows information about two occupations. In which occupation would you receive special training on local and state laws?",
+		"target_value": "police officer",
+		"context": {
+			"csv": "tables/csv-1/2115.csv",
+			"html": "tables/csv-1/2115.html",
+			"tsv": "tables/csv-1/2115.tsv"
+		}
+	},
+	{
+		"id": "nu-27368",
+		"utterance": "Some friends played golf and compared their scores. Who had the highest score?",
+		"target_value": "Isaac",
+		"context": {
+			"csv": "tables/csv-1/2116.csv",
+			"html": "tables/csv-1/2116.html",
+			"tsv": "tables/csv-1/2116.tsv"
+		}
+	},
+	{
+		"id": "nu-27377",
+		"utterance": "Every year Vindale has a citywide relay and reports the winning times. According to the table, what was the rate of change between 2006 and 2007?",
+		"target_value": "-3",
+		"context": {
+			"csv": "tables/csv-1/2117.csv",
+			"html": "tables/csv-1/2117.html",
+			"tsv": "tables/csv-1/2117.tsv"
+		}
+	},
+	{
+		"id": "nu-27379",
+		"utterance": "How much would it cost to buy 2+7/10 pounds of alfredo sauce?",
+		"target_value": "18.90",
+		"context": {
+			"csv": "tables/csv-1/2118.csv",
+			"html": "tables/csv-1/2118.html",
+			"tsv": "tables/csv-1/2118.tsv"
+		}
+	},
+	{
+		"id": "nu-27380",
+		"utterance": "How much money does Toby need to buy a boa constrictor, a llama, and an alpaca?",
+		"target_value": "3,817",
+		"context": {
+			"csv": "tables/csv-1/2119.csv",
+			"html": "tables/csv-1/2119.html",
+			"tsv": "tables/csv-1/2119.tsv"
+		}
+	},
+	{
+		"id": "nu-27389",
+		"utterance": "Bobby buys 4.9 pounds of banana chips. How much does he spend?",
+		"target_value": "14.70",
+		"context": {
+			"csv": "tables/csv-1/2120.csv",
+			"html": "tables/csv-1/2120.html",
+			"tsv": "tables/csv-1/2120.tsv"
+		}
+	},
+	{
+		"id": "nu-27392",
+		"utterance": "Some pizza restaurants compared their pizza sales. What is the range of the numbers?",
+		"target_value": "12",
+		"context": {
+			"csv": "tables/csv-1/2121.csv",
+			"html": "tables/csv-1/2121.html",
+			"tsv": "tables/csv-1/2121.tsv"
+		}
+	},
+	{
+		"id": "nu-27399",
+		"utterance": "A garden supply store kept track of how many lawn mowers it sold in the past 7 days. What is the median of the numbers?",
+		"target_value": "8",
+		"context": {
+			"csv": "tables/csv-1/2122.csv",
+			"html": "tables/csv-1/2122.html",
+			"tsv": "tables/csv-1/2122.tsv"
+		}
+	},
+	{
+		"id": "nu-27402",
+		"utterance": "Look at the following schedule. Which class begins at 12.20 P.M.?",
+		"target_value": "swing dance class",
+		"context": {
+			"csv": "tables/csv-1/2123.csv",
+			"html": "tables/csv-1/2123.html",
+			"tsv": "tables/csv-1/2123.tsv"
+		}
+	},
+	{
+		"id": "nu-27407",
+		"utterance": "Every year Salem has a citywide relay and reports the winning times. According to the table, what was the rate of change between 2016 and 2017?",
+		"target_value": "4",
+		"context": {
+			"csv": "tables/csv-1/2124.csv",
+			"html": "tables/csv-1/2124.html",
+			"tsv": "tables/csv-1/2124.tsv"
+		}
+	},
+	{
+		"id": "nu-27410",
+		"utterance": "How much money does Haley need to buy a fancy ribbon and a red balloon?",
+		"target_value": "0.50",
+		"context": {
+			"csv": "tables/csv-1/2125.csv",
+			"html": "tables/csv-1/2125.html",
+			"tsv": "tables/csv-1/2125.tsv"
+		}
+	},
+	{
+		"id": "nu-27412",
+		"utterance": "Jacob bought 3 pounds of pineapples. How much did he spend?",
+		"target_value": "18",
+		"context": {
+			"csv": "tables/csv-1/2126.csv",
+			"html": "tables/csv-1/2126.html",
+			"tsv": "tables/csv-1/2126.tsv"
+		}
+	},
+	{
+		"id": "nu-27414",
+		"utterance": "Doug's campground is close to two hiking trails with scenic destinations. One trail ends at an underground lake in the bottom of a small cave. The other trail ends at a mountain peak. The elevation of each destination is shown on the campground map. Which trail's destination is farther from sea level?",
+		"target_value": "underground lake",
+		"context": {
+			"csv": "tables/csv-1/2127.csv",
+			"html": "tables/csv-1/2127.html",
+			"tsv": "tables/csv-1/2127.tsv"
+		}
+	},
+	{
+		"id": "nu-27417",
+		"utterance": "Look at the following schedule. At which stop does the train arrive at 11.50 A.M.?",
+		"target_value": "town square",
+		"context": {
+			"csv": "tables/csv-1/2128.csv",
+			"html": "tables/csv-1/2128.html",
+			"tsv": "tables/csv-1/2128.tsv"
+		}
+	},
+	{
+		"id": "nu-27420",
+		"utterance": "At their family reunion, the Lopez family recorded everyone's age. How many people are at least 10 years old but less than 60 years old?",
+		"target_value": "12",
+		"context": {
+			"csv": "tables/csv-1/2129.csv",
+			"html": "tables/csv-1/2129.html",
+			"tsv": "tables/csv-1/2129.tsv"
+		}
+	},
+	{
+		"id": "nu-27437",
+		"utterance": "The teachers at a middle school counted how many computers they had in their classrooms. What is the mean of the numbers?",
+		"target_value": "15",
+		"context": {
+			"csv": "tables/csv-1/2130.csv",
+			"html": "tables/csv-1/2130.html",
+			"tsv": "tables/csv-1/2130.tsv"
+		}
+	},
+	{
+		"id": "nu-27441",
+		"utterance": "Nick bought 2 pounds of raspberry vinaigrette. How much did he spend?",
+		"target_value": "6",
+		"context": {
+			"csv": "tables/csv-1/2131.csv",
+			"html": "tables/csv-1/2131.html",
+			"tsv": "tables/csv-1/2131.tsv"
+		}
+	},
+	{
+		"id": "nu-27450",
+		"utterance": "In hopes of raising more funds for arts education, some parents in the Clarksville School District publicized the current per-student arts education budget. According to the table, what was the rate of change between 2019 and 2020?",
+		"target_value": "6",
+		"context": {
+			"csv": "tables/csv-1/2132.csv",
+			"html": "tables/csv-1/2132.html",
+			"tsv": "tables/csv-1/2132.tsv"
+		}
+	},
+	{
+		"id": "nu-27454",
+		"utterance": "How much money does Aisha need to buy 8 tickets for a Caribbean cruise?",
+		"target_value": "38,088",
+		"context": {
+			"csv": "tables/csv-1/2133.csv",
+			"html": "tables/csv-1/2133.html",
+			"tsv": "tables/csv-1/2133.tsv"
+		}
+	},
+	{
+		"id": "nu-27457",
+		"utterance": "Look at the following schedule. Tom just missed the 1.45 P.M. bus at the mall. How long does he have to wait until the next bus?",
+		"target_value": "45 minutes",
+		"context": {
+			"csv": "tables/csv-1/2134.csv",
+			"html": "tables/csv-1/2134.html",
+			"tsv": "tables/csv-1/2134.tsv"
+		}
+	},
+	{
+		"id": "nu-27462",
+		"utterance": "How much money does Destiny need to buy 9 history books and 2 cat calendars?",
+		"target_value": "183.17",
+		"context": {
+			"csv": "tables/csv-1/2135.csv",
+			"html": "tables/csv-1/2135.html",
+			"tsv": "tables/csv-1/2135.tsv"
+		}
+	},
+	{
+		"id": "nu-27465",
+		"utterance": "At their family reunion, the Atkinson family recorded everyone's age. How many people are less than 61 years old?",
+		"target_value": "6",
+		"context": {
+			"csv": "tables/csv-1/2136.csv",
+			"html": "tables/csv-1/2136.html",
+			"tsv": "tables/csv-1/2136.tsv"
+		}
+	},
+	{
+		"id": "nu-27470",
+		"utterance": "A grocery store chain tracked the number of trips people made to its stores last week. How many people went to the grocery store at least 2 times?",
+		"target_value": "38",
+		"context": {
+			"csv": "tables/csv-1/2138.csv",
+			"html": "tables/csv-1/2138.html",
+			"tsv": "tables/csv-1/2138.tsv"
+		}
+	},
+	{
+		"id": "nu-27472",
+		"utterance": "How much money does Gordon need to buy a broom and a shovel?",
+		"target_value": "16.65",
+		"context": {
+			"csv": "tables/csv-1/2139.csv",
+			"html": "tables/csv-1/2139.html",
+			"tsv": "tables/csv-1/2139.tsv"
+		}
+	},
+	{
+		"id": "nu-27476",
+		"utterance": "How much more does a bag of peanuts cost than an ice cream cone?",
+		"target_value": "0.05",
+		"context": {
+			"csv": "tables/csv-1/2140.csv",
+			"html": "tables/csv-1/2140.html",
+			"tsv": "tables/csv-1/2140.tsv"
+		}
+	},
+	{
+		"id": "nu-27478",
+		"utterance": "A theme park developer recorded the number of people who visited the local water park last summer. How many people went to the water park fewer than 3 times?",
+		"target_value": "22",
+		"context": {
+			"csv": "tables/csv-1/2141.csv",
+			"html": "tables/csv-1/2141.html",
+			"tsv": "tables/csv-1/2141.tsv"
+		}
+	},
+	{
+		"id": "nu-27483",
+		"utterance": "Every year Millersburg has a citywide relay and reports the winning times. According to the table, what was the rate of change between 2013 and 2014?",
+		"target_value": "-5",
+		"context": {
+			"csv": "tables/csv-1/2142.csv",
+			"html": "tables/csv-1/2142.html",
+			"tsv": "tables/csv-1/2142.tsv"
+		}
+	},
+	{
+		"id": "nu-27484",
+		"utterance": "Chase is a pediatrics nurse who conducts the first neonatal exam on newborn patients. He makes note of the newborns' height, weight, eye color, and heart rate, among other things. What is the probability that a randomly selected baby has blue eyes and has a slow heart rate (<100 bpm)? Simplify any fractions.",
+		"target_value": "3/11",
+		"context": {
+			"csv": "tables/csv-1/2143.csv",
+			"html": "tables/csv-1/2143.html",
+			"tsv": "tables/csv-1/2143.tsv"
+		}
+	},
+	{
+		"id": "nu-27503",
+		"utterance": "How much money does Harper need to buy a flag stamp, a piece of bubble wrap, and a robot stamp?",
+		"target_value": "0.22",
+		"context": {
+			"csv": "tables/csv-1/2145.csv",
+			"html": "tables/csv-1/2145.html",
+			"tsv": "tables/csv-1/2145.tsv"
+		}
+	},
+	{
+		"id": "nu-27504",
+		"utterance": "Grayson counted the number of pieces of pepperoni on each pizza he made. What is the smallest number of pieces of pepperoni?",
+		"target_value": "10",
+		"context": {
+			"csv": "tables/csv-1/2146.csv",
+			"html": "tables/csv-1/2146.html",
+			"tsv": "tables/csv-1/2146.tsv"
+		}
+	},
+	{
+		"id": "nu-27508",
+		"utterance": "At a science museum, visitors can compete to see who has a faster reaction time. Competitors watch a red screen, and the moment they see it turn from red to green, they push a button. The machine records their reaction times and also asks competitors to report their gender. What is the probability that a randomly selected competitor was female and reacted in 0.3 to 0.7 seconds? Simplify any fractions.",
+		"target_value": "3/8",
+		"context": {
+			"csv": "tables/csv-1/2147.csv",
+			"html": "tables/csv-1/2147.html",
+			"tsv": "tables/csv-1/2147.tsv"
+		}
+	},
+	{
+		"id": "nu-27509",
+		"utterance": "Sue has $0.11. How much money will Sue have left if she buys a red thumbtack and a small metal hook?",
+		"target_value": "0.02",
+		"context": {
+			"csv": "tables/csv-1/2148.csv",
+			"html": "tables/csv-1/2148.html",
+			"tsv": "tables/csv-1/2148.tsv"
+		}
+	},
+	{
+		"id": "nu-27511",
+		"utterance": "Gary went on a bird watching trip and jotted down the number of birds he saw each day. What is the median of the numbers?",
+		"target_value": "9",
+		"context": {
+			"csv": "tables/csv-1/2149.csv",
+			"html": "tables/csv-1/2149.html",
+			"tsv": "tables/csv-1/2149.tsv"
+		}
+	},
+	{
+		"id": "nu-27514",
+		"utterance": "Ben went on a camping trip and logged the number of miles he hiked each day. On which day did Ben hike the most miles?",
+		"target_value": "Saturday",
+		"context": {
+			"csv": "tables/csv-1/2151.csv",
+			"html": "tables/csv-1/2151.html",
+			"tsv": "tables/csv-1/2151.tsv"
+		}
+	},
+	{
+		"id": "nu-27515",
+		"utterance": "Russell's campground is close to two hiking trails with scenic destinations. One trail ends at an underground lake in the bottom of a small cave. The other trail ends at a mountain peak. The elevation of each destination is shown on the campground map. Which trail's destination is farther from sea level?",
+		"target_value": "underground lake",
+		"context": {
+			"csv": "tables/csv-1/2152.csv",
+			"html": "tables/csv-1/2152.html",
+			"tsv": "tables/csv-1/2152.tsv"
+		}
+	},
+	{
+		"id": "nu-27521",
+		"utterance": "What is the total cost for 1.6 pounds of cashews?",
+		"target_value": "12.80",
+		"context": {
+			"csv": "tables/csv-1/2153.csv",
+			"html": "tables/csv-1/2153.html",
+			"tsv": "tables/csv-1/2153.tsv"
+		}
+	},
+	{
+		"id": "nu-27554",
+		"utterance": "The Somerville Chamber of Commerce researched the number of employees working at local companies. What is the size of the largest company?",
+		"target_value": "90",
+		"context": {
+			"csv": "tables/csv-1/2154.csv",
+			"html": "tables/csv-1/2154.html",
+			"tsv": "tables/csv-1/2154.tsv"
+		}
+	}
+  ]

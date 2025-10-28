@@ -1,6 +1,6 @@
 import pickle
 
-from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions, TabMWP,SimpleTest
+from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions, TabMWP,SimpleTest, TabMWP_Selection
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.code_agent.smolagent import SmolCodeAgent
@@ -43,7 +43,7 @@ for fmt_key, fmt_value in formats.items():
     )
 
     # Configure your evaluation instance
-    config = EvalConfig([WikiTableQuestions()], True, True)
+    config = EvalConfig([TabMWP_Selection()], True, True)
     evaluator = Evaluator(config, agent)
 
     # Start the evaluation process
