@@ -6,7 +6,7 @@ from tablesense_ai.agent.serialization.serialization_agent import SerializationA
 from pandasai import Agent
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from pandasai.llm import OpenAI
+#from pandasai.llm import OpenAI
 import os
 
 import sys
