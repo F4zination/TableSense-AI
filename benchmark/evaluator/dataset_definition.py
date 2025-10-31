@@ -48,3 +48,10 @@ class TabMWP(Dataset):
 
         super().__init__(dataset_path="TableSenseAI/TabMWP", is_remote=True,
                          metric=[ExactMatchMetric(),RogueMetric()], system_prompt=system_prompt)
+
+
+class TabMWPSelection(Dataset):
+    def __init__(self):
+        system_prompt = "Keep the answer as short as possible!!!\n"
+        super().__init__(dataset_path="TableSenseAI/TabMWPSelection", is_remote=True,
+                         metric=[ExactMatchMetric(), RogueMetric()], system_prompt=system_prompt)
