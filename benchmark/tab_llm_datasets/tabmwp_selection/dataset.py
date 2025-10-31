@@ -1,6 +1,6 @@
 import os
 
-from datasets import DatasetInfo, GeneratorBasedBuilder, SplitGenerator, Split, Features, Value
+from datasets import DatasetInfo, GeneratorBasedBuilder, SplitGenerator, Split, Features, Value, Csv
 
 
 class TabMWPSelection(GeneratorBasedBuilder):
@@ -43,9 +43,11 @@ class TabMWPSelection(GeneratorBasedBuilder):
         Returns:
             List[SplitGenerator]: A list containing a single test split generator.
         """
-        data_path = dl_manager.download("tables/TabMWP_selection.json")
+        downloaded_files = dl_manager.download({
+            "test": "examples/TabMWP_selection.json"
+        })
         return [
-            SplitGenerator(name=Split.TEST, gen_kwargs={"filepath": data_path}),
+            SplitGenerator(name=Split.TEST, gen_kwargs={"filepath": downloaded_files["test"]}),
         ]
 
     def _generate_examples(self, filepath):
