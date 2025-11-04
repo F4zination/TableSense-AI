@@ -126,7 +126,8 @@ class RetrieverTool(Tool):
                     schema_output.append(f"Table Name: {table_name}\nSchema: {schema_str}")
                     processed_table_ids.add(table_name)
                     
-                formatted_docs.append(f"===== Document {i} =====\n{content}\nMetadata: {meta}")
+                # 'meta' is your metadata dictionary, 'content' is the page_content
+                formatted_docs.append(f"===== Document {i} =====\n{meta}\n---\n{content}\n")
             
             final_output = "\n".join(formatted_docs)
             
