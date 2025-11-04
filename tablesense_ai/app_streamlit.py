@@ -4,8 +4,12 @@ from dotenv import load_dotenv
 import pandas as pd
 from pandasai import Agent
 #from pandasai.llm import ChatOpenAI
+from pathlib import Path
+import tempfile
+import pandasai as pai
 
 from smolagents import CodeAgent, LiteLLMModel
+from pandasai_litellm.litellm import LiteLLM
 
 from agent.code_agent.smolagent import SmolCodeAgent
 from agent.serialization.serialization_agent import SerializationAgent, TableFormat
@@ -30,8 +34,8 @@ DB_NAME = os.getenv("DB_NAME")
 DB_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # Local LLM API Configuration
-api_base = os.getenv("OLLAMA_BASE_URL")
-api_key = os.getenv("OLLAMA_API_KEY")
+#api_base = os.getenv("OLLAMA_BASE_URL")
+#api_key = os.getenv("OLLAMA_API_KEY")
 
 
 # === 2. Agent Prompts ===
@@ -40,8 +44,8 @@ CONTEXT_PROMPT_BASE = """You are a data analyst assistant.
 
 Workflow rules:
 - Only if you need more information, retrieve additional documents using the 'retriever' tool.
-- For simple look up question, you can diretly answer it if possible.
-- As soon as it becomes more complex use sql_query for SELECT queries. This is the only code you are allowed to generate. The retrieved table snippets may not represent the whole table. So here you can refer to the table via the sql tool.
+- For simple look up question, you can diretly answer it either from text or even tables!
+- As soon as table calculations becomes more complex use sql_query for SELECT queries. This is the only code you are allowed to generate. The retrieved table snippets may not represent the whole table. So here you can refer to the table via the sql tool.
 
 Reason step-by-step and concise.
 """
@@ -86,6 +90,16 @@ print(result)
 Now it's your turn:
 '''
 
+smolAgentPrompt = f"""
+## Instructions
+You are acting as an expert data analyst.
+Your role is to respond to user questions about a dataset, which is provided to you as a pandas DataFrame.
+For each user question, you should:
+Analyze and interpret the data in the DataFrame as needed, which may require calculations, aggregations, filtering, or comparisons depending on the user's request.
+Therefore generate Code to execute on a pandas DataFrame to perform required analysis.
+Use pandas as your primary tool for data manipulation and analysis.
+"""
+
 # === 3. Initialize Tools and Agent (with Caching) ===
 # Use st.cache_resource to avoid re-initializing on every script rerun
 @st.cache_resource
@@ -109,15 +123,15 @@ def get_agent(_retriever_tool, _sql_tool):
     
     try:
         llm_model = LiteLLMModel(
-            #model_id="bedrock/mistral.mistral-small-2402-v1:0",
-            model_id="ollama/llama3.1:latest",
+            model_id="bedrock/mistral.mistral-small-2402-v1:0",
+            #model_id="ollama/llama3.1:latest",
             max_retries=2,
             max_tokens=4096,
         )
         agent = CodeAgent(
             tools=[_retriever_tool, _sql_tool],
             model=llm_model,
-            max_steps=6,
+            max_steps=4,
             verbosity_level=2
         )
         return agent
@@ -129,6 +143,7 @@ def get_agent(_retriever_tool, _sql_tool):
 db_helper = get_db_helper()
 retriever_tool, sql_tool = get_tools(db_helper)
 agent = get_agent(retriever_tool, sql_tool)
+
 
 
 # === 4. Streamlit App ===
@@ -148,58 +163,83 @@ with tab1:
     agent_type = st.selectbox("Select Agent Type", ["SerializationAgent", "SmolCodeAgent", "PandasAiAgentV3"])
 
     if uploaded_file is not None:
-        try:
-            df = pd.read_csv(uploaded_file)
-            st.write("### Preview of Data", df.head())
+        df = pd.read_csv(uploaded_file)
+        st.write("### Preview of Data", df.head())
 
-            user_question = st.text_area("Ask a question about your data:", height=100, key="tab1_question")
+        user_question = st.text_area("Ask a question about your data:", height=100, key="tab1_question")
 
-            if st.button("Analyze", key="tab1_button") and user_question:
-                with st.spinner("Thinking..."):
-                    try:
-                        if agent_type == "SerializationAgent":
-                            data_analysis_agent = SerializationAgent(
-                                llm_model="/models/mistral-nemo-12b",
-                                temperature=0,
-                                max_retries=2,
-                                max_tokens=2048,
-                                base_url=api_base,
-                                api_key=api_key,
-                                format_to_convert_to=TableFormat.HTML,
-                            )
-                            result = data_analysis_agent.streamlit_eval(df=df, question=user_question)
+        if st.button("Analyze", key="tab1_button") and user_question:
+            with st.spinner("Thinking..."):
+                try:
+                    if agent_type == "SerializationAgent":
+                        # download datase
+                        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".csv")
+                        temp_file.write(uploaded_file.getvalue())
+                        temp_file_path = Path(temp_file.name)
+                        data_analysis_agent = SerializationAgent(
+                            llm_model="bedrock/mistral.mistral-small-2402-v1:0",
+                            #llm_model="ollama/llama3.1:latest",
+                            temperature=0,
+                            max_retries=2,
+                            max_tokens=2048,
+                            #base_url=api_base,
+                            #api_key=api_key,
+                            format_to_convert_to=TableFormat.HTML,
+                        )
+                        result = data_analysis_agent.eval(dataset=temp_file_path, question=user_question, dataset_prompt=None)
+                            # 3. Clean up (delete) the temporary file
+                            #if temp_file and os.path.exists(temp_file.name):
+                            #    os.remove(temp_file.name)
 
-                        elif agent_type == "PandasAiAgentV2":
-                            llm = ChatOpenAI(base_url=api_base, model="/models/mistral-nemo-12b", api_key=api_key, temperature=0)
-                            data_analysis_agent = Agent(df, config={"llm": llm, "verbose": True,"enable_cache": False})
-                            result = data_analysis_agent.chat(user_question)
+                    elif agent_type == "PandasAiAgentV3":
+                        #llm = ChatOpenAI(base_url=api_base, model="/models/mistral-nemo-12b", api_key=api_key, temperature=0)
+                        llm = LiteLLM(
+                            model="bedrock/mistral.mistral-small-2402-v1:0",
+                            #model="ollama/llama3.1:latest",
+                            max_retries=2,
+                            max_tokens=4096,
+                        )
+                        pandasAI_agent = Agent(df, config={"llm": llm, "save_logs": True,"verbose": True,"enable_cache": False, "max_retries": 3})
+                        result = pandasAI_agent.chat(user_question)
 
-                        else: # SmolCodeAgent
-                            data_analysis_agent = SmolCodeAgent(
-                                model_id="openai//models/mistral-nemo-12b",
-                                temperature=0,
-                                max_retries=2,
-                                max_tokens=2048, # SerializationAgent, SmolCodeAgent, TableFormat
-                                base_url=api_base,
-                                api_key=api_key,
-                            )
-                            result = data_analysis_agent.invoke(user_question, df)
+                    else: # SmolCodeAgent
+                        smol_model = LiteLLMModel(
+                                    model_id="bedrock/mistral.mistral-small-2402-v1:0",
+                                    #model_id="ollama/llama3.1:latest",
+                                    max_retries=2,
+                                    max_tokens=4096,
+                                )
+                        smolAgent = CodeAgent(
+                                    model=smol_model,
+                                    tools=[],
+                                    additional_authorized_imports=[
+                                        "pandas", "numpy", "datetime", "matplotlib", "matplotlib.pyplot",
+                                        "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels",
+                                        "plotly.graph_objects"
+                                    ],
+                                    max_steps=10
+                                )
+                        agent_input = f"{smolAgentPrompt}\n{user_question}"
+                        result = smolAgent.run(agent_input, additional_args={"df": df})
 
-                        st.write("### Result")
-                        if isinstance(result, str) and result.strip().lower().endswith(".png"):
-                            st.image(result)
-                        else:
-                            st.write(result)
-                    except Exception as e:
-                        st.error(f"Error during analysis: {e}")
-                        st.error("Please check your Ollama server is running and the model is available.")
-        
-        except Exception as e:
-            st.error(f"Error reading CSV file: {e}")
+                    st.write("### Result")
+                    image_path = None
+
+                    if isinstance(result, dict) and result.get('type') == 'plot':
+                        image_path = result.get('value')
+                        st.image(image_path)
+                    elif isinstance(result, str) and result.strip().lower().endswith(".png"):
+                        image_path = result.strip()
+                        st.image(image_path)
+                    else:
+                        st.write(result)
+
+                except Exception as e:
+                    st.error(f"Error during analysis: {e}")
 
 
 # --- Tab 2: Contextualized Agent ---
-#TODO: Integrate pandasAI as selectable?
+#TODO: Integrate pandasAI as selectable? PandasAIv3 now also generates sql code by default. With SQL connector it can make use of our databse
 with tab2:
     st.header("Contextualized Data Analysis")
     st.info("This is the full-power agent. It first retrieves relevant documents and table schemas, then uses that context to generate an answer (which may or may not involve SQL).")
@@ -214,13 +254,13 @@ with tab2:
         else:
             with st.container(border=True):
                 st.info(f"**Query:** {context_question}")
-                
+
                 # 1. Run retrieval
                 with st.spinner("Step 1: Retrieving relevant documents and schema..."):
                     try:
                         retrieval_output = retriever_tool.forward(context_question)
                         with st.expander("See Retrieval Output"):
-                            st.text(retrieval_output)
+                            st.markdown(retrieval_output)
                     except Exception as e:
                         st.error(f"Error during retrieval: {e}")
                         st.stop()
