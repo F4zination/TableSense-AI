@@ -250,7 +250,7 @@ def index_documents(docs: list[Document]):
 if __name__ == "__main__":
 
     
-    file_path = Path("/home/phaman/TableSense-AI/tablesense_ai/agent/rag/Q3_Business_Review.md")
+    file_path = Path("/home/deulai/table_agent/TableSense-AI/tablesense_ai/agent/rag/Q3_Business_Review.md")
     loader = TextLoader(str(file_path), encoding="utf-8")
     docs = loader.load()
     doc = docs[0]
