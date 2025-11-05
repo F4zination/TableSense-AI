@@ -47,12 +47,14 @@ Workflow rules:
 - For simple look up question, you can diretly answer it either from text or even tables!
 - As soon as table calculations becomes more complex use sql_query for SELECT queries. This is the only code you are allowed to generate. The retrieved table snippets may not represent the whole table. So here you can refer to the table via the sql tool.
 
-Reason step-by-step and concise.
+Reason step-by-step and concise, if you are finished use the final_answer() tool
 """
 
 CONTEXT_FEW_SHOT = '''
 Here are some examples. Be aware that your logic might differ!
 
+User Query: What is the BMI of patient P-301?
+Retrieved:
 ===== Document 1 =====
 | Trial ID | Patient ID | Enrollment Date | Drug Protocol | Age | BMI | Status | Follow-up Weeks |
 |:---|:---|:---|:---|---:|:---|:---|---:|
@@ -61,29 +63,34 @@ Here are some examples. Be aware that your logic might differ!
 | T-103 | P-305 | 2024-06-20 | Gamma | 33 | 25.5 | Active | 12 |
 Metadata: {'table_id': 'table_c11d2b0e4f', 'row_range': '0-2', ...}
 
-User Query: What is the BMI of patient P-301?
-
 Thought: The user is asking for the BMI of patient P-301. I can directly answer this question by looking at the retrieved documents. 
 Code:                                                                                                                                                                                                                                                                 
 ```python                                                                                                                                                                                                                                                                
 final_answer("The BMI of patient P-301 is 28.5.")                                                                                                                                                                                                                          
 ```
 
+
 User Query: What is the average BMI of all patients in trials T-102 and T-103?
+
 Thought: I need to calculate the average BMI for multiple trials (T-102 and T-103) across all relevant patients in the database. I must use the sql_query tool with the AVG() function and ensure both "Trial ID" and BMI columns are correctly referenced.
 
 Code:
 ```python                                                                                                                                                                                                                                                                
+# Step 1: Write a clear query using an alias
 query = """
-SELECT AVG(BMI)
+SELECT AVG("BMI") AS average_bmi
 FROM table_c11d2b0e4f
 WHERE "Trial ID" = 'T-102' OR "Trial ID" = 'T-103';
 """
-result = sql_query(query)
-# Inspect result
-print(result)
 
-# if finished, and no additional steps needed use final_answer("Summarize your result and findings here")
+# Step 2: Execute the query
+result = sql_query(query)
+
+# Step 3: Extract the value. Optionaly you can use the print statement to inspect it here.
+avg_bmi_value = result[0]['average_bmi']
+
+# Step 4: If you are finished use the final_answer tool
+final_answer(f"The average BMI for trials T-102 and T-103 is {avg_bmi_value}.")
 
 ```
 
@@ -244,7 +251,7 @@ with tab2:
     st.header("Contextualized Data Analysis")
     st.info("This is the full-power agent. It first retrieves relevant documents and table schemas, then uses that context to generate an answer (which may or may not involve SQL).")
 
-    context_question = st.text_input("Ask a question about the data:", key="context_question", value="What is the highest, lowest and average Salary (€)?")
+    context_question = st.text_input("Ask a question about the data:", key="context_question", value="What is the highest, lowest and average Salary?")
 
     if st.button("Run Contextualized Agent", key="context_run"):
         if not agent:
@@ -260,13 +267,13 @@ with tab2:
                     try:
                         retrieval_output = retriever_tool.forward(context_question)
                         with st.expander("See Retrieval Output"):
-                            st.markdown(retrieval_output)
+                            st.text(retrieval_output)
                     except Exception as e:
                         st.error(f"Error during retrieval: {e}")
                         st.stop()
                 
                 # 2. Construct final prompt
-                agent_input = f"{CONTEXT_PROMPT_BASE}\n{CONTEXT_FEW_SHOT}\nRetrieved:\n{retrieval_output}\n\nUser query: {context_question}"
+                agent_input = f"{CONTEXT_PROMPT_BASE}\n{CONTEXT_FEW_SHOT}\nUser query: {context_question}\nRetrieved:\n{retrieval_output}"
                 
                 # 3. Run agent
                 with st.spinner("Step 2: Contextual Agent is thinking and executing..."):

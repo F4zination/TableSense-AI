@@ -10,7 +10,7 @@ This document summarizes the performance for the third quarter of 2025. It cover
 
 The HR department reports a stable workforce, with a 3% voluntary attrition rate, which is below the industry average. Employee satisfaction remains high, particularly in the engineering department. The following table provides a performance overview for key employees.
 
-| Employee | Department   | Start Date | Salary (€) | Bonus % | Remote | Projects Completed | Performance Rating |
+| Employee | Department   | Start Date | Salary     | Bonus % | Remote | Projects Completed | Performance Rating |
 |----------|--------------|------------|------------|---------|--------|--------------------|--------------------|
 | Alice    | Engineering  | 2020-01-15 | 65,000     | 10%     | True   | 12                 | A                  |
 | Bob      | Engineering  | 2019-03-22 | 72,000     | 12%     | False  | 15                 | A+                 |

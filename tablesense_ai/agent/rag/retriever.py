@@ -54,13 +54,13 @@ class SQLQueryTool(Tool):
     inputs = {
         "query": {"type": "string", "description": "SQL SELECT query."}
     }
-    output_type = "string"
+    output_type = "object"
 
     def __init__(self, db_helper: PostgreSQLHelper, **kwargs):
         super().__init__(**kwargs)
         self.db_helper = db_helper
 
-    def forward(self, query: str) -> str:
+    def forward(self, query: str) -> list:
         if not isinstance(query, str):
             return "Input error: query must be a string."
         if not is_select_query(query):
@@ -72,7 +72,7 @@ class SQLQueryTool(Tool):
                 col_names = list(result.keys())
                 rows = result.fetchall()
                 result_list = [dict(zip(col_names, row)) for row in rows]
-            return str(result_list)
+            return result_list
         except Exception as e:
             return f"SQL error: {e}"
 
