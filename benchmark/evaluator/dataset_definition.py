@@ -41,6 +41,12 @@ class FreeformTableQA(Dataset):
         super().__init__(dataset_path="TableSenseAI/FreeformTableQA", is_remote=True,
                          metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()], system_prompt=system_prompt)
 
+class FreeformTableQASelection(Dataset):
+    def __init__(self):
+        system_prompt = ""
+        super().__init__(dataset_path="TableSenseAI/FreeformTableQASelection", is_remote=True,
+                         metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()], system_prompt=system_prompt)
+
 
 class TabMWP(Dataset):
     def __init__(self):
@@ -52,6 +58,11 @@ class TabMWP(Dataset):
 
 class TabMWPSelection(Dataset):
     def __init__(self):
-        system_prompt = "Keep the answer as short as possible!!!\n"
+        system_prompt = """Keep the answer as short as possible!!!
+Follow these formatting rules:
+- Thousand values must not be separated (e.g. 1000, NOT 1,000)
+- Commas should be displayed with a "." (e.g. 10.45)
+- Rounding should be until the second value after the comma (e.g. 10.45, NOT 10.45321)
+"""
         super().__init__(dataset_path="TableSenseAI/TabMWPSelection", is_remote=True,
-                         metric=[ExactMatchMetric(), RogueMetric()], system_prompt=system_prompt)
+                          metric=[ExactMatchMetric(), RogueMetric()], system_prompt=system_prompt)
