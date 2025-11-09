@@ -18,7 +18,7 @@ class SmolCodeAgent(BaseAgent):
     def __init__(self, llm_model, temperature, max_retries, max_tokens):
         super().__init__(llm_model, temperature, max_retries, max_tokens, base_url, api_key )
         self.llm_model = LiteLLMModel(
-            model_id=model_id,
+            model_id=llm_model,
             temperature=temperature,
             max_retries=max_retries,
             max_tokens=max_tokens
@@ -90,7 +90,7 @@ if uploaded_file is not None:
     if st.button("Analyze") and user_question:
         with st.spinner("Thinking..."):
             data_analysis_agent= SmolCodeAgent(
-                model_id="mistral.mistral-small-2402-v1:0",
+                llm_model="mistral.mistral-small-2402-v1:0",
                 temperature=0,
                 max_retries=2,
                 max_tokens=200

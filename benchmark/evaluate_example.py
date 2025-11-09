@@ -1,6 +1,7 @@
+import os
 import pickle
 
-from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions, TabMWP,SimpleTest
+from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions, TabMWP, SimpleTest, TabMWPSelection, FreeformTableQASelection
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.code_agent.smolagent import SmolCodeAgent
@@ -23,8 +24,8 @@ from tablesense_ai.agent.serialization.serialization_agent import SerializationA
 
 formats = {
     # "json": TableFormat.JSON,
-    "natural": TableFormat.NATURAL,
-    # "html": TableFormat.HTML,
+    #"natural": TableFormat.NATURAL,
+    "html": TableFormat.HTML,
     # "csv": TableFormat.CSV,
     # "md": TableFormat.MARKDOWN
 }
@@ -32,18 +33,18 @@ formats = {
 for fmt_key, fmt_value in formats.items():
     print(f"Running evaluation for format: {fmt_key}")
     agent = SerializationAgent(
-        llm_model="mistral.mistral-small-2402-v1:0",
+        llm_model="mistral-small-2506",
         temperature=0,
         max_retries=2,
         max_tokens=100,
-        base_url="http://Bedroc-Proxy-zVlhZeY8DKqo-1848712918.us-east-1.elb.amazonaws.com/api/v1",
-        api_key="THU-I17468S973-Student-24-25-94682Y1315",
+        base_url="https://api.mistral.ai/v1",
+        api_key = os.getenv("OPENAI_API_KEY"),
         format_to_convert_to=fmt_value,
         verbose=True
     )
 
     # Configure your evaluation instance
-    config = EvalConfig([WikiTableQuestions()], True, True)
+    config = EvalConfig([FreeformTableQASelection()], True, True)
     evaluator = Evaluator(config, agent)
 
     # Start the evaluation process
