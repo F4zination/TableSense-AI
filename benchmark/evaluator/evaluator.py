@@ -1,3 +1,4 @@
+from pandas.errors import ParserError
 from pathlib import Path
 from typing import List
 
@@ -69,8 +70,21 @@ class Evaluator:
     def _read_table_content(self, file_path: Path) -> str:
         """Read and convert table content to HTML representation."""
         # read CSV into DataFrame and return as HTML table
-        df = pd.read_csv(file_path)
-        return df.to_html(index=False, escape=False)
+        try:
+            # Use on_bad_lines='skip' to ignore rows with the wrong number of columns
+            df = pd.read_csv(file_path, on_bad_lines='skip')
+            return df.to_html(index=False, escape=False)
+
+        except (ParserError, pd.errors.EmptyDataError) as e:
+            # Log the specific file that failed and why
+            print(f"Skipping file {file_path} due to error: {e}")
+            # Return an empty table or error message so the loop can continue
+            return "<p>Error reading table data.</p>"
+
+        except Exception as e:
+            # Catch any other unexpected errors
+            print(f"An unexpected error occurred with file {file_path}: {e}")
+            return "<p>Error reading table data.</p>"
 
     def evaluate(self):
         scores = []
