@@ -1,9 +1,11 @@
+from pandas.errors import ParserError
 from pathlib import Path
 from typing import List
 
 from datasets import load_dataset
 from tqdm import tqdm
 from huggingface_hub import hf_hub_download
+import pandas as pd
 
 from benchmark.evaluator.evaluation_cache import EvaluationCache
 from benchmark.evaluator.metrics.metric import Metric
@@ -65,6 +67,25 @@ class Evaluator:
                 "system_prompt": dataset.system_prompt,
             })
 
+    def _read_table_content(self, file_path: Path) -> str:
+        """Read and convert table content to HTML representation."""
+        # read CSV into DataFrame and return as HTML table
+        try:
+            # Use on_bad_lines='skip' to ignore rows with the wrong number of columns
+            df = pd.read_csv(file_path, on_bad_lines='skip')
+            return df.to_html(index=False, escape=False)
+
+        except (ParserError, pd.errors.EmptyDataError) as e:
+            # Log the specific file that failed and why
+            print(f"Skipping file {file_path} due to error: {e}")
+            # Return an empty table or error message so the loop can continue
+            return "<p>Error reading table data.</p>"
+
+        except Exception as e:
+            # Catch any other unexpected errors
+            print(f"An unexpected error occurred with file {file_path}: {e}")
+            return "<p>Error reading table data.</p>"
+
     def evaluate(self):
         scores = []
 
@@ -82,7 +103,6 @@ class Evaluator:
                 path_obj = Path(example["context"]["csv"])
 
                 if dataset["is_remote"]:
-                    # convert to POSIX before download
                     remote_file = path_obj.as_posix()
                     local_file = hf_hub_download(
                         repo_id=dataset["dataset_path"],
@@ -91,30 +111,33 @@ class Evaluator:
                     )
                     full_path = Path(local_file)
                 else:
-                    # local filesystem
                     current_file_path = Path(__file__).resolve().parent
                     base_path = current_file_path.parent / Path(dataset["dataset_path"]).parent
                     full_path = base_path / path_obj
 
+                # Lese den Tabelleninhalt
+                table_content = self._read_table_content(full_path)
 
                 pred = self.predictor.eval(
-                    question= example["utterance"],
+                    question=example["utterance"],
                     dataset=full_path,
                     dataset_prompt=dataset["system_prompt"]
                 )
 
-                # Check if Prompt was too long
                 if str(pred) != "skipped-too-long":
-                    # Default target value for all datasets
                     target_value = example["target_value"]
-                    if dataset["dataset_name"] == "TabMWP" or dataset["dataset_name"] == "WikiTableQuestions":
-                        # TabMWP and WikiTableQuestions datasets require canonicalisation
+                    if dataset["dataset_name"] in {"TabMWP", "WikiTableQuestions", "DistilledTabMWP"}:
                         pred = canonicaliser.clean(str(pred))
                         target_value = example["target_value"].lower().strip()
                     results["pred"].append(pred)
                     results["ground_truth"].append(target_value)
                     self.cache.safe_example(
-                        index, str(pred), target_value, dataset["dataset_name"]
+                        index,
+                        str(pred),
+                        target_value,
+                        dataset["dataset_name"],
+                        question=example["utterance"],
+                        table=table_content  # Speichere den Tabelleninhalt statt des Pfades
                     )
                     if self.verbose:
                         print("\nQuestion:", example["utterance"])

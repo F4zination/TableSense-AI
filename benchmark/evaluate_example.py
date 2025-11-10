@@ -1,11 +1,14 @@
 import os
 import pickle
 
-from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions, TabMWP, SimpleTest, TabMWPSelection, FreeformTableQASelection
+from benchmark.evaluator.dataset_definition import FreeformTableQA, WikiTableQuestions, TabMWP, SimpleTest, \
+    TabMWPSelection, FreeformTableQASelection, WikiTableQuestionsSelection
 from benchmark.evaluator.evaluator import Evaluator
 from benchmark.evaluator.evaluator import EvalConfig
 from tablesense_ai.agent.code_agent.smolagent import SmolCodeAgent
 from tablesense_ai.agent.serialization.serialization_agent import SerializationAgent, TableFormat
+
+
 """system_prompt_serialization = (
     "You are an expert data analyst.\n\n"
     "You receive one table.\n"
@@ -44,7 +47,7 @@ for fmt_key, fmt_value in formats.items():
     )
 
     # Configure your evaluation instance
-    config = EvalConfig([FreeformTableQASelection()], True, True)
+    config = EvalConfig([WikiTableQuestionsSelection()], True, True)
     evaluator = Evaluator(config, agent)
 
     # Start the evaluation process
