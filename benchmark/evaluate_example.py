@@ -26,11 +26,11 @@ from tablesense_ai.agent.serialization.serialization_agent import SerializationA
 
 
 formats = {
-    # "json": TableFormat.JSON,
-    #"natural": TableFormat.NATURAL,
+    "json": TableFormat.JSON,
+    "natural": TableFormat.NATURAL,
     "html": TableFormat.HTML,
-    # "csv": TableFormat.CSV,
-    # "md": TableFormat.MARKDOWN
+    "csv": TableFormat.CSV,
+    "md": TableFormat.MARKDOWN
 }
 
 for fmt_key, fmt_value in formats.items():
@@ -47,7 +47,7 @@ for fmt_key, fmt_value in formats.items():
     )
 
     # Configure your evaluation instance
-    config = EvalConfig([WikiTableQuestionsSelection()], True, True)
+    config = EvalConfig([TabMWPSelection()], True, False)
     evaluator = Evaluator(config, agent)
 
     # Start the evaluation process

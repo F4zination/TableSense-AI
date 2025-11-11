@@ -52,12 +52,7 @@ class TabMWP(Dataset):
 
 class FreeformTableQASelection(Dataset):
     def __init__(self):
-        system_prompt = """Keep the answer as short as possible!!!
-Follow these formatting rules:
-- Thousand values must not be separated (e.g. 1000, NOT 1,000)
-- Commas should be displayed with a "." (e.g. 10.45)
-- Rounding should be until the second value after the comma (e.g. 10.45, NOT 10.45321)
-"""
+        system_prompt = """Answer only in one setence!!!"""
         super().__init__(dataset_path="TableSenseAI/FreeformTableQASelection", is_remote=True,
                          metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()], system_prompt=system_prompt)
 
@@ -66,9 +61,15 @@ class TabMWPSelection(Dataset):
     def __init__(self):
         system_prompt = """Keep the answer as short as possible!!!
 Follow these formatting rules:
-- Thousand values must not be separated (e.g. 1000, NOT 1,000)
-- Commas should be displayed with a "." (e.g. 10.45)
-- Rounding should be until the second value after the comma (e.g. 10.45, NOT 10.45321)
+- Do not use thousand separators (1000, not 1,000).  
+- Use "." for decimals (10.45, not 10,45).  
+- Round numbers to 2 decimal places (10.45, not 10.45321).  
+- Do not add decimals to whole numbers (10, not 10.00).  
+- Return fractions in their simplest form, not as decimals.  
+- Remove leading currency symbols ($1000 → 1000).  
+- When the answer is a text value that must be inferred or generated (not copied from the table), return it in lowercase. 
+- Match the table’s existing formatting style.  
+- Output only the final answer value, never show the calculation.
 """
         super().__init__(dataset_path="TableSenseAI/TabMWPSelection", is_remote=True,
                           metric=[ExactMatchMetric(), RogueMetric()], system_prompt=system_prompt)
@@ -77,10 +78,12 @@ Follow these formatting rules:
 class WikiTableQuestionsSelection(Dataset):
     def __init__(self):
         system_prompt = """Keep the answer as short as possible!!!
-        Follow these formatting rules:
-        - Thousand values must not be separated (e.g. 1000, NOT 1,000)
-        - Commas should be displayed with a "." (e.g. 10.45)
-        - Rounding should be until the second value after the comma (e.g. 10.45, NOT 10.45321)
-        """
+Follow these formatting rules:
+- Do not use thousand separators (1000, not 1,000).  
+- Use "." for decimals (10.45, not 10,45).  
+- Round numbers to 2 decimal places (10.45, not 10.45321).  
+- Use | as seperator for multiple year answers (e.g., 1999|2000|2001 , NOT 1999, 2000, 2001).
+- If the answer is surrounded by quotes, remove them (e.g., "New York" -> New York).
+"""
         super().__init__(dataset_path="TableSenseAI/WikiTableQuestionsSelection", is_remote=True,
                           metric=[ExactMatchMetric(), RogueMetric()], system_prompt=system_prompt)
