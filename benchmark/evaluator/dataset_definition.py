@@ -80,10 +80,12 @@ class WikiTableQuestionsSelection(Dataset):
         system_prompt = """Keep the answer as short as possible!!!
 Follow these formatting rules:
 - Do not use thousand separators (1000, not 1,000).  
-- Use "." for decimals (10.45, not 10,45).  
-- Round numbers to 2 decimal places (10.45, not 10.45321).  
-- Use | as seperator for multiple year answers (e.g., 1999|2000|2001 , NOT 1999, 2000, 2001).
-- If the answer is surrounded by quotes, remove them (e.g., "New York" -> New York).
+- Use "." as the decimal separator (10.45, not 10,45).  
+- Round all numeric values to 2 decimal places (10.45, not 10.45321).  
+- If multiple years are given as text, separate them with "|" (1999|2000|2001, not 1999, 2000, 2001).  
+- Remove any surrounding quotation marks from text values ("New York" → New York).  
+- Include the full magnitude if it is relevant to the question (1.5 billion, not 1.5).  
+- Return only the final formatted answer — no calculations, no explanations, no code.
 """
         super().__init__(dataset_path="TableSenseAI/WikiTableQuestionsSelection", is_remote=True,
                           metric=[ExactMatchMetric(), RogueMetric()], system_prompt=system_prompt)
