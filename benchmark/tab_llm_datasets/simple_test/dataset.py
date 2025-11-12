@@ -43,7 +43,7 @@ class SimpleTest(GeneratorBasedBuilder):
         Returns:
             List[SplitGenerator]: A list containing a single test split generator.
         """
-        data_path = dl_manager.download("examples/examples.json")
+        data_path = dl_manager.download("examples/examples-test.json")
         return [
             SplitGenerator(name=Split.TEST, gen_kwargs={"filepath": data_path}),
         ]
