@@ -129,7 +129,7 @@ class Evaluator:
                     if dataset["dataset_name"] in {"TabMWP", "WikiTableQuestions", "DistilledTabMWP"}:
                         pred = canonicaliser.clean(str(pred))
                         target_value = example["target_value"].lower().strip()
-                    results["pred"].append(pred)
+                    results["pred"].append(str(pred))
                     results["ground_truth"].append(target_value)
                     self.cache.safe_example(
                         index,
