@@ -7,7 +7,7 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.11,<3.12"
-requires-python = ">=3.11,<3.12"
+
 dependencies = [
     "smolagents[litellm] (>=1.14.0,<2.0.0)",
     "langchain-openai (>=0.3.14,<0.4.0)",
@@ -61,9 +61,6 @@ dependencies = [
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-packages = [
-    { include = "tablesense_ai" }
-]
 packages = [
     { include = "tablesense_ai" }
 ]
