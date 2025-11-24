@@ -15,7 +15,7 @@ from agent.code_agent.smolagent import SmolCodeAgent
 from agent.serialization.serialization_agent import SerializationAgent, TableFormat
 
 from agent.rag.retriever import PostgreSQLHelper, SQLQueryTool, RetrieverTool
-
+from agent.rag.indexer import index_pdf
 
 # === 1. Load Environment & Configuration ===
 load_dotenv()
@@ -34,8 +34,8 @@ DB_NAME = os.getenv("DB_NAME")
 DB_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # Local LLM API Configuration
-#api_base = os.getenv("OLLAMA_BASE_URL")
-#api_key = os.getenv("OLLAMA_API_KEY")
+api_base = os.getenv("OLLAMA_BASE_URL")
+api_key = os.getenv("OLLAMA_API_KEY")
 
 
 # === 2. Agent Prompts ===
@@ -130,8 +130,10 @@ def get_agent(_retriever_tool, _sql_tool):
     
     try:
         llm_model = LiteLLMModel(
-            model_id="bedrock/mistral.mistral-small-2402-v1:0",
-            #model_id="ollama/llama3.1:latest",
+            #model_id="bedrock/mistral.mistral-small-2402-v1:0",
+            model_id="mistral/mistral-small-2506",
+            api_key="p2BQ5k0qBbOrm89s1WioRsDZmM7oPNqC",
+            api_base="https://api.mistral.ai/v1",
             max_retries=2,
             max_tokens=4096,
         )
@@ -184,8 +186,8 @@ with tab1:
                         temp_file.write(uploaded_file.getvalue())
                         temp_file_path = Path(temp_file.name)
                         data_analysis_agent = SerializationAgent(
-                            llm_model="bedrock/mistral.mistral-small-2402-v1:0",
-                            #llm_model="ollama/llama3.1:latest",
+                            #llm_model="bedrock/mistral.mistral-small-2402-v1:0",
+                            llm_model="ollama/llama3.1:latest",
                             temperature=0,
                             max_retries=2,
                             max_tokens=2048,
@@ -201,8 +203,8 @@ with tab1:
                     elif agent_type == "PandasAiAgentV3":
                         #llm = ChatOpenAI(base_url=api_base, model="/models/mistral-nemo-12b", api_key=api_key, temperature=0)
                         llm = LiteLLM(
-                            model="bedrock/mistral.mistral-small-2402-v1:0",
-                            #model="ollama/llama3.1:latest",
+                            #model="bedrock/mistral.mistral-small-2402-v1:0",
+                            model="ollama/llama3.1:latest",
                             max_retries=2,
                             max_tokens=4096,
                         )
@@ -247,23 +249,65 @@ with tab1:
 
 # --- Tab 2: Contextualized Agent ---
 #TODO: Integrate pandasAI as selectable? PandasAIv3 now also generates sql code by default. With SQL connector it can make use of our databse
+# === UPLOAD SECTION USING INDEXER ===
+# --- Tab 2: Contextualized Agent ---
 with tab2:
     st.header("Contextualized Data Analysis")
-    st.info("This is the full-power agent. It first retrieves relevant documents and table schemas, then uses that context to generate an answer (which may or may not involve SQL).")
+    
+    # === UPLOAD SECTION ===
+    # 1. UI Inputs inside the Expander
+    with st.expander("📂 Upload Knowledge Base (PDF)", expanded=False):
+        st.info("Upload PDF reports. Docling will parse text/tables, storing them in Vector DB and SQL.")
+        uploaded_pdf = st.file_uploader("Upload PDF", type=["pdf"], key="context_pdf_uploader")
+        
+        # We place the button here, but we capture its state
+        index_btn = st.button("Index Document", key="index_btn")
+
+    # 2. Processing Logic OUTSIDE the Expander (Fixes the Nesting Error)
+    if index_btn and uploaded_pdf is not None:
+        # st.status is now at the root level of the tab, not inside the expander
+        with st.status("Processing Document...", expanded=True) as status:
+            try:
+                # 1. Save uploaded file to temp path
+                st.write("Saving temporary file...")
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+                    tmp_file.write(uploaded_pdf.getvalue())
+                    tmp_path = Path(tmp_file.name)
+                
+                # 2. Call the imported indexer function
+                st.write("Running Docling & Indexing...")
+                
+                #  - Conceptual visual for user
+                
+                index_pdf(tmp_path)
+                
+                # 3. Cleanup
+                os.remove(tmp_path)
+                
+                status.update(label="Indexing Complete!", state="complete", expanded=False)
+                
+            except Exception as e:
+                status.update(label="Indexing Failed", state="error")
+                st.error(f"An error occurred: {e}")
+    
+    elif index_btn and uploaded_pdf is None:
+        st.warning("Please upload a PDF file first.")
+
+    st.divider()
 
     context_question = st.text_input("Ask a question about the data:", key="context_question", value="What is the highest, lowest and average Salary?")
 
     if st.button("Run Contextualized Agent", key="context_run"):
         if not agent:
-            st.error("Contextual agent is not initialized. Check app startup errors.")
+            st.error("Contextual agent is not initialized.")
         elif not context_question:
             st.warning("Please enter a question.")
         else:
             with st.container(border=True):
                 st.info(f"**Query:** {context_question}")
 
-                # 1. Run retrieval
-                with st.spinner("Step 1: Retrieving relevant documents and schema..."):
+                # 1. Retrieval
+                with st.spinner("Retrieving relevant context..."):
                     try:
                         retrieval_output = retriever_tool.forward(context_question)
                         with st.expander("See Retrieval Output"):
@@ -272,11 +316,10 @@ with tab2:
                         st.error(f"Error during retrieval: {e}")
                         st.stop()
                 
-                # 2. Construct final prompt
+                # 2. Prompt & Run
                 agent_input = f"{CONTEXT_PROMPT_BASE}\n{CONTEXT_FEW_SHOT}\nUser query: {context_question}\nRetrieved:\n{retrieval_output}"
                 
-                # 3. Run agent
-                with st.spinner("Step 2: Contextual Agent is thinking and executing..."):
+                with st.spinner("Contextual Agent is thinking..."):
                     try:
                         agent_output = agent.run(agent_input)
                         st.subheader("Final Answer")
