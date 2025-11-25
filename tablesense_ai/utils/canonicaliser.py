@@ -33,6 +33,7 @@ def normalize_number(text):
     - Use '.' as decimal separator
     - Round to 2 decimals
     - Remove trailing .00 for integers
+    - Remove trailing zeros for decimals (1.20 -> 1.2)
     """
 
     # 1. remove currency symbols
@@ -58,8 +59,9 @@ def normalize_number(text):
     if rounded.is_integer():
         return str(int(rounded))
 
-    # decimal number with exactly 2 digits
-    return f"{rounded:.2f}"
+    # decimal number: format to 2 places, then strip trailing zeros and dot
+    # Example: 1.20 -> 1.2, 1.25 -> 1.25
+    return f"{rounded:.2f}".rstrip('0').rstrip('.')
 
 
 def clean(pred: str) -> str:
