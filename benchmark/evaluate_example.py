@@ -33,27 +33,35 @@ formats = {
     "md": TableFormat.MARKDOWN
 }
 
-for fmt_key, fmt_value in formats.items():
-    print(f"Running evaluation for format: {fmt_key}")
-    agent = SerializationAgent(
-        llm_model="mistral-small-2506",
-        temperature=0,
-        max_retries=2,
-        max_tokens=100,
-        base_url="https://api.mistral.ai/v1",
-        api_key = os.getenv("OPENAI_API_KEY"),
-        format_to_convert_to=fmt_value,
-        verbose=True
-    )
+# for fmt_key, fmt_value in formats.items():
+#     print(f"Running evaluation for format: {fmt_key}")
+    # agent = SerializationAgent(
+    #     llm_model="mistral-small-2506",
+    #     temperature=0,
+    #     max_retries=2,
+    #     max_tokens=100,
+    #     base_url="https://api.mistral.ai/v1",
+    #     api_key = os.getenv("OPENAI_API_KEY"),
+    #     format_to_convert_to=fmt_value,
+    #     verbose=True
+    # )
 
-    # Configure your evaluation instance
-    config = EvalConfig([TabMWPSelection()], True, False)
-    evaluator = Evaluator(config, agent)
+agent = SmolCodeAgent(
+    llm_model="mistral/mistral-small-2506",
+    temperature=0,
+    max_retries=5,
+    max_tokens=10000,
+)
 
-    # Start the evaluation process
-    results = evaluator.evaluate()
 
-    print(results)
+# Configure your evaluation instance
+config = EvalConfig([TabMWPSelection()], True, False)
+evaluator = Evaluator(config, agent)
 
-    with open(f"evaluation_results_{fmt_key}.pkl", "wb") as f:
-        pickle.dump(results, f)
+# Start the evaluation process
+results = evaluator.evaluate()
+
+print(results)
+
+with open(f"evaluation_results.pkl", "wb") as f:
+    pickle.dump(results, f)

@@ -126,7 +126,7 @@ class Evaluator:
 
                 if str(pred) != "skipped-too-long":
                     target_value = example["target_value"]
-                    if dataset["dataset_name"] in {"TabMWP", "WikiTableQuestions", "DistilledTabMWP"}:
+                    if dataset["dataset_name"] in {"TabMWPSelection", "WikiTableQuestionsSelection"}:
                         pred = canonicaliser.clean(str(pred))
                         target_value = example["target_value"].lower().strip()
                     results["pred"].append(str(pred))

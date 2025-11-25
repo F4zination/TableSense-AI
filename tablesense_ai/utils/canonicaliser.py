@@ -1,28 +1,82 @@
-#!/usr/bin/env python3
-"""
-Clean an input string:
-1. Convert everything to lower-case
-2. Remove a leading currency symbol (e.g. $, €, £, ¥, ₹) plus any spaces that follow it
-3. Strip out every single-quote character (')
-"""
-
 import re
+from fractions import Fraction
 
-def clean(text: str) -> str:
-    # 1️⃣ lower-case
-    text = text.lower()
+# Currency symbols to remove
+CURRENCY_REGEX = r"[$€£¥]"
 
-    # 2️⃣ drop a single leading currency sign (and the spaces right after it)
-    text = re.sub(r'^\s*[$€£¥₹]\s*', '', text)
+# Thousand separators to remove (1,234 -> 1234)
+THOUSAND_SEP_REGEX = r"(?<=\d),(?=\d{3}\b)"
 
-    # 3️⃣ delete all single quotes
-    text = text.replace("'", '')
+def simplify_fraction(text):
+    """
+    If text is a fraction (e.g., '4/8'), simplify to lowest terms ('1/2').
+    Otherwise return None.
+    """
+    match = re.fullmatch(r"\s*(-?\d+)\s*/\s*(-?\d+)\s*", text)
+    if not match:
+        return None
 
-    # 4️⃣ remove trailing .00 if present
-    if text.endswith('.00'):
-        text = text[:-3]
-    return text.strip()
+    num, den = map(int, match.groups())
+    if den == 0:
+        return text  # avoid division errors
 
-if __name__ == "__main__":
-    user_input = input("Enter text: ")
-    print(clean(user_input))
+    frac = Fraction(num, den)
+    return f"{frac.numerator}/{frac.denominator}"
+
+
+def normalize_number(text):
+    """
+    Normalize number formatting:
+    - Remove currency
+    - Remove thousand separators
+    - Convert decimals
+    - Use '.' as decimal separator
+    - Round to 2 decimals
+    - Remove trailing .00 for integers
+    """
+
+    # 1. remove currency symbols
+    cleaned = re.sub(CURRENCY_REGEX, "", text).strip()
+
+    # 2. remove thousand separators
+    cleaned = re.sub(THOUSAND_SEP_REGEX, "", cleaned)
+
+    # 3. replace comma-decimal (10,45 -> 10.45)
+    cleaned = cleaned.replace(",", ".")
+
+    # 4. is it a valid number?
+    if not re.fullmatch(r"-?\d+(\.\d+)?", cleaned):
+        return None
+
+    # cast to float
+    value = float(cleaned)
+
+    # round to 2 decimals
+    rounded = round(value, 2)
+
+    # whole number?
+    if rounded.is_integer():
+        return str(int(rounded))
+
+    # decimal number with exactly 2 digits
+    return f"{rounded:.2f}"
+
+
+def clean(pred: str) -> str:
+    """
+    Apply all formatting rules to a prediction string.
+    """
+    pred = pred.strip()
+
+    # 1. simplify fractions
+    simplified = simplify_fraction(pred)
+    if simplified is not None:
+        return simplified
+
+    # 2. numeric normalization
+    normalized = normalize_number(pred)
+    if normalized is not None:
+        return normalized
+
+    # 3. text answers -> lowercase
+    return pred.lower()
