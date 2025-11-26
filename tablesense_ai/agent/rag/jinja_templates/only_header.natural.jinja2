@@ -1,0 +1,27 @@
+{# csv_to_quoted_sentences.j2
+convert a pandas DataFrame into one natural-language sentence per row#}
+
+{%- macro row_to_sentence(row) -%}
+    {# Build “<key> is "<value>"” fragments #}
+    {%- set parts = [] -%}
+    {%- for k, v in row.items() if v is not none and (v|string).strip() -%}
+        {%- set val = (v|string) -%}
+        {%- set _ = parts.append(k ~ ' is "' ~ val ~ '"') -%}
+    {%- endfor -%}
+
+    {# Assemble the sentence with Oxford-comma rules #}
+    {%- if parts|length == 1 -%}
+        {{ parts[0] }}.
+    {%- elif parts|length == 2 -%}
+        {{ parts|join(' and ') }}.
+    {%- else -%}
+        {{ parts[:-1]|join(', ') }}, and {{ parts[-1] }}.
+    {%- endif -%}
+{%- endmacro -%}
+
+{# Render: generate one sentence per row and join them with a newline #}
+{%- set sentences = [] -%}
+{%- for row in dataframe.to_dict(orient='records') -%}
+    {%- set _ = sentences.append(row_to_sentence(row)) -%}
+{%- endfor -%}
+{{ sentences | join('\n') }}

@@ -1,6 +1,11 @@
 .idea
 .env
 **/__pycache__/
+cache/
+pandasai.log
+exports/
+tables.db
+volumes/**
 benchmark/tab_llm_datasets/tabmwp/csv-0/
 benchmark/tab_llm_datasets/tabmwp/csv-1/
 benchmark/tab_llm_datasets/tabmwp/csv-2/
