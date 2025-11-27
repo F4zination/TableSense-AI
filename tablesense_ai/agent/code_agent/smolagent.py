@@ -45,33 +45,28 @@ class SmolCodeAgent(BaseAgent):
     @measure_performance
     def invoke(self, question: str, df: pd.DataFrame) -> str:
         prompt = prompt = f"""
-You are an expert Python CodeAgent with access to a pandas DataFrame `df`.
-Your goal is to return the correct answer string using `final_answer()`.
+You are an expert Python Data Analyst. You are given a pandas DataFrame `df` and a user question.
+Your goal is to write Python code that calculates the correct answer and returns it using `final_answer()`.
 
-### STEP 1: INSPECT & CLEAN (Crucial!)
-Before solving, run code to check `df.head()` and `df.dtypes`.
-1. **Remove Summary Rows:** If the table contains a 'Total' or 'Sum' row at the bottom, DROP it immediately to avoid double counting.
-2. **Numeric Conversion:** If a column *looks* numeric (contains digits) but is type object/string:
-   - Clean it! Remove characters like '$', '%', ',' using regex.
-   - Convert to numeric with `pd.to_numeric(..., errors='coerce')`.
-   - *Reason:* Sorting strings like "9" vs "10" yields wrong results ("9" > "10"). Math on strings like "5"*3 yields "555".
+### CRITICAL: DATA PREPARATION (Execute these steps first)
+Real-world data is often dirty. Before answering, you MUST standardize the dataframe:
+1.  **Inspect & Clean Headers:** Ensure column names are stripped of whitespace.
+2.  **Handle "Total" Rows:** Check `df.tail()` or the first column for rows labeled "Total", "Sum", or "Average". DROP these rows immediately to prevent double-counting in aggregations.
+3.  **Fix Data Types:** Columns that look numeric but are type `object` (strings) MUST be cleaned.
+    - Remove currency symbols ('$'), commas (','), and percentages ('%').
+    - Use `pd.to_numeric(..., errors='coerce')` to convert them to float/int.
+    - *Why?* Sorting strings ("9" > "10") or multiplying strings ("5"*3 = "555") leads to wrong answers.
 
-### STEP 2: SOLVE BASED ON QUESTION TYPE
+### LOGIC GUIDELINES
+- **Question Type "Who/Which":** If asked "Who has the most...", identify the row with the maximum value, but return the **Entity Name** (from the main label column), NOT the value itself.
+- **Question Type "Rate of Change":** Unless specified as a percentage, calculate the simple difference: `Value2 - Value1`.
+- **Question Type "Range":** Calculate as `Max - Min`.
+- **Time/Dates:** If columns contain years (e.g., "1990/91"), extract the main year as an integer for calculations.
 
-**TYPE A: CALCULATIONS (How many, Sum, Average, Difference, Range)**
-- **Rate of Change:** Calculate as simple difference (`Value2 - Value1`), NOT division/percentage.
-- **Range:** Calculate as `Max - Min`.
-- **Aggregations:** Ignore `NaN` values.
-- **Lists:** Only use `explode` if the cell contains a list AND the question implies counting individual items.
-
-**TYPE B: LOOKUP / RETRIEVAL (Who, Which, First, Highest, Lowest)**
-- **"Highest/Lowest":** Use `idxmax()` or `nlargest()` on the CLEANED numeric column, then return the label/name from the target column.
-- **Text Filters:** Use `.str.contains(..., case=False)` for robust matching.
-- **Format:** Return the exact string as found in the dataframe (unless formatting is broken).
-
-### STEP 3: FINAL OUTPUT
-- Re-attach magnitudes (billions, years) to the answer if they were removed during cleaning.
-- Return **ONLY** the result value in `final_answer()`. No explanations.
+### OUTPUT FORMAT
+- **Final Answer:** Use `final_answer(result)`.
+- **Format:** The result must be a clean string or number. 
+- **Units:** If the original column had a unit (e.g., "$", "kg", "years"), append it to the final answer string if appropriate.
 
 ## User Question:
 {question}
