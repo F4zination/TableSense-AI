@@ -28,9 +28,11 @@ class SmolCodeAgent(BaseAgent):
             tools=[],
             additional_authorized_imports=[
                 "pandas", "numpy", "datetime", "matplotlib", "matplotlib.pyplot",
-                "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", "plotly.express","statsmodels",
-                "plotly.graph_objects"
+                "plotly", "seaborn", "sklearn", "scikit-learn", "scipy", 
+                "plotly.express","statsmodels", "plotly.graph_objects",
+                "fractions", "re", "math" 
             ],
+            #Expand to 15 for better results
             max_steps=10
         )
 
@@ -42,37 +44,39 @@ class SmolCodeAgent(BaseAgent):
 
     @measure_performance
     def invoke(self, question: str, df: pd.DataFrame) -> str:
-        prompt = f"""
-## Instructions
-You are acting as an expert data analyst.
-Your role is to respond to user questions about a dataset, which is provided to you as a pandas DataFrame.
-For each user question, you should:
-Analyze and interpret the data in the DataFrame as needed, which may require calculations, aggregations, filtering, or comparisons depending on the user's request.
-Therefore generate Code to execute on a pandas DataFrame to perform required analysis.
-Use pandas as your primary tool for data manipulation and analysis.
-Do not provide code, demonstrations, or step-by-step explanations to the user; instead, directly answer the user's question.
-Only return the requested answer to the question, nothing more!
-Only refer to the data available in the DataFrame when constructing your answer.
-If a question requires numerical results (e.g., averages, sums), provide the computed figure within the answer.
-Assume each question stands on its own; do not reference previous questions or context beyond the current input.
-Your output should always be a single string with no code, comments, or formatting syntax.
-Focus on precision and informativeness in your response. Always communicate clearly and avoid unnecessary detail.
-Keep your answer AS SHORT AS POSSIBLE and strictly follow the formatting rules.
-###Formatting rules###
-Fractions – give in lowest terms, e.g. 64/389.
-Copy values EXACTLY as stored (case, accents, punctuation).
-If the answer spans multiple distinct cells, join them with "|" (pipe), no spaces.
-If a cell already includes alternatives (e.g., "X or Y"), reproduce it unchanged.
-Provide numeric values exactly as stored; do NOT add or remove separators or decimals.
-Preserve original date/time formats verbatim.
-If the answer is missing or cannot be inferred, output the single token "N/A".
-Treat every question independently; do not reference earlier questions or context.
-Keep the answer as short as possible and NEVER exceed 60 characters.
-Return nothing except this answer string.
+        prompt = prompt = f"""
+You are an expert Python CodeAgent with access to a pandas DataFrame `df`.
+Your goal is to return the correct answer string using `final_answer()`.
+
+### STEP 1: INSPECT & CLEAN (Crucial!)
+Before solving, run code to check `df.head()` and `df.dtypes`.
+1. **Remove Summary Rows:** If the table contains a 'Total' or 'Sum' row at the bottom, DROP it immediately to avoid double counting.
+2. **Numeric Conversion:** If a column *looks* numeric (contains digits) but is type object/string:
+   - Clean it! Remove characters like '$', '%', ',' using regex.
+   - Convert to numeric with `pd.to_numeric(..., errors='coerce')`.
+   - *Reason:* Sorting strings like "9" vs "10" yields wrong results ("9" > "10"). Math on strings like "5"*3 yields "555".
+
+### STEP 2: SOLVE BASED ON QUESTION TYPE
+
+**TYPE A: CALCULATIONS (How many, Sum, Average, Difference, Range)**
+- **Rate of Change:** Calculate as simple difference (`Value2 - Value1`), NOT division/percentage.
+- **Range:** Calculate as `Max - Min`.
+- **Aggregations:** Ignore `NaN` values.
+- **Lists:** Only use `explode` if the cell contains a list AND the question implies counting individual items.
+
+**TYPE B: LOOKUP / RETRIEVAL (Who, Which, First, Highest, Lowest)**
+- **"Highest/Lowest":** Use `idxmax()` or `nlargest()` on the CLEANED numeric column, then return the label/name from the target column.
+- **Text Filters:** Use `.str.contains(..., case=False)` for robust matching.
+- **Format:** Return the exact string as found in the dataframe (unless formatting is broken).
+
+### STEP 3: FINAL OUTPUT
+- Re-attach magnitudes (billions, years) to the answer if they were removed during cleaning.
+- Return **ONLY** the result value in `final_answer()`. No explanations.
 
 ## User Question:
 {question}
 """
+        
         return self.code_agent.run(prompt, additional_args={"df": df})
 
 # === Streamlit UI ===
