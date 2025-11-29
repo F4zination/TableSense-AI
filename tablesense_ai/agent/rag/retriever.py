@@ -8,6 +8,10 @@ from smolagents import Tool
 from langchain_milvus import Milvus, BM25BuiltInFunction
 from langchain_huggingface import HuggingFaceEmbeddings
 
+# Milvus connection defaults can be overridden via environment variables
+MILVUS_HOST = os.getenv("MILVUS_HOST", "standalone")
+MILVUS_PORT = os.getenv("MILVUS_PORT", "19530")
+
 # === Database Helper Class ===
 class PostgreSQLHelper:
     """Manages SQLAlchemy Engine creation and schema fetching."""
@@ -89,17 +93,22 @@ class RetrieverTool(Tool):
         self.vectorstore = None
         self._init_error = None # Initialize error tracking
 
+
         try:
+            host = os.getenv("MILVUS_HOST", MILVUS_HOST)
+            port = os.getenv("MILVUS_PORT", MILVUS_PORT)
+
             self.vectorstore = Milvus(
                 embedding_function=HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2"),
                 builtin_function=BM25BuiltInFunction(),
                 vector_field=["dense", "sparse"],
-                connection_args={"host": "localhost", "port": "19530"},
+                connection_args={"uri": f"http://{host}:{port}"},
                 consistency_level="Bounded",
             )
         except Exception as e:
             self._init_error = f"Failed to initialize Milvus vectorstore: {e}"
             self.vectorstore = None
+            print(f"Faild to connect to Milvus: {self._init_error}")
 
     def forward(self, query: str) -> str:
         if not query.strip():

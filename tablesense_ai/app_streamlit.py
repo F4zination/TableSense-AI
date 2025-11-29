@@ -15,7 +15,7 @@ from agent.code_agent.smolagent import SmolCodeAgent
 from agent.serialization.serialization_agent import SerializationAgent, TableFormat
 
 from agent.rag.retriever import PostgreSQLHelper, SQLQueryTool, RetrieverTool
-from agent.rag.indexer import index_pdf
+from agent.rag.indexer import convert_pdf
 
 # === 1. Load Environment & Configuration ===
 load_dotenv()
@@ -28,8 +28,8 @@ os.environ["AWS_REGION_NAME"] = os.getenv("AWS_REGION_NAME")
 # PostgreSQL Configuration
 DB_USER = os.getenv("DB_USER")
 DB_PASS = os.getenv("DB_PASS")
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = os.getenv("DB_PORT")
+DB_HOST = os.getenv("DB_HOST", "postgres_db")
+DB_PORT = os.getenv("DB_PORT", "5432")
 DB_NAME = os.getenv("DB_NAME")
 DB_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
@@ -279,7 +279,7 @@ with tab2:
                 
                 #  - Conceptual visual for user
                 
-                index_pdf(tmp_path)
+                convert_pdf(tmp_path)
                 
                 # 3. Cleanup
                 os.remove(tmp_path)

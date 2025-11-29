@@ -3,10 +3,14 @@ import re
 import pandas as pd
 from io import StringIO
 from pathlib import Path
+import os
 from sqlalchemy import create_engine
 from docling.document_converter import DocumentConverter
 
-from langchain.docstore.document import Document
+import httpx
+
+#from langchain.docstore.document import Documentfrom langchain_core.documents import Document
+from langchain_core.documents import Document
 from langchain_milvus import Milvus, BM25BuiltInFunction
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -15,7 +19,9 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 
 
-POSTGRES_URL = "postgresql+psycopg2://tablesense_user:tablesense_password@localhost:5433/tablesense_db"
+POSTGRES_URL = "postgresql+psycopg2://tablesense_user:tablesense_password@postgres_db:5432/tablesense_db"
+MILVUS_HOST = os.getenv("MILVUS_HOST", "standalone")
+MILVUS_PORT = os.getenv("MILVUS_PORT", "19530")
 
 def store_table_in_sql(df: pd.DataFrame, table_id: str, db_url: str = POSTGRES_URL):
     """
@@ -34,6 +40,8 @@ def store_table_in_sql(df: pd.DataFrame, table_id: str, db_url: str = POSTGRES_U
     df_clean.columns = [str(c).strip() for c in df_clean.columns]
 
     # Clean data
+    df_clean = df_clean.loc[:, df_clean.columns != ""]
+    df_clean = df_clean.loc[:, ~df_clean.columns.duplicated()]
     for col in df_clean.columns:
         df_clean[col] = (
             df_clean[col]
@@ -41,8 +49,8 @@ def store_table_in_sql(df: pd.DataFrame, table_id: str, db_url: str = POSTGRES_U
             .str.replace(",", "", regex=False)
             .str.replace("%", "", regex=False)
         )
-        df_clean[col] = pd.to_numeric(df_clean[col], errors="ignore")
-
+        df_clean[col] = pd.to_numeric(df_clean[col], errors="coerce")
+    
     try:
         with engine.connect() as conn:
             df_clean.to_sql(table_name, conn, if_exists="replace", index=False)
@@ -167,6 +175,8 @@ def process_markdown_doc(doc: Document, rows_per_chunk: int = 5, natural: bool =
     
     # 1. Identify Tables
     tables = extract_markdown_tables(markdown_text)
+    if len(tables) == 0:
+        print("There were no tables detected in the markdown document")
 
     # 2. Process Tables
     for table_markdown, start, end in tables:
@@ -197,6 +207,8 @@ def index_documents(docs: list[Document]):
         
     print(f"\nIndexing {len(docs)} documents in Milvus...")
     try:
+        host = os.getenv("MILVUS_HOST", "standalone")
+        port = os.getenv("MILVUS_PORT", "19530")
         embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
 
         Milvus.from_documents(
@@ -204,7 +216,7 @@ def index_documents(docs: list[Document]):
             embedding=embedding,
             builtin_function=BM25BuiltInFunction(),
             vector_field=["dense", "sparse"],
-            connection_args={"uri": "http://localhost:19530"},
+            connection_args={"uri": f"http://{host}:{port}"},
             consistency_level="Bounded",
             drop_old=True, # --> remove for persistency
         )
@@ -213,19 +225,42 @@ def index_documents(docs: list[Document]):
         print(f"Failed to index documents in Milvus: {e}")
 
 
-def index_pdf(file_path: Path):
+def convert_pdf(file_path: Path):
     """
-    converts pdf to markdown using dockling and splits them up into
-    langchain docs to index it
+    Converts a PDF to markdown using Docling synchronously and indexes the result.
     """
-    converter = DocumentConverter()
-    result = converter.convert(file_path)
-        
-    markdown_content = result.document.export_to_markdown()
-        
-    # Create a LangChain Document from markdown
+    url = "http://docling:5001/v1/convert/file"
+    parameters = {
+        "from_formats": ["docx", "pptx", "html", "image", "pdf", "asciidoc", "md", "xlsx"],
+        "to_formats": ["md"],
+        "image_export_mode": "placeholder",
+        "do_ocr": True,
+        "force_ocr": False,
+        "ocr_engine": "easyocr",
+        "ocr_lang": ["en"],
+        "pdf_backend": "dlparse_v4",
+        "table_mode": "accurate",
+        "abort_on_error": False,
+    }
+
+    print("Sending request to docling container")
+    with open(file_path, "rb") as f, httpx.Client(timeout=60.0) as client:
+        response = client.post(
+            url,
+            files={"files": (file_path.name, f, "application/pdf")},
+            data=parameters,
+        )
+        response.raise_for_status()
+        data = response.json()
+
+    
+    document = data.get('document')
+    md_content = document.get("md_content")
+    if not md_content:
+        raise ValueError("Docling response missing 'md_content'")
+
     doc = Document(
-        page_content=markdown_content, 
+        page_content=md_content, 
         metadata={"source": file_path.name}
     )
 

@@ -19,3 +19,7 @@ benchmark/tab_llm_datasets/tabmwp/csv-9/
 benchmark/tab_llm_datasets/tabmwp/csv-10/
 benchmark/tab_llm_datasets/tabmwp/csv-11/
 benchmark/tab_llm_datasets/tabmwp/examples
+test_async.py
+test.pdf 
+test.py 
+.python-version
