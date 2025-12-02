@@ -5,7 +5,7 @@ from io import StringIO
 from pathlib import Path
 import os
 from sqlalchemy import create_engine
-from docling.document_converter import DocumentConverter
+#from docling.document_converter import DocumentConverter
 
 import httpx
 
@@ -23,10 +23,24 @@ POSTGRES_URL = "postgresql+psycopg2://tablesense_user:tablesense_password@postgr
 MILVUS_HOST = os.getenv("MILVUS_HOST", "standalone")
 MILVUS_PORT = os.getenv("MILVUS_PORT", "19530")
 
-def store_table_in_sql(df: pd.DataFrame, table_id: str, db_url: str = POSTGRES_URL):
+
+def store_table_in_sql(
+    df: pd.DataFrame,
+    table_id: str,
+    db_url: str = POSTGRES_URL,
+    numeric_threshold: float = 0.9,
+):
     """
     Store a DataFrame as a SQL table with inferred dtypes for exact querying.
+
+    - Cleans column names (strip spaces, removes empty/duplicate columns).
+    - For each column, tries to infer if it is numeric:
+        * If >= `numeric_threshold` of values can be parsed as numbers
+          (after removing ',' and '%'), the column is stored as numeric.
+        * Otherwise, the column is stored as text.
     """
+
+    # Create engine
     try:
         engine = create_engine(db_url)
     except Exception as e:
@@ -35,29 +49,52 @@ def store_table_in_sql(df: pd.DataFrame, table_id: str, db_url: str = POSTGRES_U
 
     table_name = f"table_{table_id}"
 
+    # --- 1. Clean column names ---
     df_clean = df.copy()
-    # Clean column names
     df_clean.columns = [str(c).strip() for c in df_clean.columns]
 
-    # Clean data
+    # Drop empty column names
     df_clean = df_clean.loc[:, df_clean.columns != ""]
+    # Drop duplicate columns (keep first)
     df_clean = df_clean.loc[:, ~df_clean.columns.duplicated()]
+
+    # --- 2. Process columns: numeric vs string ---
+    processed = pd.DataFrame(index=df_clean.index)
+
     for col in df_clean.columns:
-        df_clean[col] = (
-            df_clean[col]
-            .astype(str)
-            .str.replace(",", "", regex=False)
-            .str.replace("%", "", regex=False)
+        series = df_clean[col]
+
+        # Work on a string version for numeric detection/cleaning
+        series_str = series.astype(str).str.strip()
+
+        # Attempt numeric parsing: remove ',' and '%' first
+        series_numeric_candidate = (
+            series_str.str.replace(",", "", regex=False)
+                      .str.replace("%", "", regex=False)
         )
-        df_clean[col] = pd.to_numeric(df_clean[col], errors="coerce")
-    
+
+        numeric_converted = pd.to_numeric(
+            series_numeric_candidate,
+            errors="coerce"
+        )
+
+        # Decide if this column should be treated as numeric
+        non_na_ratio = numeric_converted.notna().mean()
+
+        if non_na_ratio >= numeric_threshold:
+            # Treat as numeric: use the converted version
+            processed[col] = numeric_converted
+        else:
+            # Treat as text: keep as cleaned strings (no numeric coercion)
+            processed[col] = series_str  # optional: .replace({ "": None })
+
+    # --- 3. Store to SQL ---
     try:
         with engine.connect() as conn:
-            df_clean.to_sql(table_name, conn, if_exists="replace", index=False)
-        print(f"Stored table in SQL: '{table_name}' ({len(df_clean)} rows)")
+            processed.to_sql(table_name, conn, if_exists="replace", index=False)
+        print(f"Stored table in SQL: '{table_name}' ({len(processed)} rows)")
     except Exception as e:
         print(f"Failed to store table {table_id} in PostgreSQL: {e}")
-
 
 def extract_markdown_tables(markdown_text: str):
     #This regex finds standard markdown tables
@@ -177,9 +214,18 @@ def process_markdown_doc(doc: Document, rows_per_chunk: int = 5, natural: bool =
     tables = extract_markdown_tables(markdown_text)
     if len(tables) == 0:
         print("There were no tables detected in the markdown document")
+    else:
+        print(f"There were {len(tables)} tables detected")
+
+    #debug coutner
+    counter = 0
 
     # 2. Process Tables
     for table_markdown, start, end in tables:
+        if counter == 0:
+            print(table_markdown)
+            coutner = 1
+
         # Create a unique ID based on content
         table_id = hashlib.md5(table_markdown.encode()).hexdigest()[:10]
         df = markdown_table_to_df(table_markdown)
