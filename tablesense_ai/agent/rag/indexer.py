@@ -259,6 +259,7 @@ def index_documents(docs: list[Document]):
 
         Milvus.from_documents(
             documents=docs,
+            collection_name="my_docs",
             embedding=embedding,
             builtin_function=BM25BuiltInFunction(),
             vector_field=["dense", "sparse"],

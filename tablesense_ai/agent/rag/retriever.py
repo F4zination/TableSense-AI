@@ -99,6 +99,7 @@ class RetrieverTool(Tool):
             port = os.getenv("MILVUS_PORT", MILVUS_PORT)
 
             self.vectorstore = Milvus(
+                collection_name="my_docs",
                 embedding_function=HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2"),
                 builtin_function=BM25BuiltInFunction(),
                 vector_field=["dense", "sparse"],
@@ -135,7 +136,6 @@ class RetrieverTool(Tool):
                     schema_output.append(f"Table Name: {table_name}\nSchema: {schema_str}")
                     processed_table_ids.add(table_name)
                     
-                # 'meta' is your metadata dictionary, 'content' is the page_content
                 formatted_docs.append(f"===== Document {i} =====\n{meta}\n---\n{content}\n")
             
             final_output = "\n".join(formatted_docs)
