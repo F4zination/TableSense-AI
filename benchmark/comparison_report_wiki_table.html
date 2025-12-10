@@ -1,0 +1,670 @@
+
+    <html>
+    <head><title>Comparison Report</title></head>
+    <body style="font-family: Arial, sans-serif; padding: 20px;">
+        <h2>Comparison Summary</h2>
+        <table style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px;">
+            <tr><td style="padding:5px;"><strong>Both Incorrect:</strong></td><td style="padding:5px;">21</td></tr>
+            <tr><td style="padding:5px;"><strong>Serialization Incorrect / CodeAgent Correct:</strong></td><td style="padding:5px; background-color: #d4edda;">22</td></tr>
+            <tr><td style="padding:5px;"><strong>Serialization Correct / CodeAgent Incorrect:</strong></td><td style="padding:5px;">11</td></tr>
+            <tr><td style="padding:5px;"><strong>Both Correct:</strong></td><td style="padding:5px;">49</td></tr>
+        </table>
+        <hr>
+    <style type="text/css">
+#T_bbf2a th {
+  font-size: 12pt;
+  text-align: left;
+  background-color: #f0f0f0;
+  padding: 8px;
+}
+#T_bbf2a td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+#T_bbf2a table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+#T_bbf2a_row0_col2, #T_bbf2a_row0_col3, #T_bbf2a_row2_col2, #T_bbf2a_row3_col3, #T_bbf2a_row4_col2, #T_bbf2a_row4_col3, #T_bbf2a_row5_col3, #T_bbf2a_row6_col2, #T_bbf2a_row6_col3, #T_bbf2a_row8_col2, #T_bbf2a_row8_col3, #T_bbf2a_row9_col3, #T_bbf2a_row10_col2, #T_bbf2a_row10_col3, #T_bbf2a_row12_col3, #T_bbf2a_row13_col2, #T_bbf2a_row13_col3, #T_bbf2a_row14_col3, #T_bbf2a_row15_col2, #T_bbf2a_row15_col3, #T_bbf2a_row17_col2, #T_bbf2a_row17_col3, #T_bbf2a_row18_col2, #T_bbf2a_row18_col3, #T_bbf2a_row19_col3, #T_bbf2a_row20_col2, #T_bbf2a_row21_col2, #T_bbf2a_row21_col3, #T_bbf2a_row22_col2, #T_bbf2a_row23_col2, #T_bbf2a_row23_col3, #T_bbf2a_row24_col2, #T_bbf2a_row24_col3, #T_bbf2a_row25_col3, #T_bbf2a_row28_col3, #T_bbf2a_row29_col3, #T_bbf2a_row30_col2, #T_bbf2a_row30_col3, #T_bbf2a_row31_col2, #T_bbf2a_row31_col3, #T_bbf2a_row32_col2, #T_bbf2a_row32_col3, #T_bbf2a_row33_col3, #T_bbf2a_row34_col2, #T_bbf2a_row34_col3, #T_bbf2a_row35_col2, #T_bbf2a_row36_col2, #T_bbf2a_row37_col2, #T_bbf2a_row37_col3, #T_bbf2a_row38_col3, #T_bbf2a_row40_col2, #T_bbf2a_row40_col3, #T_bbf2a_row42_col2, #T_bbf2a_row42_col3, #T_bbf2a_row43_col2, #T_bbf2a_row43_col3, #T_bbf2a_row44_col2, #T_bbf2a_row44_col3, #T_bbf2a_row46_col2, #T_bbf2a_row46_col3, #T_bbf2a_row47_col3, #T_bbf2a_row49_col3, #T_bbf2a_row50_col2, #T_bbf2a_row50_col3, #T_bbf2a_row51_col2, #T_bbf2a_row51_col3, #T_bbf2a_row52_col2, #T_bbf2a_row53_col3, #T_bbf2a_row54_col3, #T_bbf2a_row55_col3, #T_bbf2a_row57_col2, #T_bbf2a_row57_col3, #T_bbf2a_row58_col3, #T_bbf2a_row59_col2, #T_bbf2a_row60_col2, #T_bbf2a_row60_col3, #T_bbf2a_row61_col3, #T_bbf2a_row62_col2, #T_bbf2a_row62_col3, #T_bbf2a_row63_col2, #T_bbf2a_row63_col3, #T_bbf2a_row65_col2, #T_bbf2a_row65_col3, #T_bbf2a_row66_col2, #T_bbf2a_row66_col3, #T_bbf2a_row67_col2, #T_bbf2a_row67_col3, #T_bbf2a_row68_col2, #T_bbf2a_row68_col3, #T_bbf2a_row69_col3, #T_bbf2a_row71_col2, #T_bbf2a_row71_col3, #T_bbf2a_row73_col2, #T_bbf2a_row73_col3, #T_bbf2a_row74_col2, #T_bbf2a_row74_col3, #T_bbf2a_row75_col3, #T_bbf2a_row76_col2, #T_bbf2a_row77_col2, #T_bbf2a_row77_col3, #T_bbf2a_row79_col2, #T_bbf2a_row80_col2, #T_bbf2a_row80_col3, #T_bbf2a_row82_col2, #T_bbf2a_row82_col3, #T_bbf2a_row83_col2, #T_bbf2a_row83_col3, #T_bbf2a_row84_col2, #T_bbf2a_row84_col3, #T_bbf2a_row85_col2, #T_bbf2a_row85_col3, #T_bbf2a_row86_col2, #T_bbf2a_row86_col3, #T_bbf2a_row87_col2, #T_bbf2a_row87_col3, #T_bbf2a_row88_col2, #T_bbf2a_row89_col2, #T_bbf2a_row89_col3, #T_bbf2a_row91_col2, #T_bbf2a_row91_col3, #T_bbf2a_row92_col2, #T_bbf2a_row92_col3, #T_bbf2a_row93_col2, #T_bbf2a_row93_col3, #T_bbf2a_row94_col2, #T_bbf2a_row94_col3, #T_bbf2a_row95_col2, #T_bbf2a_row95_col3, #T_bbf2a_row97_col3, #T_bbf2a_row99_col3, #T_bbf2a_row101_col2 {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+#T_bbf2a_row1_col2, #T_bbf2a_row1_col3, #T_bbf2a_row2_col3, #T_bbf2a_row3_col2, #T_bbf2a_row5_col2, #T_bbf2a_row7_col2, #T_bbf2a_row7_col3, #T_bbf2a_row9_col2, #T_bbf2a_row11_col2, #T_bbf2a_row11_col3, #T_bbf2a_row12_col2, #T_bbf2a_row14_col2, #T_bbf2a_row16_col2, #T_bbf2a_row16_col3, #T_bbf2a_row19_col2, #T_bbf2a_row20_col3, #T_bbf2a_row22_col3, #T_bbf2a_row25_col2, #T_bbf2a_row26_col2, #T_bbf2a_row26_col3, #T_bbf2a_row27_col2, #T_bbf2a_row27_col3, #T_bbf2a_row28_col2, #T_bbf2a_row29_col2, #T_bbf2a_row33_col2, #T_bbf2a_row35_col3, #T_bbf2a_row36_col3, #T_bbf2a_row38_col2, #T_bbf2a_row39_col2, #T_bbf2a_row39_col3, #T_bbf2a_row41_col2, #T_bbf2a_row41_col3, #T_bbf2a_row45_col2, #T_bbf2a_row45_col3, #T_bbf2a_row47_col2, #T_bbf2a_row48_col2, #T_bbf2a_row48_col3, #T_bbf2a_row49_col2, #T_bbf2a_row52_col3, #T_bbf2a_row53_col2, #T_bbf2a_row54_col2, #T_bbf2a_row55_col2, #T_bbf2a_row56_col2, #T_bbf2a_row56_col3, #T_bbf2a_row58_col2, #T_bbf2a_row59_col3, #T_bbf2a_row61_col2, #T_bbf2a_row64_col2, #T_bbf2a_row64_col3, #T_bbf2a_row69_col2, #T_bbf2a_row70_col2, #T_bbf2a_row70_col3, #T_bbf2a_row72_col2, #T_bbf2a_row72_col3, #T_bbf2a_row75_col2, #T_bbf2a_row76_col3, #T_bbf2a_row78_col2, #T_bbf2a_row78_col3, #T_bbf2a_row79_col3, #T_bbf2a_row81_col2, #T_bbf2a_row81_col3, #T_bbf2a_row88_col3, #T_bbf2a_row90_col2, #T_bbf2a_row90_col3, #T_bbf2a_row96_col2, #T_bbf2a_row96_col3, #T_bbf2a_row97_col2, #T_bbf2a_row98_col2, #T_bbf2a_row98_col3, #T_bbf2a_row99_col2, #T_bbf2a_row100_col2, #T_bbf2a_row100_col3, #T_bbf2a_row101_col3, #T_bbf2a_row102_col2, #T_bbf2a_row102_col3 {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+</style>
+<table id="T_bbf2a">
+  <thead>
+    <tr>
+      <th id="T_bbf2a_level0_col0" class="col_heading level0 col0" >Index</th>
+      <th id="T_bbf2a_level0_col1" class="col_heading level0 col1" >Question</th>
+      <th id="T_bbf2a_level0_col2" class="col_heading level0 col2" >Serialization Result</th>
+      <th id="T_bbf2a_level0_col3" class="col_heading level0 col3" >CodeAgent Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_bbf2a_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_bbf2a_row0_col1" class="data row0 col1" >how many people were murdered in 1940/41?</td>
+      <td id="T_bbf2a_row0_col2" class="data row0 col2" >Correct</td>
+      <td id="T_bbf2a_row0_col3" class="data row0 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_bbf2a_row1_col1" class="data row1 col1" >how long did it take for the new york americans to win the national cup after 1936?</td>
+      <td id="T_bbf2a_row1_col2" class="data row1 col2" >Incorrect</td>
+      <td id="T_bbf2a_row1_col3" class="data row1 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row2_col0" class="data row2 col0" >2</td>
+      <td id="T_bbf2a_row2_col1" class="data row2 col1" >alfie's birthday party aired on january 19. what was the airdate of the next episode?</td>
+      <td id="T_bbf2a_row2_col2" class="data row2 col2" >Correct</td>
+      <td id="T_bbf2a_row2_col3" class="data row2 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row3_col0" class="data row3 col0" >3</td>
+      <td id="T_bbf2a_row3_col1" class="data row3 col1" >what is the number of 1st place finishes across all events?</td>
+      <td id="T_bbf2a_row3_col2" class="data row3 col2" >Incorrect</td>
+      <td id="T_bbf2a_row3_col3" class="data row3 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row4_col0" class="data row4 col0" >4</td>
+      <td id="T_bbf2a_row4_col1" class="data row4 col1" >in which competition did hopley finish fist?</td>
+      <td id="T_bbf2a_row4_col2" class="data row4 col2" >Correct</td>
+      <td id="T_bbf2a_row4_col3" class="data row4 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row5_col0" class="data row5 col0" >5</td>
+      <td id="T_bbf2a_row5_col1" class="data row5 col1" >what is the total number of films with the language of kannada listed?</td>
+      <td id="T_bbf2a_row5_col2" class="data row5 col2" >Incorrect</td>
+      <td id="T_bbf2a_row5_col3" class="data row5 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row6_col0" class="data row6 col0" >6</td>
+      <td id="T_bbf2a_row6_col1" class="data row6 col1" >what was the number of people attending the toros mexico vs. monterrey flash game?</td>
+      <td id="T_bbf2a_row6_col2" class="data row6 col2" >Correct</td>
+      <td id="T_bbf2a_row6_col3" class="data row6 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row7_col0" class="data row7 col0" >7</td>
+      <td id="T_bbf2a_row7_col1" class="data row7 col1" >what time period had no shirt sponsor?</td>
+      <td id="T_bbf2a_row7_col2" class="data row7 col2" >Incorrect</td>
+      <td id="T_bbf2a_row7_col3" class="data row7 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row8_col0" class="data row8 col0" >8</td>
+      <td id="T_bbf2a_row8_col1" class="data row8 col1" >when was his first 1st place record?</td>
+      <td id="T_bbf2a_row8_col2" class="data row8 col2" >Correct</td>
+      <td id="T_bbf2a_row8_col3" class="data row8 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row9_col0" class="data row9 col0" >9</td>
+      <td id="T_bbf2a_row9_col1" class="data row9 col1" >in which three consecutive years was the record the same?</td>
+      <td id="T_bbf2a_row9_col2" class="data row9 col2" >Incorrect</td>
+      <td id="T_bbf2a_row9_col3" class="data row9 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row10_col0" class="data row10 col0" >10</td>
+      <td id="T_bbf2a_row10_col1" class="data row10 col1" >does pat or john have the highest total?</td>
+      <td id="T_bbf2a_row10_col2" class="data row10 col2" >Correct</td>
+      <td id="T_bbf2a_row10_col3" class="data row10 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row11_col0" class="data row11 col0" >11</td>
+      <td id="T_bbf2a_row11_col1" class="data row11 col1" >what is the combined score of year end rankings before 2009?</td>
+      <td id="T_bbf2a_row11_col2" class="data row11 col2" >Incorrect</td>
+      <td id="T_bbf2a_row11_col3" class="data row11 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row12_col0" class="data row12 col0" >12</td>
+      <td id="T_bbf2a_row12_col1" class="data row12 col1" >how many more ships were wrecked in lake huron than in erie?</td>
+      <td id="T_bbf2a_row12_col2" class="data row12 col2" >Incorrect</td>
+      <td id="T_bbf2a_row12_col3" class="data row12 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row13_col0" class="data row13 col0" >13</td>
+      <td id="T_bbf2a_row13_col1" class="data row13 col1" >who came immediately after sebastian porto in the race?</td>
+      <td id="T_bbf2a_row13_col2" class="data row13 col2" >Correct</td>
+      <td id="T_bbf2a_row13_col3" class="data row13 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row14_col0" class="data row14 col0" >14</td>
+      <td id="T_bbf2a_row14_col1" class="data row14 col1" >what's the total number of festivals that occurred in october?</td>
+      <td id="T_bbf2a_row14_col2" class="data row14 col2" >Incorrect</td>
+      <td id="T_bbf2a_row14_col3" class="data row14 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row15_col0" class="data row15 col0" >15</td>
+      <td id="T_bbf2a_row15_col1" class="data row15 col1" >what is the only hospital to have 6 hospital beds?</td>
+      <td id="T_bbf2a_row15_col2" class="data row15 col2" >Correct</td>
+      <td id="T_bbf2a_row15_col3" class="data row15 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row16_col0" class="data row16 col0" >16</td>
+      <td id="T_bbf2a_row16_col1" class="data row16 col1" >what is the total number of skoda cars sold in the year 2005?</td>
+      <td id="T_bbf2a_row16_col2" class="data row16 col2" >Incorrect</td>
+      <td id="T_bbf2a_row16_col3" class="data row16 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row17_col0" class="data row17 col0" >17</td>
+      <td id="T_bbf2a_row17_col1" class="data row17 col1" >what was the number of times won on grass?</td>
+      <td id="T_bbf2a_row17_col2" class="data row17 col2" >Correct</td>
+      <td id="T_bbf2a_row17_col3" class="data row17 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row18_col0" class="data row18 col0" >18</td>
+      <td id="T_bbf2a_row18_col1" class="data row18 col1" >who won the most gold medals?</td>
+      <td id="T_bbf2a_row18_col2" class="data row18 col2" >Correct</td>
+      <td id="T_bbf2a_row18_col3" class="data row18 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row19_col0" class="data row19 col0" >19</td>
+      <td id="T_bbf2a_row19_col1" class="data row19 col1" >total wins by belgian riders</td>
+      <td id="T_bbf2a_row19_col2" class="data row19 col2" >Incorrect</td>
+      <td id="T_bbf2a_row19_col3" class="data row19 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row20_col0" class="data row20 col0" >20</td>
+      <td id="T_bbf2a_row20_col1" class="data row20 col1" >what yacht had the next best time (smaller time is better) than ausmaid?</td>
+      <td id="T_bbf2a_row20_col2" class="data row20 col2" >Correct</td>
+      <td id="T_bbf2a_row20_col3" class="data row20 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row21_col0" class="data row21 col0" >21</td>
+      <td id="T_bbf2a_row21_col1" class="data row21 col1" >what match comes after gl-b-5?</td>
+      <td id="T_bbf2a_row21_col2" class="data row21 col2" >Correct</td>
+      <td id="T_bbf2a_row21_col3" class="data row21 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row22_col0" class="data row22 col0" >22</td>
+      <td id="T_bbf2a_row22_col1" class="data row22 col1" >who was the top scorer in the last season?</td>
+      <td id="T_bbf2a_row22_col2" class="data row22 col2" >Correct</td>
+      <td id="T_bbf2a_row22_col3" class="data row22 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row23_col0" class="data row23 col0" >23</td>
+      <td id="T_bbf2a_row23_col1" class="data row23 col1" >how many jury members were there?</td>
+      <td id="T_bbf2a_row23_col2" class="data row23 col2" >Correct</td>
+      <td id="T_bbf2a_row23_col3" class="data row23 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row24_col0" class="data row24 col0" >24</td>
+      <td id="T_bbf2a_row24_col1" class="data row24 col1" >how many times was the val d'lsere, france location used?</td>
+      <td id="T_bbf2a_row24_col2" class="data row24 col2" >Correct</td>
+      <td id="T_bbf2a_row24_col3" class="data row24 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row25_col0" class="data row25 col0" >25</td>
+      <td id="T_bbf2a_row25_col1" class="data row25 col1" >what is the name listed before mount pleasant line?</td>
+      <td id="T_bbf2a_row25_col2" class="data row25 col2" >Incorrect</td>
+      <td id="T_bbf2a_row25_col3" class="data row25 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row26_col0" class="data row26 col0" >26</td>
+      <td id="T_bbf2a_row26_col1" class="data row26 col1" >which year did illinois not have any losses during the conference?</td>
+      <td id="T_bbf2a_row26_col2" class="data row26 col2" >Incorrect</td>
+      <td id="T_bbf2a_row26_col3" class="data row26 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row27_col0" class="data row27 col0" >27</td>
+      <td id="T_bbf2a_row27_col1" class="data row27 col1" >how many candidates belong to a party other than republican or democrat?</td>
+      <td id="T_bbf2a_row27_col2" class="data row27 col2" >Incorrect</td>
+      <td id="T_bbf2a_row27_col3" class="data row27 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row28_col0" class="data row28 col0" >28</td>
+      <td id="T_bbf2a_row28_col1" class="data row28 col1" >how many competitions were not in the united kingdom?</td>
+      <td id="T_bbf2a_row28_col2" class="data row28 col2" >Incorrect</td>
+      <td id="T_bbf2a_row28_col3" class="data row28 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row29_col0" class="data row29 col0" >29</td>
+      <td id="T_bbf2a_row29_col1" class="data row29 col1" >how many domestic routes out of houston intercontinental have united as a carrier?</td>
+      <td id="T_bbf2a_row29_col2" class="data row29 col2" >Incorrect</td>
+      <td id="T_bbf2a_row29_col3" class="data row29 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row30_col0" class="data row30 col0" >30</td>
+      <td id="T_bbf2a_row30_col1" class="data row30 col1" >in total, how many germans are listed?</td>
+      <td id="T_bbf2a_row30_col2" class="data row30 col2" >Correct</td>
+      <td id="T_bbf2a_row30_col3" class="data row30 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row31_col0" class="data row31 col0" >31</td>
+      <td id="T_bbf2a_row31_col1" class="data row31 col1" >in what year are there the first results for giant slalom?</td>
+      <td id="T_bbf2a_row31_col2" class="data row31 col2" >Correct</td>
+      <td id="T_bbf2a_row31_col3" class="data row31 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row32_col0" class="data row32 col0" >32</td>
+      <td id="T_bbf2a_row32_col1" class="data row32 col1" >who scored more goals: clint dempsey or eric wynalda?</td>
+      <td id="T_bbf2a_row32_col2" class="data row32 col2" >Correct</td>
+      <td id="T_bbf2a_row32_col3" class="data row32 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row33_col0" class="data row33 col0" >33</td>
+      <td id="T_bbf2a_row33_col1" class="data row33 col1" >what building had the least height in germany?</td>
+      <td id="T_bbf2a_row33_col2" class="data row33 col2" >Incorrect</td>
+      <td id="T_bbf2a_row33_col3" class="data row33 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row34_col0" class="data row34 col0" >34</td>
+      <td id="T_bbf2a_row34_col1" class="data row34 col1" >besides republican (r) and democrat (d), what other party was represented in the maine election?</td>
+      <td id="T_bbf2a_row34_col2" class="data row34 col2" >Correct</td>
+      <td id="T_bbf2a_row34_col3" class="data row34 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row35_col0" class="data row35 col0" >35</td>
+      <td id="T_bbf2a_row35_col1" class="data row35 col1" >which year did the team have their most total wins?</td>
+      <td id="T_bbf2a_row35_col2" class="data row35 col2" >Correct</td>
+      <td id="T_bbf2a_row35_col3" class="data row35 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row36_col0" class="data row36 col0" >36</td>
+      <td id="T_bbf2a_row36_col1" class="data row36 col1" >what's the total of deaths that happened in 1939/1940?</td>
+      <td id="T_bbf2a_row36_col2" class="data row36 col2" >Correct</td>
+      <td id="T_bbf2a_row36_col3" class="data row36 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row37_col0" class="data row37 col0" >37</td>
+      <td id="T_bbf2a_row37_col1" class="data row37 col1" >what is the number of wins by jaguar xjs?</td>
+      <td id="T_bbf2a_row37_col2" class="data row37 col2" >Correct</td>
+      <td id="T_bbf2a_row37_col3" class="data row37 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row38_col0" class="data row38 col0" >38</td>
+      <td id="T_bbf2a_row38_col1" class="data row38 col1" >other nations besides peru to earn 2 bronze medals</td>
+      <td id="T_bbf2a_row38_col2" class="data row38 col2" >Incorrect</td>
+      <td id="T_bbf2a_row38_col3" class="data row38 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row39_col0" class="data row39 col0" >39</td>
+      <td id="T_bbf2a_row39_col1" class="data row39 col1" >how many times were consecutive games played against millwall?</td>
+      <td id="T_bbf2a_row39_col2" class="data row39 col2" >Incorrect</td>
+      <td id="T_bbf2a_row39_col3" class="data row39 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row40_col0" class="data row40 col0" >40</td>
+      <td id="T_bbf2a_row40_col1" class="data row40 col1" >besides angola racing team, what other team is listed in the 23rd position?</td>
+      <td id="T_bbf2a_row40_col2" class="data row40 col2" >Correct</td>
+      <td id="T_bbf2a_row40_col3" class="data row40 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row41_col0" class="data row41 col0" >41</td>
+      <td id="T_bbf2a_row41_col1" class="data row41 col1" >how many countries had at least $1 billion in box office?</td>
+      <td id="T_bbf2a_row41_col2" class="data row41 col2" >Incorrect</td>
+      <td id="T_bbf2a_row41_col3" class="data row41 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row42_col0" class="data row42 col0" >42</td>
+      <td id="T_bbf2a_row42_col1" class="data row42 col1" >what city has a radio station called the wolf?</td>
+      <td id="T_bbf2a_row42_col2" class="data row42 col2" >Correct</td>
+      <td id="T_bbf2a_row42_col3" class="data row42 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row43_col0" class="data row43 col0" >43</td>
+      <td id="T_bbf2a_row43_col1" class="data row43 col1" >what is the earliest date kodak made 16mm film?</td>
+      <td id="T_bbf2a_row43_col2" class="data row43 col2" >Correct</td>
+      <td id="T_bbf2a_row43_col3" class="data row43 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row44_col0" class="data row44 col0" >44</td>
+      <td id="T_bbf2a_row44_col1" class="data row44 col1" >who was the first to win during the 2009 fujitsu v8 supercar season?</td>
+      <td id="T_bbf2a_row44_col2" class="data row44 col2" >Correct</td>
+      <td id="T_bbf2a_row44_col3" class="data row44 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row45_col0" class="data row45 col0" >45</td>
+      <td id="T_bbf2a_row45_col1" class="data row45 col1" >which competition was held in berlin and daegu?</td>
+      <td id="T_bbf2a_row45_col2" class="data row45 col2" >Incorrect</td>
+      <td id="T_bbf2a_row45_col3" class="data row45 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row46_col0" class="data row46 col0" >46</td>
+      <td id="T_bbf2a_row46_col1" class="data row46 col1" >total number of cars sold in 2001?</td>
+      <td id="T_bbf2a_row46_col2" class="data row46 col2" >Correct</td>
+      <td id="T_bbf2a_row46_col3" class="data row46 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row47_col0" class="data row47 col0" >47</td>
+      <td id="T_bbf2a_row47_col1" class="data row47 col1" >what type of plane was encountered the least?</td>
+      <td id="T_bbf2a_row47_col2" class="data row47 col2" >Incorrect</td>
+      <td id="T_bbf2a_row47_col3" class="data row47 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row48_col0" class="data row48 col0" >48</td>
+      <td id="T_bbf2a_row48_col1" class="data row48 col1" >who was the top placing competitor?</td>
+      <td id="T_bbf2a_row48_col2" class="data row48 col2" >Incorrect</td>
+      <td id="T_bbf2a_row48_col3" class="data row48 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row49_col0" class="data row49 col0" >49</td>
+      <td id="T_bbf2a_row49_col1" class="data row49 col1" >is the price money for 23 january 1984 more than that of 23 april 1984?</td>
+      <td id="T_bbf2a_row49_col2" class="data row49 col2" >Incorrect</td>
+      <td id="T_bbf2a_row49_col3" class="data row49 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row50_col0" class="data row50 col0" >50</td>
+      <td id="T_bbf2a_row50_col1" class="data row50 col1" >what was the only race in 2011?</td>
+      <td id="T_bbf2a_row50_col2" class="data row50 col2" >Correct</td>
+      <td id="T_bbf2a_row50_col3" class="data row50 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row51_col0" class="data row51 col0" >51</td>
+      <td id="T_bbf2a_row51_col1" class="data row51 col1" >which position was listed the most on this chart?</td>
+      <td id="T_bbf2a_row51_col2" class="data row51 col2" >Correct</td>
+      <td id="T_bbf2a_row51_col3" class="data row51 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row52_col0" class="data row52 col0" >52</td>
+      <td id="T_bbf2a_row52_col1" class="data row52 col1" >m. shafi ahmad and absdul majid both had what type of degree?</td>
+      <td id="T_bbf2a_row52_col2" class="data row52 col2" >Correct</td>
+      <td id="T_bbf2a_row52_col3" class="data row52 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row53_col0" class="data row53 col0" >53</td>
+      <td id="T_bbf2a_row53_col1" class="data row53 col1" >how many photos total are listed?</td>
+      <td id="T_bbf2a_row53_col2" class="data row53 col2" >Incorrect</td>
+      <td id="T_bbf2a_row53_col3" class="data row53 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row54_col0" class="data row54 col0" >54</td>
+      <td id="T_bbf2a_row54_col1" class="data row54 col1" >how many times was first listed as the position according to this chart?</td>
+      <td id="T_bbf2a_row54_col2" class="data row54 col2" >Incorrect</td>
+      <td id="T_bbf2a_row54_col3" class="data row54 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row55_col0" class="data row55 col0" >55</td>
+      <td id="T_bbf2a_row55_col1" class="data row55 col1" >who was the the candidate before anastasija nindova?</td>
+      <td id="T_bbf2a_row55_col2" class="data row55 col2" >Incorrect</td>
+      <td id="T_bbf2a_row55_col3" class="data row55 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row56_col0" class="data row56 col0" >56</td>
+      <td id="T_bbf2a_row56_col1" class="data row56 col1" >what date is next listed after june 14, 2010.</td>
+      <td id="T_bbf2a_row56_col2" class="data row56 col2" >Incorrect</td>
+      <td id="T_bbf2a_row56_col3" class="data row56 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row57_col0" class="data row57 col0" >57</td>
+      <td id="T_bbf2a_row57_col1" class="data row57 col1" >how many times was a tournament held in the united states?</td>
+      <td id="T_bbf2a_row57_col2" class="data row57 col2" >Correct</td>
+      <td id="T_bbf2a_row57_col3" class="data row57 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row58_col0" class="data row58 col0" >58</td>
+      <td id="T_bbf2a_row58_col1" class="data row58 col1" >how many drivers have no laps led?</td>
+      <td id="T_bbf2a_row58_col2" class="data row58 col2" >Incorrect</td>
+      <td id="T_bbf2a_row58_col3" class="data row58 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row59_col0" class="data row59 col0" >59</td>
+      <td id="T_bbf2a_row59_col1" class="data row59 col1" >who superceded lord high steward?</td>
+      <td id="T_bbf2a_row59_col2" class="data row59 col2" >Correct</td>
+      <td id="T_bbf2a_row59_col3" class="data row59 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row60_col0" class="data row60 col0" >60</td>
+      <td id="T_bbf2a_row60_col1" class="data row60 col1" >how many fullback positions were picked?</td>
+      <td id="T_bbf2a_row60_col2" class="data row60 col2" >Correct</td>
+      <td id="T_bbf2a_row60_col3" class="data row60 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row61_col0" class="data row61 col0" >61</td>
+      <td id="T_bbf2a_row61_col1" class="data row61 col1" >which year had the least amount of toy sales?</td>
+      <td id="T_bbf2a_row61_col2" class="data row61 col2" >Incorrect</td>
+      <td id="T_bbf2a_row61_col3" class="data row61 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row62_col0" class="data row62 col0" >62</td>
+      <td id="T_bbf2a_row62_col1" class="data row62 col1" >how many affiliates does tv azteca have all together?</td>
+      <td id="T_bbf2a_row62_col2" class="data row62 col2" >Correct</td>
+      <td id="T_bbf2a_row62_col3" class="data row62 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row63_col0" class="data row63 col0" >63</td>
+      <td id="T_bbf2a_row63_col1" class="data row63 col1" >what was the number of times that the team placed 5th?</td>
+      <td id="T_bbf2a_row63_col2" class="data row63 col2" >Correct</td>
+      <td id="T_bbf2a_row63_col3" class="data row63 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row64_col0" class="data row64 col0" >64</td>
+      <td id="T_bbf2a_row64_col1" class="data row64 col1" >did he race more laps in 1926 or 1938?</td>
+      <td id="T_bbf2a_row64_col2" class="data row64 col2" >Incorrect</td>
+      <td id="T_bbf2a_row64_col3" class="data row64 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row65_col0" class="data row65 col0" >65</td>
+      <td id="T_bbf2a_row65_col1" class="data row65 col1" >what's the total attendance for gamestorm 11?</td>
+      <td id="T_bbf2a_row65_col2" class="data row65 col2" >Correct</td>
+      <td id="T_bbf2a_row65_col3" class="data row65 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row66_col0" class="data row66 col0" >66</td>
+      <td id="T_bbf2a_row66_col1" class="data row66 col1" >who is the next driver listed after scott dixon?</td>
+      <td id="T_bbf2a_row66_col2" class="data row66 col2" >Correct</td>
+      <td id="T_bbf2a_row66_col3" class="data row66 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row67_col0" class="data row67 col0" >67</td>
+      <td id="T_bbf2a_row67_col1" class="data row67 col1" >which venue did melissa morrison compete at in 2004?</td>
+      <td id="T_bbf2a_row67_col2" class="data row67 col2" >Correct</td>
+      <td id="T_bbf2a_row67_col3" class="data row67 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row68_col0" class="data row68 col0" >68</td>
+      <td id="T_bbf2a_row68_col1" class="data row68 col1" >how many times is professional writer listed as the profession according to this chart?</td>
+      <td id="T_bbf2a_row68_col2" class="data row68 col2" >Correct</td>
+      <td id="T_bbf2a_row68_col3" class="data row68 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row69_col0" class="data row69 col0" >69</td>
+      <td id="T_bbf2a_row69_col1" class="data row69 col1" >what is the number of listings from barrington, farmington, and rochester combined?</td>
+      <td id="T_bbf2a_row69_col2" class="data row69 col2" >Incorrect</td>
+      <td id="T_bbf2a_row69_col3" class="data row69 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row70_col0" class="data row70 col0" >70</td>
+      <td id="T_bbf2a_row70_col1" class="data row70 col1" >how many teams did not score any goals in the 2006 season?</td>
+      <td id="T_bbf2a_row70_col2" class="data row70 col2" >Incorrect</td>
+      <td id="T_bbf2a_row70_col3" class="data row70 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row71_col0" class="data row71 col0" >71</td>
+      <td id="T_bbf2a_row71_col1" class="data row71 col1" >who came in first?</td>
+      <td id="T_bbf2a_row71_col2" class="data row71 col2" >Correct</td>
+      <td id="T_bbf2a_row71_col3" class="data row71 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row72_col0" class="data row72 col0" >72</td>
+      <td id="T_bbf2a_row72_col1" class="data row72 col1" >what is the next team listed after widnes vikings?</td>
+      <td id="T_bbf2a_row72_col2" class="data row72 col2" >Incorrect</td>
+      <td id="T_bbf2a_row72_col3" class="data row72 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row73_col0" class="data row73 col0" >73</td>
+      <td id="T_bbf2a_row73_col1" class="data row73 col1" >how many festivals was the film shown at?</td>
+      <td id="T_bbf2a_row73_col2" class="data row73 col2" >Correct</td>
+      <td id="T_bbf2a_row73_col3" class="data row73 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row74_col0" class="data row74 col0" >74</td>
+      <td id="T_bbf2a_row74_col1" class="data row74 col1" >how many drivers completed 80 laps?</td>
+      <td id="T_bbf2a_row74_col2" class="data row74 col2" >Correct</td>
+      <td id="T_bbf2a_row74_col3" class="data row74 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row75_col0" class="data row75 col0" >75</td>
+      <td id="T_bbf2a_row75_col1" class="data row75 col1" >what was the first interval of five years to have more than 100,000 deaths?</td>
+      <td id="T_bbf2a_row75_col2" class="data row75 col2" >Incorrect</td>
+      <td id="T_bbf2a_row75_col3" class="data row75 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row76_col0" class="data row76 col0" >76</td>
+      <td id="T_bbf2a_row76_col1" class="data row76 col1" >kremlin cup and st petersburg open are in what country?</td>
+      <td id="T_bbf2a_row76_col2" class="data row76 col2" >Correct</td>
+      <td id="T_bbf2a_row76_col3" class="data row76 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row77_col0" class="data row77 col0" >77</td>
+      <td id="T_bbf2a_row77_col1" class="data row77 col1" >how many gold medals did australia and switzerland total?</td>
+      <td id="T_bbf2a_row77_col2" class="data row77 col2" >Correct</td>
+      <td id="T_bbf2a_row77_col3" class="data row77 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row78_col0" class="data row78 col0" >78</td>
+      <td id="T_bbf2a_row78_col1" class="data row78 col1" >what is the number of sizes that has an inner diameter above 50 mm?</td>
+      <td id="T_bbf2a_row78_col2" class="data row78 col2" >Incorrect</td>
+      <td id="T_bbf2a_row78_col3" class="data row78 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row79_col0" class="data row79 col0" >79</td>
+      <td id="T_bbf2a_row79_col1" class="data row79 col1" >did brazil and the united states have the highest gold count?</td>
+      <td id="T_bbf2a_row79_col2" class="data row79 col2" >Correct</td>
+      <td id="T_bbf2a_row79_col3" class="data row79 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row80_col0" class="data row80 col0" >80</td>
+      <td id="T_bbf2a_row80_col1" class="data row80 col1" >in what year did he lead the most laps in?</td>
+      <td id="T_bbf2a_row80_col2" class="data row80 col2" >Correct</td>
+      <td id="T_bbf2a_row80_col3" class="data row80 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row81_col0" class="data row81 col0" >81</td>
+      <td id="T_bbf2a_row81_col1" class="data row81 col1" >how many games were played after october 1st?</td>
+      <td id="T_bbf2a_row81_col2" class="data row81 col2" >Incorrect</td>
+      <td id="T_bbf2a_row81_col3" class="data row81 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row82_col0" class="data row82 col0" >82</td>
+      <td id="T_bbf2a_row82_col1" class="data row82 col1" >what is the total number of wins listed for the united states?</td>
+      <td id="T_bbf2a_row82_col2" class="data row82 col2" >Correct</td>
+      <td id="T_bbf2a_row82_col3" class="data row82 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row83_col0" class="data row83 col0" >83</td>
+      <td id="T_bbf2a_row83_col1" class="data row83 col1" >if italy and brazil combined box office revenues, what would be their new total?</td>
+      <td id="T_bbf2a_row83_col2" class="data row83 col2" >Correct</td>
+      <td id="T_bbf2a_row83_col3" class="data row83 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row84_col0" class="data row84 col0" >84</td>
+      <td id="T_bbf2a_row84_col1" class="data row84 col1" >when did the restaurant "verre" at the hilton dubai creek close?</td>
+      <td id="T_bbf2a_row84_col2" class="data row84 col2" >Correct</td>
+      <td id="T_bbf2a_row84_col3" class="data row84 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row85_col0" class="data row85 col0" >85</td>
+      <td id="T_bbf2a_row85_col1" class="data row85 col1" >who finished immediately after danny osborne?</td>
+      <td id="T_bbf2a_row85_col2" class="data row85 col2" >Correct</td>
+      <td id="T_bbf2a_row85_col3" class="data row85 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row86_col0" class="data row86 col0" >86</td>
+      <td id="T_bbf2a_row86_col1" class="data row86 col1" >where is saint anslem school located?</td>
+      <td id="T_bbf2a_row86_col2" class="data row86 col2" >Correct</td>
+      <td id="T_bbf2a_row86_col3" class="data row86 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row87_col0" class="data row87 col0" >87</td>
+      <td id="T_bbf2a_row87_col1" class="data row87 col1" >who has the same number as greg foster?</td>
+      <td id="T_bbf2a_row87_col2" class="data row87 col2" >Correct</td>
+      <td id="T_bbf2a_row87_col3" class="data row87 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row88_col0" class="data row88 col0" >88</td>
+      <td id="T_bbf2a_row88_col1" class="data row88 col1" >besides "th' wife", what other single came out in 1964?</td>
+      <td id="T_bbf2a_row88_col2" class="data row88 col2" >Correct</td>
+      <td id="T_bbf2a_row88_col3" class="data row88 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row89_col0" class="data row89 col0" >89</td>
+      <td id="T_bbf2a_row89_col1" class="data row89 col1" >what is the name of the circuit listed before portland?</td>
+      <td id="T_bbf2a_row89_col2" class="data row89 col2" >Correct</td>
+      <td id="T_bbf2a_row89_col3" class="data row89 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row90_col0" class="data row90 col0" >90</td>
+      <td id="T_bbf2a_row90_col1" class="data row90 col1" >how long does the swiss open series run for?</td>
+      <td id="T_bbf2a_row90_col2" class="data row90 col2" >Incorrect</td>
+      <td id="T_bbf2a_row90_col3" class="data row90 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row91_col0" class="data row91 col0" >91</td>
+      <td id="T_bbf2a_row91_col1" class="data row91 col1" >which racer was the only one not to finish on the final lap?</td>
+      <td id="T_bbf2a_row91_col2" class="data row91 col2" >Correct</td>
+      <td id="T_bbf2a_row91_col3" class="data row91 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row92_col0" class="data row92 col0" >92</td>
+      <td id="T_bbf2a_row92_col1" class="data row92 col1" >when did leonor piuza last compete in a race?</td>
+      <td id="T_bbf2a_row92_col2" class="data row92 col2" >Correct</td>
+      <td id="T_bbf2a_row92_col3" class="data row92 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row93_col0" class="data row93 col0" >93</td>
+      <td id="T_bbf2a_row93_col1" class="data row93 col1" >what continent is listed at the top of the table?</td>
+      <td id="T_bbf2a_row93_col2" class="data row93 col2" >Correct</td>
+      <td id="T_bbf2a_row93_col3" class="data row93 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row94_col0" class="data row94 col0" >94</td>
+      <td id="T_bbf2a_row94_col1" class="data row94 col1" >what year was the only year in which the team won the co-championship title?</td>
+      <td id="T_bbf2a_row94_col2" class="data row94 col2" >Correct</td>
+      <td id="T_bbf2a_row94_col3" class="data row94 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row95_col0" class="data row95 col0" >95</td>
+      <td id="T_bbf2a_row95_col1" class="data row95 col1" >what were the total number of deaths in 2003?</td>
+      <td id="T_bbf2a_row95_col2" class="data row95 col2" >Correct</td>
+      <td id="T_bbf2a_row95_col3" class="data row95 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row96_col0" class="data row96 col0" >96</td>
+      <td id="T_bbf2a_row96_col1" class="data row96 col1" >how many hard surface courts are there?</td>
+      <td id="T_bbf2a_row96_col2" class="data row96 col2" >Incorrect</td>
+      <td id="T_bbf2a_row96_col3" class="data row96 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row97_col0" class="data row97 col0" >97</td>
+      <td id="T_bbf2a_row97_col1" class="data row97 col1" >what was the least amount of points scored in a season?</td>
+      <td id="T_bbf2a_row97_col2" class="data row97 col2" >Incorrect</td>
+      <td id="T_bbf2a_row97_col3" class="data row97 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row98_col0" class="data row98 col0" >98</td>
+      <td id="T_bbf2a_row98_col1" class="data row98 col1" >how many total major races has melissa morrison-howard placed first in?</td>
+      <td id="T_bbf2a_row98_col2" class="data row98 col2" >Incorrect</td>
+      <td id="T_bbf2a_row98_col3" class="data row98 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row99_col0" class="data row99 col0" >99</td>
+      <td id="T_bbf2a_row99_col1" class="data row99 col1" >how many distributions support the x86 architecture?</td>
+      <td id="T_bbf2a_row99_col2" class="data row99 col2" >Incorrect</td>
+      <td id="T_bbf2a_row99_col3" class="data row99 col3" >Correct</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row100_col0" class="data row100 col0" >100</td>
+      <td id="T_bbf2a_row100_col1" class="data row100 col1" >are the dates in a consecutive order?</td>
+      <td id="T_bbf2a_row100_col2" class="data row100 col2" >Incorrect</td>
+      <td id="T_bbf2a_row100_col3" class="data row100 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row101_col0" class="data row101 col0" >101</td>
+      <td id="T_bbf2a_row101_col1" class="data row101 col1" >what is the first name on the chart?</td>
+      <td id="T_bbf2a_row101_col2" class="data row101 col2" >Correct</td>
+      <td id="T_bbf2a_row101_col3" class="data row101 col3" >Incorrect</td>
+    </tr>
+    <tr>
+      <td id="T_bbf2a_row102_col0" class="data row102 col0" >102</td>
+      <td id="T_bbf2a_row102_col1" class="data row102 col1" >which date had the most attendance?</td>
+      <td id="T_bbf2a_row102_col2" class="data row102 col2" >Incorrect</td>
+      <td id="T_bbf2a_row102_col3" class="data row102 col3" >Incorrect</td>
+    </tr>
+  </tbody>
+</table>
+</body></html>

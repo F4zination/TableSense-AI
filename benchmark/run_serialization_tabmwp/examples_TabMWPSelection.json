@@ -1,0 +1,702 @@
+[
+  {
+    "index": 0,
+    "pred": "yes",
+    "ground_truth": "yes",
+    "question": "Look at this table. Is this relation a function?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>x</th>\n      <th>y</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>18</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>20</td>\n    </tr>\n    <tr>\n      <td>20</td>\n      <td>7</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 1,
+    "pred": "99",
+    "ground_truth": "99",
+    "question": "How much money does Noah need to buy 9 pecan pies?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>pecan pie</td>\n      <td>$11.00</td>\n    </tr>\n    <tr>\n      <td>apple pie</td>\n      <td>$14.00</td>\n    </tr>\n    <tr>\n      <td>chocolate cake</td>\n      <td>$22.00</td>\n    </tr>\n    <tr>\n      <td>chocolate cheesecake</td>\n      <td>$19.00</td>\n    </tr>\n    <tr>\n      <td>banana cream pie</td>\n      <td>$11.00</td>\n    </tr>\n    <tr>\n      <td>apple tart</td>\n      <td>$14.00</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 2,
+    "pred": "nonlinear",
+    "ground_truth": "linear",
+    "question": "The table shows a function. Is the function linear or nonlinear?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>x</th>\n      <th>y</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>10</td>\n      <td>16</td>\n    </tr>\n    <tr>\n      <td>11</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>12</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 3,
+    "pred": "38",
+    "ground_truth": "38",
+    "question": "The students in Mr. Rivera's class recorded the number of siblings that each has. How many students have more than 2 siblings?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Number of siblings</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>13</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>20</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 4,
+    "pred": "6310",
+    "ground_truth": "7706",
+    "question": "How much money does Danielle need to buy 8 river rafts and 2 sets of golf clubs?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>river raft</td>\n      <td>$766</td>\n    </tr>\n    <tr>\n      <td>wetsuit</td>\n      <td>$422</td>\n    </tr>\n    <tr>\n      <td>set of golf clubs</td>\n      <td>$789</td>\n    </tr>\n    <tr>\n      <td>snowboard</td>\n      <td>$774</td>\n    </tr>\n    <tr>\n      <td>surfboard</td>\n      <td>$292</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 5,
+    "pred": "8",
+    "ground_truth": "8",
+    "question": "Ed graphed the amount of snow that fell in the last 6 days. What is the range of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Snowfall (inches)</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Tuesday</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>Wednesday</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>Thursday</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Saturday</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>Sunday</td>\n      <td>4</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 6,
+    "pred": "18",
+    "ground_truth": "18",
+    "question": "An editor of the school yearbook asked some fourth and fifth graders what their favorite subjects were. How many students voted for science?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Subject</th>\n      <th>Fourth graders</th>\n      <th>Fifth graders</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Writing</td>\n      <td>9</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <td>Music</td>\n      <td>14</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>Reading</td>\n      <td>8</td>\n      <td>17</td>\n    </tr>\n    <tr>\n      <td>Geography</td>\n      <td>20</td>\n      <td>19</td>\n    </tr>\n    <tr>\n      <td>Science</td>\n      <td>2</td>\n      <td>16</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 7,
+    "pred": "222",
+    "ground_truth": "209",
+    "question": "How much money does Heather need to buy 2 soccer tickets and 7 hockey tickets?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>baseball ticket</td>\n      <td>$15.00</td>\n    </tr>\n    <tr>\n      <td>football ticket</td>\n      <td>$32.00</td>\n    </tr>\n    <tr>\n      <td>hockey ticket</td>\n      <td>$19.00</td>\n    </tr>\n    <tr>\n      <td>play ticket</td>\n      <td>$24.00</td>\n    </tr>\n    <tr>\n      <td>soccer ticket</td>\n      <td>$38.00</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 8,
+    "pred": "-7",
+    "ground_truth": "-7",
+    "question": "Melissa kept a tally of the number of emails she received each day for a week. According to the table, what was the rate of change between Thursday and Friday?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Emails</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Monday</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>Tuesday</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>Wednesday</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <td>Thursday</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>2</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 9,
+    "pred": "36",
+    "ground_truth": "36",
+    "question": "How much money does Gordon need to buy 3 glass bowls?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>casserole dish</td>\n      <td>$16.00</td>\n    </tr>\n    <tr>\n      <td>glass bowl</td>\n      <td>$12.00</td>\n    </tr>\n    <tr>\n      <td>rolling pin</td>\n      <td>$14.00</td>\n    </tr>\n    <tr>\n      <td>cookbook</td>\n      <td>$19.00</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 10,
+    "pred": "88",
+    "ground_truth": "90",
+    "question": "Michelle counted the number of ducks at each pond in the city. What is the largest number of ducks?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>1, 3</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>9</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 11,
+    "pred": "17503",
+    "ground_truth": "17503",
+    "question": "How much money does Ashley need to buy a popcorn cart and a hot dog stand?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>funnel cake stand</td>\n      <td>$5,782</td>\n    </tr>\n    <tr>\n      <td>hot dog stand</td>\n      <td>$8,419</td>\n    </tr>\n    <tr>\n      <td>shaved ice cart</td>\n      <td>$6,407</td>\n    </tr>\n    <tr>\n      <td>popsicle stand</td>\n      <td>$5,755</td>\n    </tr>\n    <tr>\n      <td>popcorn cart</td>\n      <td>$9,084</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 12,
+    "pred": "1.07",
+    "ground_truth": "1.07",
+    "question": "How much money does Sasha need to buy a sheet of bright yellow paper and a piece of elegant stationery?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>piece of floral stationery</td>\n      <td>$0.29</td>\n    </tr>\n    <tr>\n      <td>piece of striped paper</td>\n      <td>$0.44</td>\n    </tr>\n    <tr>\n      <td>white note card</td>\n      <td>$0.10</td>\n    </tr>\n    <tr>\n      <td>orange envelope</td>\n      <td>$0.92</td>\n    </tr>\n    <tr>\n      <td>sheet of bright yellow paper</td>\n      <td>$0.74</td>\n    </tr>\n    <tr>\n      <td>piece of elegant stationery</td>\n      <td>$0.33</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 13,
+    "pred": "2",
+    "ground_truth": "2",
+    "question": "Isabella went to the store. She bought 1 pound of split washers. How much did she spend?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>screws</td>\n      <td>$5 per pound</td>\n    </tr>\n    <tr>\n      <td>nuts</td>\n      <td>$1 per pound</td>\n    </tr>\n    <tr>\n      <td>bolts</td>\n      <td>$1 per pound</td>\n    </tr>\n    <tr>\n      <td>split washers</td>\n      <td>$2 per pound</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 14,
+    "pred": "4",
+    "ground_truth": "4",
+    "question": "The city recorded how many fire hydrants there are on each street. What is the range of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Street</th>\n      <th>Number of hydrants</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Fir Street</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Aspen Street</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Maple Street</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>Oak Street</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>Cherry Street</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>Lemon Street</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>Rose Street</td>\n      <td>7</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 15,
+    "pred": "131.22",
+    "ground_truth": "131.22",
+    "question": "How much money does Jen need to buy a soccer ticket and a football ticket?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>football ticket</td>\n      <td>$86.19</td>\n    </tr>\n    <tr>\n      <td>hockey ticket</td>\n      <td>$91.66</td>\n    </tr>\n    <tr>\n      <td>tennis ticket</td>\n      <td>$34.70</td>\n    </tr>\n    <tr>\n      <td>soccer ticket</td>\n      <td>$45.03</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 16,
+    "pred": "22",
+    "ground_truth": "22",
+    "question": "Ron found out the sizes of all the clubs at his school. What is the size of the smallest club?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2</td>\n      <td>2, 4</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>0, 2, 3, 4, 4, 5</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>0, 4, 7, 7</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>0, 7</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>1, 4</td>\n    </tr>\n    <tr>\n      <td>9</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 17,
+    "pred": "(2 * 1.37) + (1 * 2.21) + (3 * 1.37)",
+    "ground_truth": "9.06",
+    "question": "Helen went to the store. She bought 2 kilograms of sawdust, 1 kilogram of dirt, and 3 kilograms of bark. How much did she spend?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>mulch</td>\n      <td>$1.10 per kilogram</td>\n    </tr>\n    <tr>\n      <td>sawdust</td>\n      <td>$1.37 per kilogram</td>\n    </tr>\n    <tr>\n      <td>dirt</td>\n      <td>$2.21 per kilogram</td>\n    </tr>\n    <tr>\n      <td>sand</td>\n      <td>$2.30 per kilogram</td>\n    </tr>\n    <tr>\n      <td>bark</td>\n      <td>$1.37 per kilogram</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 18,
+    "pred": "10",
+    "ground_truth": "10",
+    "question": "While looking through an almanac at the library, Tucker noticed some data showing the population density of various states. How many people per square mile lived in South Dakota in 2000?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n      <th>Column 3</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>State</td>\n      <td>1990</td>\n      <td>2000</td>\n    </tr>\n    <tr>\n      <td>South Dakota</td>\n      <td>9</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>North Dakota</td>\n      <td>9</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Nevada</td>\n      <td>10</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <td>Wyoming</td>\n      <td>4</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>Montana</td>\n      <td>5</td>\n      <td>6</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 19,
+    "pred": "4999",
+    "ground_truth": "4999",
+    "question": "The owner of an orchard kept records about how many apples were picked in the past 3 days. How many apples in total were picked on Friday and Saturday?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Number of apples</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Thursday</td>\n      <td>6,340</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>2,474</td>\n    </tr>\n    <tr>\n      <td>Saturday</td>\n      <td>2,525</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 20,
+    "pred": "horseback riding class",
+    "ground_truth": "horseback riding class",
+    "question": "Look at the following schedule. Which activity ends at 7.15 A.M.?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Activity</th>\n      <th>Begin</th>\n      <th>End</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>horseback riding class</td>\n      <td>6:00 A.M.</td>\n      <td>7:15 A.M.</td>\n    </tr>\n    <tr>\n      <td>swimming class</td>\n      <td>7:25 A.M.</td>\n      <td>9:05 A.M.</td>\n    </tr>\n    <tr>\n      <td>music class</td>\n      <td>9:10 A.M.</td>\n      <td>10:40 A.M.</td>\n    </tr>\n    <tr>\n      <td>quiet time</td>\n      <td>10:45 A.M.</td>\n      <td>12:10 P.M.</td>\n    </tr>\n    <tr>\n      <td>scavenger hunt</td>\n      <td>12:15 P.M.</td>\n      <td>1:10 P.M.</td>\n    </tr>\n    <tr>\n      <td>hiking trip</td>\n      <td>1:15 P.M.</td>\n      <td>2:35 P.M.</td>\n    </tr>\n    <tr>\n      <td>rowing class</td>\n      <td>2:45 P.M.</td>\n      <td>3:40 P.M.</td>\n    </tr>\n    <tr>\n      <td>talent show</td>\n      <td>3:50 P.M.</td>\n      <td>5:10 P.M.</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 21,
+    "pred": "1.20",
+    "ground_truth": "1.2",
+    "question": "Anna buys 0.6 pounds of puffed rice. How much does she spend?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>muesli</td>\n      <td>$3 per pound</td>\n    </tr>\n    <tr>\n      <td>puffed rice</td>\n      <td>$2 per pound</td>\n    </tr>\n    <tr>\n      <td>shredded wheat</td>\n      <td>$6 per pound</td>\n    </tr>\n    <tr>\n      <td>granola</td>\n      <td>$5 per pound</td>\n    </tr>\n    <tr>\n      <td>puffed wheat</td>\n      <td>$2 per pound</td>\n    </tr>\n    <tr>\n      <td>bran flakes</td>\n      <td>$2 per pound</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 22,
+    "pred": "15",
+    "ground_truth": "15",
+    "question": "Harper just got back from a trip to the aquarium. While she was there, she used a frequency chart to keep track of the animals she saw. Harper saw 3 times as many stingrays as sharks. How many stingrays did Harper see?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Animal</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>octopus</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>penguin</td>\n      <td>12</td>\n    </tr>\n    <tr>\n      <td>seal</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>shark</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>stingray</td>\n      <td>?</td>\n    </tr>\n    <tr>\n      <td>whale</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 23,
+    "pred": "n/a",
+    "ground_truth": "9",
+    "question": "Zack's class recorded how many states each student has visited. What is the mode of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Name</th>\n      <th>Number of states</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Zack</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <td>Naomi</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>Wyatt</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Kendra</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>Alvin</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Rudy</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <td>Ellie</td>\n      <td>9</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 24,
+    "pred": "n/a",
+    "ground_truth": "1",
+    "question": "Kensington Flooring tracked the number of broken tiles in each shipment it received last year. How many shipments had exactly 41 broken tiles?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2</td>\n      <td>0, 2, 6, 6, 6</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>1, 4, 5, 7, 8, 9</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>1, 6, 9</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>0, 1, 2, 2, 6, 8</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 25,
+    "pred": "n/a",
+    "ground_truth": "17",
+    "question": "A crayon factory monitored the number of broken crayons per box during the past day. How many boxes had at least 30 broken crayons?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2</td>\n      <td>3, 4, 5, 5, 8</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>1, 5, 5, 6</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>1, 5, 6</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>0, 1, 3, 8</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>5, 6, 7</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>9</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 26,
+    "pred": "0.09",
+    "ground_truth": "0.09",
+    "question": "How much money does Trent need to buy a blue plastic block and a shapes stencil?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>green marble</td>\n      <td>$0.06</td>\n    </tr>\n    <tr>\n      <td>wooden block</td>\n      <td>$0.02</td>\n    </tr>\n    <tr>\n      <td>red kazoo</td>\n      <td>$0.01</td>\n    </tr>\n    <tr>\n      <td>colorful pinwheel</td>\n      <td>$0.03</td>\n    </tr>\n    <tr>\n      <td>shapes stencil</td>\n      <td>$0.07</td>\n    </tr>\n    <tr>\n      <td>blue plastic block</td>\n      <td>$0.02</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 27,
+    "pred": "2",
+    "ground_truth": "3",
+    "question": "Lexi, a candy store employee, placed peppermint candies into jars of various sizes. How many jars had exactly 58 peppermint candies?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>5</td>\n      <td>2, 3, 3, 3, 4, 7, 8, 8, 8</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>1, 7, 8</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>1, 2, 3, 5, 5, 6, 9, 9</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>0, 3, 4, 8, 8</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 28,
+    "pred": "2",
+    "ground_truth": "2",
+    "question": "For an economics project, Mitch determined the cost of ferry rides for bicycles and cars. How much does it cost to take a bicycle on the Southport-Fort Fisher ferry?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Ferry</th>\n      <th>Car</th>\n      <th>Bicycle</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Fauntleroy-Vashon</td>\n      <td>$15</td>\n      <td>$5</td>\n    </tr>\n    <tr>\n      <td>Seattle-Bremerton</td>\n      <td>$12</td>\n      <td>$8</td>\n    </tr>\n    <tr>\n      <td>Mukilteu-Clinton</td>\n      <td>$7</td>\n      <td>$5</td>\n    </tr>\n    <tr>\n      <td>Southport-Fort Fisher</td>\n      <td>$5</td>\n      <td>$2</td>\n    </tr>\n    <tr>\n      <td>Ocracoke</td>\n      <td>$15</td>\n      <td>$3</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 29,
+    "pred": "12:35 p.m.",
+    "ground_truth": "12:35 p.m.",
+    "question": "Look at the following schedule. When does the banquet end?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Event</th>\n      <th>Begin</th>\n      <th>End</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>banquet</td>\n      <td>10:55 A.M.</td>\n      <td>12:35 P.M.</td>\n    </tr>\n    <tr>\n      <td>band concert</td>\n      <td>12:40 P.M.</td>\n      <td>2:00 P.M.</td>\n    </tr>\n    <tr>\n      <td>choir concert</td>\n      <td>1:45 P.M.</td>\n      <td>3:55 P.M.</td>\n    </tr>\n    <tr>\n      <td>award ceremony</td>\n      <td>3:20 P.M.</td>\n      <td>4:30 P.M.</td>\n    </tr>\n    <tr>\n      <td>dance performance</td>\n      <td>4:20 P.M.</td>\n      <td>5:25 P.M.</td>\n    </tr>\n    <tr>\n      <td>drumming performance</td>\n      <td>5:35 P.M.</td>\n      <td>7:55 P.M.</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 30,
+    "pred": "no",
+    "ground_truth": "yes",
+    "question": "Polly has $23. Does she have enough to buy a cat calendar and a cookbook?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>cat calendar</td>\n      <td>$12</td>\n    </tr>\n    <tr>\n      <td>photo album</td>\n      <td>$16</td>\n    </tr>\n    <tr>\n      <td>cookbook</td>\n      <td>$10</td>\n    </tr>\n    <tr>\n      <td>atlas</td>\n      <td>$39</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 31,
+    "pred": "0.12",
+    "ground_truth": "0.12",
+    "question": "How much more does a sheet of mountain stamps cost than a large cardboard box?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>robot stamp</td>\n      <td>$0.36</td>\n    </tr>\n    <tr>\n      <td>mountain postcard</td>\n      <td>$0.58</td>\n    </tr>\n    <tr>\n      <td>large cardboard box</td>\n      <td>$0.73</td>\n    </tr>\n    <tr>\n      <td>sheet of mountain stamps</td>\n      <td>$0.85</td>\n    </tr>\n    <tr>\n      <td>small red box</td>\n      <td>$0.69</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 32,
+    "pred": "37931",
+    "ground_truth": "65845",
+    "question": "How much money does Ariana need to buy 3 emerald rings and 7 sapphire pendants?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>ruby bracelet</td>\n      <td>$4,256.00</td>\n    </tr>\n    <tr>\n      <td>pearl necklace</td>\n      <td>$1,622.00</td>\n    </tr>\n    <tr>\n      <td>diamond pendant</td>\n      <td>$9,221.00</td>\n    </tr>\n    <tr>\n      <td>opal pendant</td>\n      <td>$3,234.00</td>\n    </tr>\n    <tr>\n      <td>sapphire pendant</td>\n      <td>$7,084.00</td>\n    </tr>\n    <tr>\n      <td>emerald ring</td>\n      <td>$5,419.00</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 33,
+    "pred": "13",
+    "ground_truth": "13",
+    "question": "Ms. Lester reported her students' scores on the most recent quiz. What is the lowest score?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>3, 9</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>4, 6, 9</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>2, 3, 6, 6, 7</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>1, 1, 4, 6, 6, 7, 8</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>0, 1, 7, 7</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>2, 6</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 34,
+    "pred": "76",
+    "ground_truth": "76",
+    "question": "A farmer recalled how many watermelons were harvested in the past 5 days. What is the median of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Number of watermelons</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Monday</td>\n      <td>74</td>\n    </tr>\n    <tr>\n      <td>Tuesday</td>\n      <td>79</td>\n    </tr>\n    <tr>\n      <td>Wednesday</td>\n      <td>74</td>\n    </tr>\n    <tr>\n      <td>Thursday</td>\n      <td>76</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>76</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 35,
+    "pred": "french club",
+    "ground_truth": "french club",
+    "question": "The local high school found out how many members each club had. Which club has the most members?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Club</th>\n      <th>Number of members</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>physics club</td>\n      <td>114</td>\n    </tr>\n    <tr>\n      <td>French club</td>\n      <td>194</td>\n    </tr>\n    <tr>\n      <td>Japanese club</td>\n      <td>191</td>\n    </tr>\n    <tr>\n      <td>drama club</td>\n      <td>149</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 36,
+    "pred": "monday",
+    "ground_truth": "monday",
+    "question": "A juice shop tracked how many smoothies it sold in the past 4 days. On which day did the shop sell the most smoothies?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Number of smoothies</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Sunday</td>\n      <td>335</td>\n    </tr>\n    <tr>\n      <td>Monday</td>\n      <td>359</td>\n    </tr>\n    <tr>\n      <td>Tuesday</td>\n      <td>325</td>\n    </tr>\n    <tr>\n      <td>Wednesday</td>\n      <td>323</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 37,
+    "pred": "1",
+    "ground_truth": "1",
+    "question": "Denise's class recorded how many states each student has visited. What is the mode of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Name</th>\n      <th>Number of states</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Denise</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>Lee</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>Alan</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>Zane</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>Quincy</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>Camille</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>Paul</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>Bonnie</td>\n      <td>2</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 38,
+    "pred": "-2",
+    "ground_truth": "-2",
+    "question": "Fans of the Washington baseball team compared the number of games won by their team each year. According to the table, what was the rate of change between 2015 and 2016?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Year</th>\n      <th>Games won</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2014</td>\n      <td>34</td>\n    </tr>\n    <tr>\n      <td>2015</td>\n      <td>24</td>\n    </tr>\n    <tr>\n      <td>2016</td>\n      <td>22</td>\n    </tr>\n    <tr>\n      <td>2017</td>\n      <td>16</td>\n    </tr>\n    <tr>\n      <td>2018</td>\n      <td>26</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 39,
+    "pred": "246",
+    "ground_truth": "246",
+    "question": "How much more does a surfing adventure package cost than a mountain-biking adventure package?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>mountain-biking adventure package</td>\n      <td>$733.00</td>\n    </tr>\n    <tr>\n      <td>deep-sea fishing package</td>\n      <td>$348.00</td>\n    </tr>\n    <tr>\n      <td>surfing adventure package</td>\n      <td>$979.00</td>\n    </tr>\n    <tr>\n      <td>whale-watching adventure package</td>\n      <td>$530.00</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 40,
+    "pred": "line dancing",
+    "ground_truth": "line dancing",
+    "question": "Look at the following schedule. Which activity ends at 7.10 P.M.?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Activity</th>\n      <th>Begin</th>\n      <th>End</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>indoor soccer</td>\n      <td>7:50 A.M.</td>\n      <td>9:30 A.M.</td>\n    </tr>\n    <tr>\n      <td>aerobics</td>\n      <td>9:45 A.M.</td>\n      <td>11:05 A.M.</td>\n    </tr>\n    <tr>\n      <td>floor hockey</td>\n      <td>11:10 A.M.</td>\n      <td>12:35 P.M.</td>\n    </tr>\n    <tr>\n      <td>dodgeball</td>\n      <td>12:45 P.M.</td>\n      <td>2:10 P.M.</td>\n    </tr>\n    <tr>\n      <td>volleyball</td>\n      <td>2:15 P.M.</td>\n      <td>2:45 P.M.</td>\n    </tr>\n    <tr>\n      <td>gymnastics</td>\n      <td>2:55 P.M.</td>\n      <td>4:30 P.M.</td>\n    </tr>\n    <tr>\n      <td>badminton</td>\n      <td>4:35 P.M.</td>\n      <td>5:10 P.M.</td>\n    </tr>\n    <tr>\n      <td>yoga</td>\n      <td>5:25 P.M.</td>\n      <td>6:35 P.M.</td>\n    </tr>\n    <tr>\n      <td>line dancing</td>\n      <td>6:40 P.M.</td>\n      <td>7:10 P.M.</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 41,
+    "pred": "shortage",
+    "ground_truth": "surplus",
+    "question": "Look at the table. Then answer the question. At a price of $1,025, is there a shortage or a surplus?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Price</th>\n      <th>Quantity demanded</th>\n      <th>Quantity supplied</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>$345</td>\n      <td>9,400</td>\n      <td>17,100</td>\n    </tr>\n    <tr>\n      <td>$515</td>\n      <td>9,100</td>\n      <td>18,300</td>\n    </tr>\n    <tr>\n      <td>$685</td>\n      <td>8,800</td>\n      <td>19,500</td>\n    </tr>\n    <tr>\n      <td>$855</td>\n      <td>8,500</td>\n      <td>20,700</td>\n    </tr>\n    <tr>\n      <td>$1,025</td>\n      <td>8,200</td>\n      <td>21,900</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 42,
+    "pred": "yes",
+    "ground_truth": "yes",
+    "question": "Look at this table. Is this relation a function?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>x</th>\n      <th>y</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>4</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>17</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>4</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 43,
+    "pred": "15",
+    "ground_truth": "15",
+    "question": "Ms. Landry wants to know more about her students. She asked each student about his or her favorite school activity and recorded their answers in a frequency chart. How many students said art or music is their favorite school activity?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Activity</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>art</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>gym</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>library</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>music</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>computer lab</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>recess</td>\n      <td>5</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 44,
+    "pred": "n/a",
+    "ground_truth": "2",
+    "question": "Emmett, who rents properties for a living, measures all the offices in a building he is renting. How many offices are exactly 57 square meters?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>3</td>\n      <td>1, 8</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>4, 7, 7</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>1, 6, 6</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>0, 3</td>\n    </tr>\n    <tr>\n      <td>9</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 45,
+    "pred": "57.16",
+    "ground_truth": "58.16",
+    "question": "Alana has $105.70. How much money will Alana have left if she buys a denim skirt and a yellow dress?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>green dress</td>\n      <td>$15.16</td>\n    </tr>\n    <tr>\n      <td>yellow dress</td>\n      <td>$37.16</td>\n    </tr>\n    <tr>\n      <td>pair of sweat pants</td>\n      <td>$18.92</td>\n    </tr>\n    <tr>\n      <td>denim skirt</td>\n      <td>$10.38</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 46,
+    "pred": "no",
+    "ground_truth": "yes",
+    "question": "Juan has $174.00. Does he have enough to buy a bearded dragon and a cockatoo?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>bearded dragon</td>\n      <td>$94.48</td>\n    </tr>\n    <tr>\n      <td>chinchilla</td>\n      <td>$40.92</td>\n    </tr>\n    <tr>\n      <td>tarantula</td>\n      <td>$26.94</td>\n    </tr>\n    <tr>\n      <td>chameleon</td>\n      <td>$55.18</td>\n    </tr>\n    <tr>\n      <td>cockatoo</td>\n      <td>$76.90</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 47,
+    "pred": "thursday",
+    "ground_truth": "thursday",
+    "question": "An actor was informed how many fan letters he received each day. On which day were the fewest fan letters received?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Number of fan letters</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Tuesday</td>\n      <td>24</td>\n    </tr>\n    <tr>\n      <td>Wednesday</td>\n      <td>23</td>\n    </tr>\n    <tr>\n      <td>Thursday</td>\n      <td>21</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>25</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 48,
+    "pred": "linear",
+    "ground_truth": "linear",
+    "question": "The table shows a function. Is the function linear or nonlinear?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>x</th>\n      <th>y</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>11</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>15</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 49,
+    "pred": "88",
+    "ground_truth": "88",
+    "question": "How much money does Myra need to buy a DVD player and a DVD?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>DVD player</td>\n      <td>$76.00</td>\n    </tr>\n    <tr>\n      <td>DVD</td>\n      <td>$12.00</td>\n    </tr>\n    <tr>\n      <td>blender</td>\n      <td>$20.00</td>\n    </tr>\n    <tr>\n      <td>calculator</td>\n      <td>$73.00</td>\n    </tr>\n    <tr>\n      <td>cell phone</td>\n      <td>$81.00</td>\n    </tr>\n    <tr>\n      <td>camera</td>\n      <td>$81.00</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 50,
+    "pred": "22",
+    "ground_truth": "22",
+    "question": "A food manufacturer surveyed consumers about their macaroni and cheese consumption. How many people ate macaroni and cheese at least 3 times?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Times eaten</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>13</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>5</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 51,
+    "pred": "40",
+    "ground_truth": "50",
+    "question": "After a field trip to the park, students in Mrs. Carter's art class counted the number of leaf rubbings they had made. How many students made at least 2 leaf rubbings?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Leaf rubbings made</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>20</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>19</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 52,
+    "pred": "4",
+    "ground_truth": "4",
+    "question": "How much more does a leaf blower cost than a fountain?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>hammock</td>\n      <td>$99</td>\n    </tr>\n    <tr>\n      <td>fountain</td>\n      <td>$76</td>\n    </tr>\n    <tr>\n      <td>leaf blower</td>\n      <td>$80</td>\n    </tr>\n    <tr>\n      <td>rosebush</td>\n      <td>$32</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 53,
+    "pred": "11:10 a.m.",
+    "ground_truth": "11:10 a.m.",
+    "question": "Look at the following schedule. When does the women's uneven bars event begin?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Event</th>\n      <th>Begin</th>\n      <th>End</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>women's balance beam</td>\n      <td>10:35 A.M.</td>\n      <td>11:00 A.M.</td>\n    </tr>\n    <tr>\n      <td>women's uneven bars</td>\n      <td>11:10 A.M.</td>\n      <td>11:40 A.M.</td>\n    </tr>\n    <tr>\n      <td>men's pommel horse</td>\n      <td>11:40 A.M.</td>\n      <td>12:15 P.M.</td>\n    </tr>\n    <tr>\n      <td>men's high bar</td>\n      <td>12:00 P.M.</td>\n      <td>12:45 P.M.</td>\n    </tr>\n    <tr>\n      <td>women's floor exercise</td>\n      <td>12:45 P.M.</td>\n      <td>1:15 P.M.</td>\n    </tr>\n    <tr>\n      <td>men's floor exercise</td>\n      <td>1:05 P.M.</td>\n      <td>1:35 P.M.</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 54,
+    "pred": "10",
+    "ground_truth": "10",
+    "question": "A county agency recorded the money donated to several charitable causes over time. In May, how much more money was raised for animals than for medical research?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Cause</th>\n      <th>May</th>\n      <th>June</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Parks</td>\n      <td>$2</td>\n      <td>$12</td>\n    </tr>\n    <tr>\n      <td>Medical research</td>\n      <td>$8</td>\n      <td>$20</td>\n    </tr>\n    <tr>\n      <td>Hunger</td>\n      <td>$7</td>\n      <td>$2</td>\n    </tr>\n    <tr>\n      <td>Animals</td>\n      <td>$18</td>\n      <td>$4</td>\n    </tr>\n    <tr>\n      <td>Education</td>\n      <td>$17</td>\n      <td>$1</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 55,
+    "pred": "26",
+    "ground_truth": "37",
+    "question": "While working as a summer camp counselor, Keith monitored how many candy necklaces each child made. How many children made fewer than 5 candy necklaces?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Candy necklaces made</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>11</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>3</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 56,
+    "pred": "144",
+    "ground_truth": "144",
+    "question": "How much money does Bridget need to buy a ceramic vase and an oil painting?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>crystal sculpture</td>\n      <td>$51</td>\n    </tr>\n    <tr>\n      <td>oil painting</td>\n      <td>$91</td>\n    </tr>\n    <tr>\n      <td>crystal vase</td>\n      <td>$42</td>\n    </tr>\n    <tr>\n      <td>ceramic vase</td>\n      <td>$53</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 57,
+    "pred": "6024",
+    "ground_truth": "6024",
+    "question": "How much money does Simon need to buy an antique cast-iron bench and an antique pine chest of drawers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>antique cast-iron bench</td>\n      <td>$2,825</td>\n    </tr>\n    <tr>\n      <td>antique marbletop vanity</td>\n      <td>$5,706</td>\n    </tr>\n    <tr>\n      <td>antique cherry bookcase</td>\n      <td>$6,210</td>\n    </tr>\n    <tr>\n      <td>antique pine chest of drawers</td>\n      <td>$3,199</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 58,
+    "pred": "8",
+    "ground_truth": "8",
+    "question": "Several people compared how many Web pages they had visited. What is the range of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Person</th>\n      <th>Number of Web pages</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Percy</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>Kari</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>Madelyn</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>Billy</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>Jada</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>Caleb</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>Gabby</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>Layla</td>\n      <td>4</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 59,
+    "pred": "10",
+    "ground_truth": "12",
+    "question": "This morning, Mr. Kline released the scores from last week's spelling test. How many students scored at least 55 points?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>3</td>\n      <td>1, 6, 7</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>4, 7, 8</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>0, 2</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>3, 4, 4, 7, 8, 9</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>1, 2, 6, 8</td>\n    </tr>\n    <tr>\n      <td>9</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 60,
+    "pred": "0",
+    "ground_truth": "1",
+    "question": "Principal Hampton reported the state test scores from some students at her school. How many students scored exactly 47 points?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2</td>\n      <td>1, 8</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>1, 2</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>1, 1, 7</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>2, 4</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 61,
+    "pred": "yamazaki family",
+    "ground_truth": "yamazaki family",
+    "question": "Several families compared how many vegetables they ate in a year. Which family ate the fewest vegetables?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Family</th>\n      <th>Number of vegetables eaten</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Yamazaki family</td>\n      <td>669</td>\n    </tr>\n    <tr>\n      <td>McCullough family</td>\n      <td>689</td>\n    </tr>\n    <tr>\n      <td>Fernandez family</td>\n      <td>698</td>\n    </tr>\n    <tr>\n      <td>Grisham family</td>\n      <td>686</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 62,
+    "pred": "nonlinear",
+    "ground_truth": "nonlinear",
+    "question": "The table shows a function. Is the function linear or nonlinear?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>x</th>\n      <th>y</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>17</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <td>18</td>\n      <td>12</td>\n    </tr>\n    <tr>\n      <td>19</td>\n      <td>17</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 63,
+    "pred": "police officer",
+    "ground_truth": "police officer",
+    "question": "This table shows information about two occupations. In which occupation would you receive special training on local and state laws?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Unnamed: 0</th>\n      <th>Police officer</th>\n      <th>Actor</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Description</td>\n      <td>Police officers enforce laws to stop crime and keep communities safe.</td>\n      <td>Actors give convincing performances of characters in a movie, television show, or play.</td>\n    </tr>\n    <tr>\n      <td>Typical education required</td>\n      <td>High school diploma, and often graduation from a training academy</td>\n      <td>No specific education requirements, but many take acting classes</td>\n    </tr>\n    <tr>\n      <td>Median income</td>\n      <td>$65,000 per year</td>\n      <td>$35,000 per year</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 64,
+    "pred": "isaac",
+    "ground_truth": "isaac",
+    "question": "Some friends played golf and compared their scores. Who had the highest score?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Name</th>\n      <th>Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Jasper</td>\n      <td>60</td>\n    </tr>\n    <tr>\n      <td>Eduardo</td>\n      <td>61</td>\n    </tr>\n    <tr>\n      <td>Isaac</td>\n      <td>63</td>\n    </tr>\n    <tr>\n      <td>Pablo</td>\n      <td>62</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 65,
+    "pred": "-3",
+    "ground_truth": "-3",
+    "question": "Every year Vindale has a citywide relay and reports the winning times. According to the table, what was the rate of change between 2006 and 2007?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Year</th>\n      <th>Winning time (minutes)</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2006</td>\n      <td>43</td>\n    </tr>\n    <tr>\n      <td>2007</td>\n      <td>40</td>\n    </tr>\n    <tr>\n      <td>2008</td>\n      <td>38</td>\n    </tr>\n    <tr>\n      <td>2009</td>\n      <td>37</td>\n    </tr>\n    <tr>\n      <td>2010</td>\n      <td>44</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 66,
+    "pred": "105.40",
+    "ground_truth": "18.9",
+    "question": "How much would it cost to buy 2+7/10 pounds of alfredo sauce?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>beef sauce</td>\n      <td>$5/lb</td>\n    </tr>\n    <tr>\n      <td>marinara sauce</td>\n      <td>$6/lb</td>\n    </tr>\n    <tr>\n      <td>alfredo sauce</td>\n      <td>$7/lb</td>\n    </tr>\n    <tr>\n      <td>pesto sauce</td>\n      <td>$6/lb</td>\n    </tr>\n    <tr>\n      <td>tomato sauce</td>\n      <td>$5/lb</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 67,
+    "pred": "4817",
+    "ground_truth": "3817",
+    "question": "How much money does Toby need to buy a boa constrictor, a llama, and an alpaca?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>llama</td>\n      <td>$1,113.00</td>\n    </tr>\n    <tr>\n      <td>boa constrictor</td>\n      <td>$1,359.00</td>\n    </tr>\n    <tr>\n      <td>alpaca</td>\n      <td>$1,345.00</td>\n    </tr>\n    <tr>\n      <td>cockatiel</td>\n      <td>$1,016.00</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 68,
+    "pred": "14.70",
+    "ground_truth": "14.7",
+    "question": "Bobby buys 4.9 pounds of banana chips. How much does he spend?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>dried pear</td>\n      <td>$2/pound</td>\n    </tr>\n    <tr>\n      <td>dried mango</td>\n      <td>$4/pound</td>\n    </tr>\n    <tr>\n      <td>raisins</td>\n      <td>$2/pound</td>\n    </tr>\n    <tr>\n      <td>banana chips</td>\n      <td>$3/pound</td>\n    </tr>\n    <tr>\n      <td>dried apple</td>\n      <td>$3/pound</td>\n    </tr>\n    <tr>\n      <td>dried pineapple</td>\n      <td>$3/pound</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 69,
+    "pred": "12",
+    "ground_truth": "12",
+    "question": "Some pizza restaurants compared their pizza sales. What is the range of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Restaurant</th>\n      <th>Number of slices sold</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Pizza Italia</td>\n      <td>97</td>\n    </tr>\n    <tr>\n      <td>Pizzas Only</td>\n      <td>99</td>\n    </tr>\n    <tr>\n      <td>Taste of New York</td>\n      <td>92</td>\n    </tr>\n    <tr>\n      <td>Mario's Pizzeria</td>\n      <td>97</td>\n    </tr>\n    <tr>\n      <td>Pizzeria Italiano</td>\n      <td>87</td>\n    </tr>\n    <tr>\n      <td>New York Slice</td>\n      <td>92</td>\n    </tr>\n    <tr>\n      <td>The Real Chicago</td>\n      <td>98</td>\n    </tr>\n    <tr>\n      <td>Antonio's Pizzeria</td>\n      <td>90</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 70,
+    "pred": "7",
+    "ground_truth": "8",
+    "question": "A garden supply store kept track of how many lawn mowers it sold in the past 7 days. What is the median of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Number of lawn mowers</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Tuesday</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>Wednesday</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>Thursday</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>Saturday</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Sunday</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>Monday</td>\n      <td>8</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 71,
+    "pred": "swing dance",
+    "ground_truth": "swing dance",
+    "question": "Look at the following schedule. Which class begins at 12.20 P.M.?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Class</th>\n      <th>Begin</th>\n      <th>End</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>ballroom dance</td>\n      <td>9:45 A.M.</td>\n      <td>10:40 A.M.</td>\n    </tr>\n    <tr>\n      <td>western dance</td>\n      <td>10:45 A.M.</td>\n      <td>11:30 A.M.</td>\n    </tr>\n    <tr>\n      <td>tap dance</td>\n      <td>11:40 A.M.</td>\n      <td>12:15 P.M.</td>\n    </tr>\n    <tr>\n      <td>swing dance</td>\n      <td>12:20 P.M.</td>\n      <td>1:55 P.M.</td>\n    </tr>\n    <tr>\n      <td>modern dance</td>\n      <td>2:05 P.M.</td>\n      <td>2:40 P.M.</td>\n    </tr>\n    <tr>\n      <td>intermediate ballet</td>\n      <td>2:45 P.M.</td>\n      <td>4:15 P.M.</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 72,
+    "pred": "4",
+    "ground_truth": "4",
+    "question": "Every year Salem has a citywide relay and reports the winning times. According to the table, what was the rate of change between 2016 and 2017?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Year</th>\n      <th>Winning time (minutes)</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2016</td>\n      <td>31</td>\n    </tr>\n    <tr>\n      <td>2017</td>\n      <td>35</td>\n    </tr>\n    <tr>\n      <td>2018</td>\n      <td>37</td>\n    </tr>\n    <tr>\n      <td>2019</td>\n      <td>28</td>\n    </tr>\n    <tr>\n      <td>2020</td>\n      <td>34</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 73,
+    "pred": "0.50",
+    "ground_truth": "0.50",
+    "question": "How much money does Haley need to buy a fancy ribbon and a red balloon?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>whistle</td>\n      <td>$0.97</td>\n    </tr>\n    <tr>\n      <td>red balloon</td>\n      <td>$0.19</td>\n    </tr>\n    <tr>\n      <td>noisemaker</td>\n      <td>$0.61</td>\n    </tr>\n    <tr>\n      <td>fancy ribbon</td>\n      <td>$0.31</td>\n    </tr>\n    <tr>\n      <td>party hat</td>\n      <td>$0.64</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 74,
+    "pred": "18",
+    "ground_truth": "18",
+    "question": "Jacob bought 3 pounds of pineapples. How much did he spend?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>oranges</td>\n      <td>$2 per pound</td>\n    </tr>\n    <tr>\n      <td>pineapples</td>\n      <td>$6 per pound</td>\n    </tr>\n    <tr>\n      <td>tangerines</td>\n      <td>$1 per pound</td>\n    </tr>\n    <tr>\n      <td>lemons</td>\n      <td>$2 per pound</td>\n    </tr>\n    <tr>\n      <td>grapefruits</td>\n      <td>$2 per pound</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 75,
+    "pred": "mountain peak",
+    "ground_truth": "underground lake",
+    "question": "Doug's campground is close to two hiking trails with scenic destinations. One trail ends at an underground lake in the bottom of a small cave. The other trail ends at a mountain peak. The elevation of each destination is shown on the campground map. Which trail's destination is farther from sea level?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Destination</th>\n      <th>Elevation (ft.)</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Underground lake</td>\n      <td>-350</td>\n    </tr>\n    <tr>\n      <td>Mountain peak</td>\n      <td>325</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 76,
+    "pred": "town square",
+    "ground_truth": "town square",
+    "question": "Look at the following schedule. At which stop does the train arrive at 11.50 A.M.?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Location</th>\n      <th>Time</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>university</td>\n      <td>10:35 A.M.</td>\n    </tr>\n    <tr>\n      <td>science museum</td>\n      <td>11:00 A.M.</td>\n    </tr>\n    <tr>\n      <td>elementary school</td>\n      <td>11:10 A.M.</td>\n    </tr>\n    <tr>\n      <td>park</td>\n      <td>11:40 A.M.</td>\n    </tr>\n    <tr>\n      <td>town square</td>\n      <td>11:50 A.M.</td>\n    </tr>\n    <tr>\n      <td>library</td>\n      <td>12:15 P.M.</td>\n    </tr>\n    <tr>\n      <td>swimming pool</td>\n      <td>12:40 P.M.</td>\n    </tr>\n    <tr>\n      <td>baseball stadium</td>\n      <td>1:10 P.M.</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 77,
+    "pred": "n/a",
+    "ground_truth": "12",
+    "question": "At their family reunion, the Lopez family recorded everyone's age. How many people are at least 10 years old but less than 60 years old?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>3, 4</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>6, 9</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>0, 1, 4, 6, 9</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>0, 1, 7</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>6</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 78,
+    "pred": "14.83",
+    "ground_truth": "15",
+    "question": "The teachers at a middle school counted how many computers they had in their classrooms. What is the mean of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Teacher</th>\n      <th>Number of computers</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Mrs. Tan</td>\n      <td>11</td>\n    </tr>\n    <tr>\n      <td>Mr. Morales</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <td>Mr. Watson</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <td>Mrs. Jansen</td>\n      <td>16</td>\n    </tr>\n    <tr>\n      <td>Mr. Schmidt</td>\n      <td>13</td>\n    </tr>\n    <tr>\n      <td>Ms. Rojas</td>\n      <td>16</td>\n    </tr>\n    <tr>\n      <td>Mrs. Rossi</td>\n      <td>13</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 79,
+    "pred": "6",
+    "ground_truth": "6",
+    "question": "Nick bought 2 pounds of raspberry vinaigrette. How much did he spend?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>raspberry vinaigrette</td>\n      <td>$3/pound</td>\n    </tr>\n    <tr>\n      <td>Italian dressing</td>\n      <td>$4/pound</td>\n    </tr>\n    <tr>\n      <td>blue cheese dressing</td>\n      <td>$4/pound</td>\n    </tr>\n    <tr>\n      <td>balsamic vinaigrette</td>\n      <td>$6/pound</td>\n    </tr>\n    <tr>\n      <td>Thousand Island dressing</td>\n      <td>$4/pound</td>\n    </tr>\n    <tr>\n      <td>ranch dressing</td>\n      <td>$4/pound</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 80,
+    "pred": "0.32",
+    "ground_truth": "6",
+    "question": "In hopes of raising more funds for arts education, some parents in the Clarksville School District publicized the current per-student arts education budget. According to the table, what was the rate of change between 2019 and 2020?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Year</th>\n      <th>Per-student budget</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2016</td>\n      <td>$28</td>\n    </tr>\n    <tr>\n      <td>2017</td>\n      <td>$23</td>\n    </tr>\n    <tr>\n      <td>2018</td>\n      <td>$22</td>\n    </tr>\n    <tr>\n      <td>2019</td>\n      <td>$19</td>\n    </tr>\n    <tr>\n      <td>2020</td>\n      <td>$25</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 81,
+    "pred": "n/a",
+    "ground_truth": "38088",
+    "question": "How much money does Aisha need to buy 8 tickets for a Caribbean cruise?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>ticket for an Australian cruise</td>\n      <td>$3,530</td>\n    </tr>\n    <tr>\n      <td>ticket for a Mediterranean cruise</td>\n      <td>$3,996</td>\n    </tr>\n    <tr>\n      <td>ticket for a Hawaiian cruise</td>\n      <td>$9,448</td>\n    </tr>\n    <tr>\n      <td>ticket for an Alaskan cruise</td>\n      <td>$4,136</td>\n    </tr>\n    <tr>\n      <td>ticket for a Caribbean cruise</td>\n      <td>$4,761</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 82,
+    "pred": "45 minutes",
+    "ground_truth": "45 minutes",
+    "question": "Look at the following schedule. Tom just missed the 1.45 P.M. bus at the mall. How long does he have to wait until the next bus?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n      <th>Column 3</th>\n      <th>Column 4</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>the library</td>\n      <td>9:00 A.M.</td>\n      <td>10:15 A.M.</td>\n      <td>11:00 A.M.</td>\n    </tr>\n    <tr>\n      <td>the science museum</td>\n      <td>10:00 A.M.</td>\n      <td>11:15 A.M.</td>\n      <td>12:00 P.M.</td>\n    </tr>\n    <tr>\n      <td>the playground</td>\n      <td>11:00 A.M.</td>\n      <td>12:15 P.M.</td>\n      <td>1:00 P.M.</td>\n    </tr>\n    <tr>\n      <td>the kickball field</td>\n      <td>12:00 P.M.</td>\n      <td>1:15 P.M.</td>\n      <td>2:00 P.M.</td>\n    </tr>\n    <tr>\n      <td>the mall</td>\n      <td>12:30 P.M.</td>\n      <td>1:45 P.M.</td>\n      <td>2:30 P.M.</td>\n    </tr>\n    <tr>\n      <td>the post office</td>\n      <td>1:00 P.M.</td>\n      <td>2:15 P.M.</td>\n      <td>3:00 P.M.</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 83,
+    "pred": "201.12",
+    "ground_truth": "183.17",
+    "question": "How much money does Destiny need to buy 9 history books and 2 cat calendars?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>encyclopedia</td>\n      <td>$36.18</td>\n    </tr>\n    <tr>\n      <td>cat calendar</td>\n      <td>$11.80</td>\n    </tr>\n    <tr>\n      <td>mystery novel</td>\n      <td>$12.56</td>\n    </tr>\n    <tr>\n      <td>history book</td>\n      <td>$17.73</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 84,
+    "pred": "n/a",
+    "ground_truth": "6",
+    "question": "At their family reunion, the Atkinson family recorded everyone's age. How many people are less than 61 years old?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>3, 7, 8</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>3, 4</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>9</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 85,
+    "pred": "48",
+    "ground_truth": "38",
+    "question": "A grocery store chain tracked the number of trips people made to its stores last week. How many people went to the grocery store at least 2 times?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Number of trips</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>14</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>16</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>4</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 86,
+    "pred": "16.65",
+    "ground_truth": "16.65",
+    "question": "How much money does Gordon need to buy a broom and a shovel?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>broom</td>\n      <td>$7.40</td>\n    </tr>\n    <tr>\n      <td>watering can</td>\n      <td>$6.29</td>\n    </tr>\n    <tr>\n      <td>lawn sprinkler</td>\n      <td>$7.63</td>\n    </tr>\n    <tr>\n      <td>shovel</td>\n      <td>$9.25</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 87,
+    "pred": "0.05",
+    "ground_truth": "0.05",
+    "question": "How much more does a bag of peanuts cost than an ice cream cone?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>bottle of water</td>\n      <td>$0.76</td>\n    </tr>\n    <tr>\n      <td>ice cream cone</td>\n      <td>$0.93</td>\n    </tr>\n    <tr>\n      <td>glass of lemonade</td>\n      <td>$0.31</td>\n    </tr>\n    <tr>\n      <td>brownie</td>\n      <td>$0.81</td>\n    </tr>\n    <tr>\n      <td>bag of peanuts</td>\n      <td>$0.98</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 88,
+    "pred": "22",
+    "ground_truth": "22",
+    "question": "A theme park developer recorded the number of people who visited the local water park last summer. How many people went to the water park fewer than 3 times?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Number of trips</th>\n      <th>Frequency</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>16</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>17</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>12</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 89,
+    "pred": "-5",
+    "ground_truth": "-5",
+    "question": "Every year Millersburg has a citywide relay and reports the winning times. According to the table, what was the rate of change between 2013 and 2014?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Year</th>\n      <th>Winning time (minutes)</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>2010</td>\n      <td>43</td>\n    </tr>\n    <tr>\n      <td>2011</td>\n      <td>45</td>\n    </tr>\n    <tr>\n      <td>2012</td>\n      <td>46</td>\n    </tr>\n    <tr>\n      <td>2013</td>\n      <td>42</td>\n    </tr>\n    <tr>\n      <td>2014</td>\n      <td>37</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 90,
+    "pred": "3/11",
+    "ground_truth": "3/11",
+    "question": "Chase is a pediatrics nurse who conducts the first neonatal exam on newborn patients. He makes note of the newborns' height, weight, eye color, and heart rate, among other things. What is the probability that a randomly selected baby has blue eyes and has a slow heart rate (<100 bpm)? Simplify any fractions.",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n      <th>Column 3</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>NaN</td>\n      <td>Slow heart rate (<100 bpm)</td>\n      <td>Fast heart rate (>100 bpm)</td>\n    </tr>\n    <tr>\n      <td>Brown eyes</td>\n      <td>3</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <td>Blue eyes</td>\n      <td>3</td>\n      <td>3</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 91,
+    "pred": "0.22",
+    "ground_truth": "0.22",
+    "question": "How much money does Harper need to buy a flag stamp, a piece of bubble wrap, and a robot stamp?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>piece of bubble wrap</td>\n      <td>$0.07</td>\n    </tr>\n    <tr>\n      <td>robot stamp</td>\n      <td>$0.08</td>\n    </tr>\n    <tr>\n      <td>flag stamp</td>\n      <td>$0.07</td>\n    </tr>\n    <tr>\n      <td>coyote stamp</td>\n      <td>$0.04</td>\n    </tr>\n    <tr>\n      <td>tulip stamp</td>\n      <td>$0.04</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 92,
+    "pred": "10",
+    "ground_truth": "10",
+    "question": "Grayson counted the number of pieces of pepperoni on each pizza he made. What is the smallest number of pieces of pepperoni?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>0, 0, 1, 3, 8, 8</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>0, 1, 1, 2, 9, 9</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>1, 3, 3, 6, 6, 6</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>1, 2, 9</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 93,
+    "pred": "3/7",
+    "ground_truth": "3/8",
+    "question": "At a science museum, visitors can compete to see who has a faster reaction time. Competitors watch a red screen, and the moment they see it turn from red to green, they push a button. The machine records their reaction times and also asks competitors to report their gender. What is the probability that a randomly selected competitor was female and reacted in 0.3 to 0.7 seconds? Simplify any fractions.",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n      <th>Column 3</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>NaN</td>\n      <td>Less than 0.3 seconds</td>\n      <td>0.3 to 0.7 seconds</td>\n    </tr>\n    <tr>\n      <td>Male</td>\n      <td>3</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>Female</td>\n      <td>3</td>\n      <td>6</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 94,
+    "pred": "0.02",
+    "ground_truth": "0.02",
+    "question": "Sue has $0.11. How much money will Sue have left if she buys a red thumbtack and a small metal hook?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>small metal hook</td>\n      <td>$0.03</td>\n    </tr>\n    <tr>\n      <td>gold tack</td>\n      <td>$0.02</td>\n    </tr>\n    <tr>\n      <td>brass clip</td>\n      <td>$0.04</td>\n    </tr>\n    <tr>\n      <td>flat-head bolt</td>\n      <td>$0.03</td>\n    </tr>\n    <tr>\n      <td>red thumbtack</td>\n      <td>$0.06</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 95,
+    "pred": "6.50",
+    "ground_truth": "9",
+    "question": "Gary went on a bird watching trip and jotted down the number of birds he saw each day. What is the median of the numbers?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Number of birds</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Wednesday</td>\n      <td>9</td>\n    </tr>\n    <tr>\n      <td>Thursday</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <td>Saturday</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <td>Sunday</td>\n      <td>9</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 96,
+    "pred": "saturday",
+    "ground_truth": "saturday",
+    "question": "Ben went on a camping trip and logged the number of miles he hiked each day. On which day did Ben hike the most miles?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Day</th>\n      <th>Number of miles</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Thursday</td>\n      <td>12</td>\n    </tr>\n    <tr>\n      <td>Friday</td>\n      <td>13</td>\n    </tr>\n    <tr>\n      <td>Saturday</td>\n      <td>19</td>\n    </tr>\n    <tr>\n      <td>Sunday</td>\n      <td>16</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 97,
+    "pred": "mountain peak",
+    "ground_truth": "underground lake",
+    "question": "Russell's campground is close to two hiking trails with scenic destinations. One trail ends at an underground lake in the bottom of a small cave. The other trail ends at a mountain peak. The elevation of each destination is shown on the campground map. Which trail's destination is farther from sea level?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Destination</th>\n      <th>Elevation (ft.)</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Underground lake</td>\n      <td>-350</td>\n    </tr>\n    <tr>\n      <td>Mountain peak</td>\n      <td>325</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 98,
+    "pred": "12.80",
+    "ground_truth": "12.8",
+    "question": "What is the total cost for 1.6 pounds of cashews?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Column 1</th>\n      <th>Column 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>walnuts</td>\n      <td>$8/pound</td>\n    </tr>\n    <tr>\n      <td>cashews</td>\n      <td>$8/pound</td>\n    </tr>\n    <tr>\n      <td>hazelnuts</td>\n      <td>$4/pound</td>\n    </tr>\n    <tr>\n      <td>pecans</td>\n      <td>$6/pound</td>\n    </tr>\n    <tr>\n      <td>almonds</td>\n      <td>$4/pound</td>\n    </tr>\n    <tr>\n      <td>peanuts</td>\n      <td>$2/pound</td>\n    </tr>\n  </tbody>\n</table>"
+  },
+  {
+    "index": 99,
+    "pred": "90",
+    "ground_truth": "90",
+    "question": "The Somerville Chamber of Commerce researched the number of employees working at local companies. What is the size of the largest company?",
+    "table": "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>Stem</th>\n      <th>Leaf</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <td>3</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>4</td>\n      <td>3, 7</td>\n    </tr>\n    <tr>\n      <td>5</td>\n      <td>6, 7</td>\n    </tr>\n    <tr>\n      <td>6</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>7</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <td>8</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <td>9</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>"
+  }
+]
