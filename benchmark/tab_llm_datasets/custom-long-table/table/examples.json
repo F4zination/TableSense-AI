@@ -1,0 +1,302 @@
+[
+  {
+    "id": "clt-0",
+    "utterance": "How many employees are there in total?",
+    "target_value": "210",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-1",
+    "utterance": "What is the total annual income of all employees?",
+    "target_value": "10700000",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-2",
+    "utterance": "What is the average age of all employees?",
+    "target_value": "35.66",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-3",
+    "utterance": "How many 'Male' employees are there?",
+    "target_value": "105",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-4",
+    "utterance": "How many 'Female' employees are there?",
+    "target_value": "105",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-5",
+    "utterance": "What is the maximum income in the dataset?",
+    "target_value": "95000",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-6",
+    "utterance": "What is the minimum income in the dataset?",
+    "target_value": "22000",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-7",
+    "utterance": "What is the total income of 'German' employees?",
+    "target_value": "10318000",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-8",
+    "utterance": "How many employees are aged 30 or younger?",
+    "target_value": "75",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-9",
+    "utterance": "What is the average income of employees aged 30 or younger?",
+    "target_value": "37626.67",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-10",
+    "utterance": "What is the average income of female employees?",
+    "target_value": "43514.29",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-11",
+    "utterance": "What is the average age of employees with the nationality 'German'?",
+    "target_value": "35.68",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-12",
+    "utterance": "What is the total income of all employees older than 50?",
+    "target_value": "1255000",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-13",
+    "utterance": "Who is the youngest employee with an income greater than 70000?",
+    "target_value": "Felix Wolf",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-14",
+    "utterance": "What is the most common profession in the dataset?",
+    "target_value": "HR Specialist and Project Manager",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-15",
+    "utterance": "What is the average height of male employees?",
+    "target_value": "180.26",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-16",
+    "utterance": "What is the difference between the highest and lowest income?",
+    "target_value": "73000",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-17",
+    "utterance": "What is the average height of employees with nationality 'French'?",
+    "target_value": "185.00",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-18",
+    "utterance": "Who is the tallest female employee?",
+    "target_value": "Viktoria Baumeister",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-19",
+    "utterance": "What is the sum of ages of all 'Italian' employees?",
+    "target_value": "63",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-20",
+    "utterance": "How many employees have an income less than 35000?",
+    "target_value": "21",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-21",
+    "utterance": "What is the average income of employees taller than 175 cm?",
+    "target_value": "58320.00",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-22",
+    "utterance": "What is the most common nationality among employees?",
+    "target_value": "German",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-23",
+    "utterance": "What is the age of the oldest employee?",
+    "target_value": "62",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-24",
+    "utterance": "What is the height of the shortest employee?",
+    "target_value": "162",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-25",
+    "utterance": "How many distinct professions are represented in the dataset?",
+    "target_value": "205",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-26",
+    "utterance": "What is the average age of employees with the occupation 'Project Manager'?",
+    "target_value": "40.67",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-27",
+    "utterance": "What is the total income of all female employees?",
+    "target_value": "4569000",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-28",
+    "utterance": "What is the average income of male employees?",
+    "target_value": "58390.48",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  },
+  {
+    "id": "clt-29",
+    "utterance": "What is the difference in average age between Male and Female employees?",
+    "target_value": "6.68",
+    "context": {
+      "csv": "table/table.csv",
+      "html": "table/table.html",
+      "tsv": "table/table.tsv"
+    }
+  }
+]

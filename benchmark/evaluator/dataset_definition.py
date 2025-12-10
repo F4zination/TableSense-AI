@@ -28,6 +28,13 @@ class SimpleTest(Dataset):
                          metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()], system_prompt=system_prompt)
 
 
+class CustomLongTableDataset(Dataset):
+    def __init__(self):
+        system_prompt = ""
+        super().__init__(dataset_path="tab_llm_datasets/custom-long-table/dataset.py", is_remote=False,
+                         metric=[ExactMatchMetric(), BERTScoreMetric(), RogueMetric()], system_prompt=system_prompt)
+
+
 class WikiTableQuestions(Dataset):
     def __init__(self):
         system_prompt = "Keep the answer as short as possible!!!\n"
