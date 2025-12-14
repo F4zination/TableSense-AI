@@ -20,11 +20,6 @@ from agent.rag.indexer import convert_pdf
 # === 1. Load Environment & Configuration ===
 load_dotenv()
 
-# AWS
-os.environ["AWS_ACCESS_KEY_ID"] = os.getenv("AWS_ACCESS_KEY_ID")
-os.environ["AWS_SECRET_ACCESS_KEY"] = os.getenv("AWS_SECRET_ACCESS_KEY")
-os.environ["AWS_REGION_NAME"] = os.getenv("AWS_REGION_NAME")
-
 # PostgreSQL Configuration
 DB_USER = os.getenv("DB_USER")
 DB_PASS = os.getenv("DB_PASS")

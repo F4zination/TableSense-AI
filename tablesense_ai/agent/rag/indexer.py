@@ -264,7 +264,7 @@ def index_documents(docs: list[Document]):
             builtin_function=BM25BuiltInFunction(),
             vector_field=["dense", "sparse"],
             connection_args={"uri": f"http://{host}:{port}"},
-            consistency_level="Bounded",
+            consistency_level="Strong",
             drop_old=True, # --> remove for persistency
         )
         print("Successfully indexed documents in Milvus.")
@@ -278,20 +278,20 @@ def convert_pdf(file_path: Path):
     """
     url = "http://docling:5001/v1/convert/file"
     parameters = {
-        "from_formats": ["docx", "pptx", "html", "image", "pdf", "asciidoc", "md", "xlsx"],
+        "from_formats": ["docx", "pdf", "xlsx"],
         "to_formats": ["md"],
         "image_export_mode": "placeholder",
         "do_ocr": True,
         "force_ocr": False,
         "ocr_engine": "easyocr",
-        "ocr_lang": ["en"],
+        "ocr_lang": ["en", "de"],
         "pdf_backend": "dlparse_v4",
         "table_mode": "accurate",
         "abort_on_error": False,
     }
 
-    print("Sending request to docling container")
-    with open(file_path, "rb") as f, httpx.Client(timeout=60.0) as client:
+    print("Sending request to docling container", flush=True)
+    with open(file_path, "rb") as f, httpx.Client(timeout=600.0) as client:
         response = client.post(
             url,
             files={"files": (file_path.name, f, "application/pdf")},
@@ -311,8 +311,10 @@ def convert_pdf(file_path: Path):
         metadata={"source": file_path.name}
     )
 
+    print("Processing markdown document...", flush=True)
     processed_docs = process_markdown_doc(doc, rows_per_chunk=5, natural=False) 
     
+    print("Indexing documents...", flush=True)
     index_documents(processed_docs) 
 
-    print(f"\nTotal documents generated: {len(processed_docs)}")
+    print(f"\nTotal documents generated: {len(processed_docs)}", flush=True)

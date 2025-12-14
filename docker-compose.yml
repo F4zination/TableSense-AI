@@ -73,7 +73,7 @@ services:
       POSTGRES_PASSWORD: tablesense_password
       POSTGRES_DB: tablesense_db
     ports:
-      - "5433:5432" # Maps the container port 5432 to your host machine port 5432
+      - "5432:5432" # Maps the container port 5432 to your host machine port 5432
     volumes:
       - postgres_data:/var/lib/postgresql/data # Persistent storage for your SQL data
     healthcheck:
@@ -88,7 +88,8 @@ services:
     restart: always
     ports: 
       - "8501:8501"
-    env_file: .env
+    env_file:
+      - .env
 
   docling:
     container_name: docling_api
@@ -98,7 +99,7 @@ services:
       - "5001:5001"
     environment:
       DOCLING_SERVE_UI: "1"
-
+      DOCLING_SERVE_MAX_SYNC_WAIT: "600"
 
 
 volumes:
