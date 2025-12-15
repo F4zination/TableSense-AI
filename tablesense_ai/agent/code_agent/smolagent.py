@@ -66,7 +66,7 @@ Real-world data is often dirty. Before answering, you MUST standardize the dataf
 ### OUTPUT FORMAT
 - **Final Answer:** Use `final_answer(result)`.
 - **Format:** The result must be a clean string or number. 
-- **Units:** If the original column had a unit (e.g., "$", "kg", "years"), append it to the final answer string if appropriate.
+- **Units:** If the original column had a magnitude (e.g., "billions", "kg", "years"), append it to the final answer string if appropriate.
 
 ## User Question:
 {question}
