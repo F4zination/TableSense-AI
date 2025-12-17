@@ -265,7 +265,7 @@ def index_documents(docs: list[Document]):
             vector_field=["dense", "sparse"],
             connection_args={"uri": f"http://{host}:{port}"},
             consistency_level="Strong",
-            drop_old=True, # --> remove for persistency
+            drop_old=False, # --> remove for persistency
         )
         print("Successfully indexed documents in Milvus.")
     except Exception as e:

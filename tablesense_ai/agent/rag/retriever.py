@@ -11,6 +11,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 # Milvus connection defaults can be overridden via environment variables
 MILVUS_HOST = os.getenv("MILVUS_HOST", "standalone")
 MILVUS_PORT = os.getenv("MILVUS_PORT", "19530")
+MILVUS_COLLECTION_NAME = os.getenv("MILVUS_COLLECTION_NAME", "my_docs")
+EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "sentence-transformers/all-mpnet-base-v2")
 
 # === Database Helper Class ===
 class PostgreSQLHelper:
@@ -90,35 +92,68 @@ class RetrieverTool(Tool):
     def __init__(self, db_helper: PostgreSQLHelper, **kwargs):
         super().__init__(**kwargs)
         self.db_helper = db_helper
+        self.collection_name = MILVUS_COLLECTION_NAME
+        self.embedding_model_name = EMBEDDING_MODEL_NAME
+        self.embedding_function = None
         self.vectorstore = None
         self._init_error = None # Initialize error tracking
 
+        self._connect_vectorstore()
 
+    def _connect_vectorstore(self) -> None:
         try:
             host = os.getenv("MILVUS_HOST", MILVUS_HOST)
             port = os.getenv("MILVUS_PORT", MILVUS_PORT)
 
+            if self.embedding_function is None:
+                self.embedding_function = HuggingFaceEmbeddings(model_name=self.embedding_model_name)
+
             self.vectorstore = Milvus(
-                collection_name="my_docs",
-                embedding_function=HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2"),
+                collection_name=self.collection_name,
+                embedding_function=self.embedding_function,
                 builtin_function=BM25BuiltInFunction(),
                 vector_field=["dense", "sparse"],
                 connection_args={"uri": f"http://{host}:{port}"},
-                consistency_level="Bounded",
+                consistency_level="Strong",
             )
+            self._init_error = None
         except Exception as e:
             self._init_error = f"Failed to initialize Milvus vectorstore: {e}"
             self.vectorstore = None
-            print(f"Faild to connect to Milvus: {self._init_error}")
+            print(f"Failed to connect to Milvus: {self._init_error}")
+
+    def refresh_vectorstore(self) -> bool:
+        """
+        Reconnect to Milvus and reload the collection.
+
+        This is useful after the indexer drops/recreates the collection (e.g. drop_old=True),
+        which can leave an existing Milvus handle stale.
+        """
+        self.vectorstore = None
+        self._connect_vectorstore()
+        return self.vectorstore is not None
 
     def forward(self, query: str) -> str:
         if not query.strip():
             return "Input error: query must be non-empty."
         if self.vectorstore is None:
+            self.refresh_vectorstore()
+        if self.vectorstore is None:
             return f"RetrieverUnavailable: {self._init_error or 'vectorstore not configured'}"
         
         try:
             docs = self.vectorstore.similarity_search(query, k=3, ranker_type="weighted", ranker_params={"weights": [0.6, 0.4]})
+        except Exception as e:
+            # If the collection was dropped/recreated by the indexer, reconnect once and retry.
+            self.refresh_vectorstore()
+            if self.vectorstore is None:
+                return f"Error during retrieval: {e}"
+            try:
+                docs = self.vectorstore.similarity_search(query, k=3, ranker_type="weighted", ranker_params={"weights": [0.6, 0.4]})
+            except Exception as e2:
+                return f"Error during retrieval: {e2}"
+
+        try:
             if not docs:
                 return "No relevant documents found."
 

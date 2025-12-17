@@ -28,9 +28,11 @@ DB_PORT = os.getenv("DB_PORT", "5432")
 DB_NAME = os.getenv("DB_NAME")
 DB_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-# Local LLM API Configuration
-api_base = os.getenv("OLLAMA_BASE_URL")
-api_key = os.getenv("OLLAMA_API_KEY")
+
+# API Config for different LLMS:
+modelid = os.getenv("MODEL_ID", "mistral/mistral-small-2506")
+api_base = os.getenv("BASE_URL", "https://api.mistral.ai/v1")
+api_key = os.getenv("API_KEY")
 
 
 # === 2. Agent Prompts ===
@@ -103,50 +105,35 @@ Use pandas as your primary tool for data manipulation and analysis.
 """
 
 # === 3. Initialize Tools and Agent (with Caching) ===
-# Use st.cache_resource to avoid re-initializing on every script rerun
+# Streamlit reruns the script on every interaction. If we re-create the RetrieverTool
+# on each rerun, we also re-load the sentence-transformers model repeatedly, which can
+# lead to "meta tensor" init failures and to the agent holding a different (stale) tool
+# instance than the UI uses. Cache the whole contextual stack together.
 @st.cache_resource
-def get_db_helper():
-    return PostgreSQLHelper(db_url=DB_URL)
+def get_contextual_stack(db_url: str):
+    db_helper = PostgreSQLHelper(db_url=db_url)
+    retriever_tool = RetrieverTool(db_helper=db_helper)
+    sql_tool = SQLQueryTool(db_helper=db_helper)
+
+    llm_model = LiteLLMModel(
+        # model_id="bedrock/mistral.mistral-small-2402-v1:0",
+        model_id=modelid,
+        api_key=api_key,
+        api_base=api_base,
+        max_retries=2,
+        max_tokens=4096,
+    )
+    agent = CodeAgent(
+        tools=[retriever_tool, sql_tool],
+        model=llm_model,
+        max_steps=4,
+        verbosity_level=2,
+    )
+
+    return db_helper, retriever_tool, sql_tool, agent
 
 
-@st.cache_resource
-def get_tools(_db_helper):
-    sql_tool = SQLQueryTool(db_helper=_db_helper)
-    retriever_tool = RetrieverTool(db_helper=_db_helper)
-    return retriever_tool, sql_tool
-
-
-@st.cache_resource
-def get_agent(_retriever_tool, _sql_tool):
-    """Initializes and returns the CodeAgent."""
-    if not _retriever_tool or not _sql_tool:
-        st.error("Tools are not initialized, cannot create agent.")
-        return None
-    
-    try:
-        llm_model = LiteLLMModel(
-            #model_id="bedrock/mistral.mistral-small-2402-v1:0",
-            model_id="mistral/mistral-small-2506",
-            api_key="p2BQ5k0qBbOrm89s1WioRsDZmM7oPNqC",
-            api_base="https://api.mistral.ai/v1",
-            max_retries=2,
-            max_tokens=4096,
-        )
-        agent = CodeAgent(
-            tools=[_retriever_tool, _sql_tool],
-            model=llm_model,
-            max_steps=4,
-            verbosity_level=2
-        )
-        return agent
-    except Exception as e:
-        st.error(f"Failed to create contextual agent: {e}")
-        return None
-
-# Load all components
-db_helper = get_db_helper()
-retriever_tool, sql_tool = get_tools(db_helper)
-agent = get_agent(retriever_tool, sql_tool)
+db_helper, retriever_tool, sql_tool, agent = get_contextual_stack(DB_URL)
 
 
 
@@ -275,6 +262,10 @@ with tab2:
                 #  - Conceptual visual for user
                 
                 convert_pdf(tmp_path)
+
+                # The indexer recreates the Milvus collection (drop_old=True), so refresh the
+                # retriever's handle to ensure it can see the newly indexed documents.
+                retriever_tool.refresh_vectorstore()
                 
                 # 3. Cleanup
                 os.remove(tmp_path)
